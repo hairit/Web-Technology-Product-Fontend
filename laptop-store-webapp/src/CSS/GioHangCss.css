@@ -1,0 +1,309 @@
+.width {
+  width: 85%;
+  min-height: 45rem;
+}
+.centerp {
+  background-color: white;
+}
+.centerp {
+  width: 100%;
+  height: 45rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.product-none {
+  padding: 0 50px 0 50px;
+  width: 44%;
+  height: auto;
+  margin: 0 auto;
+}
+.product-none p {
+  padding-top: 25px;
+  color: red;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+.product-none img {
+  width: 30%;
+}
+.btn-backhome {
+  padding-top: 50px;
+}
+.btn-home {
+  color: #1533b6;
+}
+.btn-home:hover {
+  box-shadow: 1px 1px 5px 5px rgb(212, 212, 212);
+  transition: all 0.3s ease-in-out;
+}
+.page {
+  width: 100% !important;
+  height: auto !important;
+  background-color: #f8f8fc;
+}
+.home-icon {
+  display: flex;
+  flex-flow: row;
+  padding-top: 15px;
+}
+.home-icon p {
+  line-height: 41px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 8px;
+}
+.home-icon img {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  width: 62%;
+}
+.title-carticon {
+  background-color: white;
+  padding: 0 10px;
+  border: 1px solid rgb(212, 212, 212);
+  border-radius: 36px;
+}
+.title-txt {
+  height: auto;
+  line-height: 39px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.img-backhome {
+  position: relative;
+  background-color: white;
+  border: 1px solid rgb(212, 212, 212);
+  border-radius: 50%;
+  margin-right: 8px;
+  padding: 10px;
+  width: 3.5%;
+}
+.title-cart {
+  margin: 15px 0 15px 0;
+  width: 100%;
+  height: auto;
+}
+.title-cart strong {
+  font-size: 25px;
+}
+.center-card {
+  margin-bottom: 20px;
+  background-color: white;
+  display: flex;
+}
+.carts {
+  width: 70%;
+  border-radius: 5px;
+  background-color: white;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-flow: column;
+}
+.info-chitiet {
+  display: flex;
+}
+.info-cart {
+  padding: 20px 0 20px 10px;
+  width: 100%;
+}
+.info-image {
+  padding-left: 10px;
+  display: block;
+  flex: 0 0 66.66%;
+  max-width: 66.66%;
+}
+.img-name {
+  display: flex;
+  gap: 6px;
+}
+.img-name a {
+  cursor: pointer;
+  flex: 0 0 15%;
+}
+.info-price {
+  text-align: right;
+}
+.info-price strong {
+  font-size: 17px;
+  padding-bottom: 0 !important;
+}
+.giagoc {
+  font-size: 13px !important;
+  color: red;
+}
+.imag {
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  width: 100%;
+}
+.id-item {
+  margin-top: 5px;
+}
+.name {
+  line-height: 1.4;
+  width: 80%;
+}
+.name a {
+  font-size: 14px;
+  font-weight: 380;
+  color: black;
+  margin-bottom: 15px;
+}
+.name a:hover {
+  color: #1435c3;
+}
+.payment {
+  background-color: white;
+  width: 30%;
+  padding: 20px 15px;
+}
+.thanhtoan {
+  padding-bottom: 10px;
+  font-size: 21px;
+}
+.tamtinh-thanhtien {
+  width: 100%;
+  float: left;
+  font-size: 15px;
+}
+.VAT {
+  font-size: 15px;
+  width: 100%;
+  text-align: right;
+  padding-top: 3px;
+  padding-bottom: 10px;
+}
+.tamtinh-thanhtien p {
+  float: left;
+}
+.tamtinh {
+  color: red;
+  font-size: 17px;
+  font-weight: bold;
+  width: 73%;
+  text-align: right;
+}
+.thanhtien {
+  float: right !important;
+  font-size: 23px;
+  font-weight: bold;
+  color: #0000ee;
+  text-align: right;
+}
+.txt-left {
+  width: 27%;
+  line-height: 28px;
+  height: 28px;
+}
+.btn-pay {
+  background-color: #1435c3;
+  color: white;
+  width: 100%;
+  font-size: 18px;
+}
+.info-editquantity {
+  padding-right: 15px;
+  height: 36px;
+  display: flex;
+  flex-flow: column;
+}
+.pay-info {
+  display: flex;
+  flex-flow: column;
+  padding-top: 30px;
+}
+.input-edit {
+  width: 18%;
+  padding: 6px 5px;
+  border-radius: none !important;
+}
+
+.info-editquantity button {
+  width: 32%;
+  height: 32px;
+  border: none;
+  background-color: #fcfcfc !important;
+}
+.finput-edit {
+  background-color: #fcfcfc;
+  text-align: center;
+  width: 36%;
+  height: 34px;
+  border: none;
+}
+.center-logo {
+  background-color: white;
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: solid 1px #ebebeb;
+}
+.center-logo img {
+  padding-left: 10px;
+  width: 15%;
+}
+.check-item {
+  padding: 20px;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  transform: scale(1.3);
+  margin: 0 !important;
+}
+.info-check {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.payment-sum {
+  text-align: center;
+  width: auto;
+  height: 50px;
+}
+.payment-sum strong {
+  float: left;
+}
+.payment-sum p {
+  float: right;
+  font-weight: 700;
+  font-size: 20px;
+  color: #37449f;
+}
+.btn-quantity {
+  width: 80%;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+}
+.delet {
+  width: 41%;
+  padding-top: 10px;
+  margin: 0 auto;
+}
+.delet button {
+  width: auto;
+  color: blue;
+  background-color: white !important;
+}
+.tongtien-price {
+  float: right;
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255 255 255);
+}
+.loading img {
+  width: 25%;
+}

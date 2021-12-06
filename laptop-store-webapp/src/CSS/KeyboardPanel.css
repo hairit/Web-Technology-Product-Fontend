@@ -1,0 +1,108 @@
+.keyboard-panel {
+  width: 83%;
+  max-width: 1300px;
+  margin: 0 auto;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 30px;
+  text-align: center;
+  padding-bottom: 37px;
+}
+.keyboard-row {
+}
+.keyboard-panel-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.keyboard-panel-header-logo {
+  font-size: 24px;
+}
+.keyboard-item {
+  width: auto;
+  cursor: pointer;
+  padding: 7px 7px;
+}
+.keyboard-infor {
+  padding-bottom: 30px;
+  box-shadow: 0 0 5px 1px #42424446;
+  border-radius: 10px;
+}
+.keyboard-infor:hover {
+  transform: scale(102%);
+  transition: 0.2s;
+  box-shadow: 0 0 10px 1px #42424462;
+}
+.keyboard-image {
+  width: 100%;
+  height: 258px;
+}
+.keyboard-image-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  transform: scale(85%);
+}
+.keyboard-detail-item {
+  padding: 2px 15px;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+}
+.keyboard-id {
+  font-size: 13px;
+}
+.keyboard-name {
+  color: #4b4b4d;
+  font-size: 1.4rem;
+  line-height: 1.44;
+  height: 40px;
+  overflow: hidden;
+  text-align: left;
+}
+.keyboard-name:hover {
+  color: #3f4fc3;
+}
+.keyboard-price {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.keyboard-price-value {
+  color: #3f4fc3;
+  font-size: 16px;
+  font-weight: 600;
+}
+.keyboard-button-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.keyboard-button {
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  padding: 7px 0;
+}
+.keyboard-button-buy {
+  background-color: #cf0f01;
+  color: #ffffff;
+  margin-right: 7px;
+}
+.keyboard-gift {
+  border-radius: 5px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 10px;
+  height: 40px;
+  background-color: #ededf1;
+  margin: 10px 20px;
+}
+.keyboard-button-add {
+  border: 0.1px solid #cf0f01;
+  background-color: #ffffff;
+  color: #cf0f01;
+}

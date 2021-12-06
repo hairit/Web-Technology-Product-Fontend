@@ -1,0 +1,187 @@
+.layout-page-login
+{
+    margin: auto;
+    width: 300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    color: black;
+}
+.customer-login{
+    display:block;
+}
+.customer-login-hide{
+    display:none;
+}
+.header-login{
+    text-align: center;
+}
+.header-login::before
+{
+    display: table;
+    content: " ";
+}
+.header-login::after
+{
+    display: table;
+    content: " ";
+}
+.title-login
+{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+.login-login
+{
+    text-align: left;
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative;
+}
+
+.login-icon
+{
+    padding: 6px 12px;
+    font-size:  14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align:  center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.login-input
+{
+    width: 100%;
+    outline: none;
+    border: 0.1px solid #dfdfe0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding-left: 8px;
+    height: 30px;
+}
+.button-login-login
+{
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    text-align: center;
+    width: 100%;
+    color: #FFFFFF;
+    padding: 10px 0;
+    font-weight: 500;
+}
+.button-login::after
+{
+    display: table;
+    content: " ";
+}
+.login-button
+{
+    border-radius: 0px;
+    align-items: center;
+}
+.login-recovery
+{
+    text-align: center;
+    font-size: 16px;
+    padding: 20px 0;
+}
+.req-pass
+{
+    display:block;
+    margin-bottom: 30px;
+}
+.req-pass-hidden
+{
+    display: none;
+}
+.reqpass-email
+{
+    display: flex;
+}
+.reqpass-box
+{
+    text-align: left;
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative;
+}
+.reqpass-form
+{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.reqpass-form-hide
+{
+    display: none;
+}
+.reqpass-act-button
+{
+    align-items: center;
+    float: inline-end;
+}
+.login-recovery::after
+{
+    display: table;
+    content: " ";
+}
+.reqsdt-form
+{
+    display:block;
+    margin-bottom: 30px;
+}
+.reqsdt-form-hide
+{
+    display:none;
+}
+.sign-up
+{
+    display: block;
+}
+.sign-up-hide
+{
+    display: none;
+}
+.reqpass2
+{
+    margin-top: 20px;
+}
+.reqpass2-hide
+{
+    display:none;
+}
+.reqpass-pass2-button
+{
+    border-radius: 5rem;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.login-input-pass2
+{
+    width: 100%;
+    outline:  none;
+    border: 0.1px solid #dfdfe0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding-left: 8px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sign-up-form
+{
+    margin-bottom: 10px;
+}
+.login-input-warning
+{
+    width: 100%;
+    outline: none;
+    border: 0.1px solid red;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding-left: 8px;
+    height: 30px;
+}

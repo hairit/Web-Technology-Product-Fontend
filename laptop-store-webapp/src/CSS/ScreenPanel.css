@@ -1,0 +1,141 @@
+.screen-panel {
+  width: 83%;
+  max-width: 1300px;
+  margin: 0 auto;
+  height: auto;
+  padding-bottom: 5px;
+  margin-top: 30px;
+  background-color: #bd1b0f;
+  border-radius: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.screen-panel-header {
+  border-radius: 10px;
+  height: 40px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+}
+.screen-panel-header-logo {
+  color: #ffffff;
+  font-size: 20px;
+}
+.btn-all-screen {
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.screen-infor {
+  height: auto;
+  padding: 5px 5px;
+  border-radius: 10px;
+}
+.screen-item {
+  border-radius: 10px;
+  padding-bottom: 5px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 0 5px 1px #42424446;
+}
+.screen-image-img {
+  transform: scale(86%);
+  transition: 0.2s;
+  user-select: none;
+  border-radius: 5px;
+}
+.screen-item:hover .screen-image-img {
+  transform: scale(100%);
+  transition: 0.2s;
+}
+.screen-detail {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.screen-container {
+  overflow: hidden;
+}
+.screen-detail-item {
+  padding: 5px 15px;
+}
+.screen-id {
+  font-size: 13px;
+}
+.screen-name {
+  font-size: 1.4rem;
+  height: 40px;
+  color: #4b4b4d;
+  line-height: 1.4;
+  overflow: hidden;
+  cursor: pointer;
+}
+.screen-name:hover {
+  color: #cf0f01;
+}
+.screen-price {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.screen-price-value {
+  font-size: 16px;
+  color: #cf0f01;
+  font-weight: 500;
+}
+.swiper-screen-button {
+  position: absolute;
+  top: 50%;
+  width: 34px;
+  height: 64px;
+  background-color: #faf6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transform: translate(0, -50%);
+  opacity: 0.9;
+  z-index: 1;
+}
+.swiper-screen-button:hover {
+  opacity: 1;
+  box-shadow: 0 0 5px 3px rgb(226, 225, 225);
+}
+.screen-previous {
+  left: -10px;
+}
+.screen-next {
+  right: -10px;
+}
+.swiper-screen-button-icon {
+  color: black;
+  font-size: 15px;
+}
+.screen-panel-list {
+  position: relative;
+}
+.screen-button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 79px;
+}
+.screen-button {
+  width: 100px;
+  text-align: center;
+  padding: 7px 0;
+  border: none;
+  border-radius: 3px;
+}
+.screen-button-buy {
+  background-color: #cf0f01;
+  color: #ffffff;
+  margin-right: 7px;
+}
+.screen-button-add {
+  background-color: #ffffff;
+  border: 0.1px solid #cf0f01;
+  color: #cf0f01;
+}
