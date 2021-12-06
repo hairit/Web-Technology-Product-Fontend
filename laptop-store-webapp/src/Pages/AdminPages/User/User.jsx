@@ -7,7 +7,7 @@ export default function User() {
     const saveUser = useRef(null);
     const [updateData, setUpdateData] = useState(false);
     const [value, setValue] = useState(null)
-    const [modeSearch, setModeSearch] = useState('html');
+    const [modeSearch, setModeSearch] = useState('email');
     const [active, setActive] = useState(false);
     const [user, setUser] = useState({ id: null, firstname: null, lastname: null, email: null, pass: null, sdt: null, diachi: null, nameimage: null, mode: 'CUSTOMER' });
     useEffect(() => {
@@ -30,7 +30,6 @@ export default function User() {
         });
         return true;
     }
-    console.log(user);
     const addUser = () => {
         if (active === true) {
             alert("Bỏ chọn người dùng để thêm người dùng mới");
@@ -112,21 +111,19 @@ export default function User() {
             return;
         }
         if (modeSearch === 'id') {
-            axios.get(`https://localhost:44343/data/user/${value}`, null).then(res => {
-                alert("lấy dữ liệu thành công");
-                setUser(res.data);
-                reLoad();
+            axios.get(`https://localhost:44343/data/user/id=${value}`, null).then(res => {
+                setUsers(res.data);
             }).catch((err) => {
                 alert("Không tìm thấy người dùng");
                 console.log("getUsersByName failed" + err);
             });
         }
         if (modeSearch === 'email') {
-            console.log('email');
-            axios.get(`https://localhost:44343/data/user/email=${value}`, null).then(res => {
+            axios.get(`https://localhost:44343/data/user/email=${value}`, null)
+            .then(res => {
                 alert("lấy dữ liệu thành công");
-                setUser(res.data);
-                reLoad();
+                console.log(res.data);
+                setUsers(res.data);
             }).catch((err) => {
                 alert("Không tìm thấy người dùng");
                 console.log("getUsersByName failed" + err);
@@ -250,7 +247,7 @@ export default function User() {
                         <div className="customer-inFor-item customer-image-upload">
                             <div className="userncd-button-group">
                                 <div className="customer-inFor-item customer-search">
-                                    <select value={modeSearch} className="select-mode-search" onChange={(e) => {
+                                    <select defaultValue={modeSearch} className="select-mode-search" onChange={(e) => {
                                         if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
                                             searchUserWithMode(e.target.value.toString());
                                         } else {
