@@ -19,6 +19,7 @@ import call from '../../API/API';
 import URL from '../../DATA/URL';
 import AddProduct from './Product/AddProduct/AddProduct';
 import BillsCustomer from './Bill/BillsCustomer';
+import Users from './User/Users';
 export default function Admin({ changeAdminMode, match, logout }) {
     const history = useHistory();
     const [user, setUser] = useState(null);
@@ -44,7 +45,7 @@ export default function Admin({ changeAdminMode, match, logout }) {
                                 <RiBillLine className="admin-tab-icon" />
                             </NavLink> : <>
                                 <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/product/list`}><GrProductHunt className="admin-tab-icon" /></NavLink>
-                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/user`}><FaUser className="admin-tab-icon" /></NavLink>
+                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/users`}><FaUser className="admin-tab-icon" /></NavLink>
                                 <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/bills`}><FaMoneyBillWave className="admin-tab-icon" /></NavLink>
                                 <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/report`}><FcStatistics className="admin-tab-icon" /></NavLink>
                             </>
@@ -64,7 +65,7 @@ export default function Admin({ changeAdminMode, match, logout }) {
                         <Route path="/admin/:idUser/order" component={() => <Order />}></Route>
                         <Route path="/admin/:idUser/bills" component={() => <Bills />}></Route>
                         <Route path="/admin/:idUser/product" component={() => <Product idUser={match.match.params.idUser} />}></Route>
-                        <Route path="/admin/:idUser/user" component={() => <User />}></Route>
+                        <Route path="/admin/:idUser/users" component={() => <Users />}></Route>
                     </div>
                 </div>
             </div>

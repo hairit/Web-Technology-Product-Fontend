@@ -1,0 +1,75 @@
+.admin-userncd {
+    display: flex;
+    width  : 100%;
+    height : 100%;
+}
+
+.userncd-panel {
+    width : 100%;
+    height: 100%;
+}
+
+.userncd-panel {
+    display       : flex;
+    flex-direction: column;
+}
+
+.userncd-panel-main {
+    margin          : 20px 10px;
+    width           : auto;
+    height          : 85%;
+    border-radius   : 5px;
+    background-color: #ffffff;
+}
+
+.userncd-table {
+    width           : 100%;
+    height          : auto;
+    max-height      : 100%;
+    max-width       : 150% !important;
+    padding         : 14px 0;
+    background-color: #ffffff;
+}
+
+.userncd-table-head {
+    z-index         : 2;
+    background-color: #596ce5 !important;
+    color           : #ffffff;
+}
+
+.userncd-table-row {
+    cursor: pointer;
+}
+
+.userncd-table-cell {
+    user-select: none;
+    /* height  : 30px; */
+    font-size  : 13px;
+    padding    : 10px 20px !important;
+    border     : none !important;
+}
+
+.userncd-item {
+    font-weight: 600;
+    box-sizing : border-box;
+}
+
+.cell-phone {
+    width: 150px;
+}
+
+.cell-pass {
+    width: 200px;
+}
+
+.cell-name {
+    width: 200px;
+}
+
+.cell-email {
+    width: 300px;
+}
+
+.cell-id {
+    width: 80px;
+}
