@@ -25,6 +25,7 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
         window.addEventListener('scroll',changeStatusRightItem);
         changeAdminMode('off');
     }, [])
+    console.log("body rểnder");
     const [display, setDisplay] = useState(false);
     const changeStatusRightItem = () => {
         if(window.scrollY >= 400) setDisplay(true);

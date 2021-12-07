@@ -53,11 +53,16 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    if (user !== null) {
+    if(user !== null) {
       call('GET', `data/user/${user.id}`, null)
         .then((res) => {
           cartDetails.current = res.data.cartDetails;
-          console.log(cartDetails.current);
+          if(user.cartDetails.length===0) {
+            document.getElementById("quantity-cartdetails-user").style.display = 'none';
+          }else{
+            document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
+            document.getElementById("quantity-cartdetails-user").style.display = 'block';
+          }
           setUser(res.data)
         })
         .catch((err) => console.log("Reload User" + err));
@@ -171,7 +176,8 @@ function App() {
         axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
           .then(res => {
             if (res.status === 201) {
-              if (!checkExistCartDetail(res.data.idProduct)) {
+              if(!checkExistCartDetail(res.data.idProduct))
+              {
                 cartDetails.current.push(res.data);
                 document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
                 document.getElementById("quantity-cartdetails-user").style.display = 'block';
@@ -199,11 +205,10 @@ function App() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Okay'
-    }).then((result) => {
+    }).then((result)=>{
       if (result.isConfirmed) {
         axios.delete(`https://localhost:44343/data/cartdetail/iduser=${iduser}/idproduct=${idpro}`, null)
           .then(() => {
-            document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length - 1;
             updateData();
           })
           .catch((err) =>

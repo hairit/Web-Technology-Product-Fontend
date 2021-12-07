@@ -120,14 +120,14 @@ export default function User() {
         }
         if (modeSearch === 'email') {
             axios.get(`https://localhost:44343/data/user/email=${value}`, null)
-                .then(res => {
-                    alert("lấy dữ liệu thành công");
-                    console.log(res.data);
-                    setUsers(res.data);
-                }).catch((err) => {
-                    alert("Không tìm thấy người dùng");
-                    console.log("getUsersByName failed" + err);
-                });
+            .then(res => {
+                alert("lấy dữ liệu thành công");
+                console.log(res.data);
+                setUsers(res.data);
+            }).catch((err) => {
+                alert("Không tìm thấy người dùng");
+                console.log("getUsersByName failed" + err);
+            });
         }
         if (modeSearch === 'sdt') {
             axios.get(`https://localhost:44343/data/user/sdt=${value}`, null).then(res => {
@@ -147,7 +147,6 @@ export default function User() {
                 console.log("getUsersByName failed" + err);
             });
         }
-
     }
     return (
         <div className="admin-userncd">

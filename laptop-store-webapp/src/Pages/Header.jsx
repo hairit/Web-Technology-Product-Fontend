@@ -28,7 +28,7 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
   const [userPanel, setUserPanel] = useState(false);
   const [namepro, setNamePro] = useState([]);
   const history = useHistory();
-
+  console.log("Header : rerender");
   useEffect(() => {
     window.addEventListener('scroll', changeStatusHeader);
   }, [])

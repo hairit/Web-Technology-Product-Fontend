@@ -25,18 +25,16 @@ export default function ThanhToan({ updateData,createBill,idUser,order}) {
     sdt: "",
     diachi: ""
   })
-  const reLoad = () =>{
-        if(reload === 0) setReload(1);
-        else setReload(0);
-      }
   useEffect(() =>{
-    console.log("zzz")
       axios.get(`https://localhost:44343/data/user/${idUser}`)
          .then((res) => 
           setUserorder(res.data))
          .catch((err) => console.log("Reload User"+err));
 }, [reload])
-// console.log("aaa", userOrder)
+const reLoad = () =>{
+  if(reload === 0) setReload(1);
+  else setReload(0);
+}
   useEffect(() => {
     if (idUser !== null) {
       axios.get(`https://localhost:44343/data/cartdetail/iduser=${idUser}/selected`,null)
@@ -79,8 +77,6 @@ export default function ThanhToan({ updateData,createBill,idUser,order}) {
       createBill(checkout,totalPrice(checkout), res.data.diachi)
       setEditinfo(false)
       updateData()
-      reLoad()
-      console.log(res.data);
     }).catch(err => {
       console.log("Lỗi", err)
     })
@@ -102,7 +98,6 @@ export default function ThanhToan({ updateData,createBill,idUser,order}) {
     }).then(res => {
       // updateData()
       reLoad()
-      // console.log(res.data);
     }).catch(err => {
       console.log("Lỗi", err)
     })
@@ -128,7 +123,6 @@ export default function ThanhToan({ updateData,createBill,idUser,order}) {
 
   function AddressAndPhone(){
     if(userOrder.diachi && userOrder.sdt !== null){
-      // setBtndis(true)
       return showAddAdress();
     }else{
       return  renderFormAddAdressAndPhone();
