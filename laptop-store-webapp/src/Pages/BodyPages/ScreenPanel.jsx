@@ -29,8 +29,10 @@ const RenderScreenItem= (pro, index ,addCart, history) => {
                     </div>
                     <div className="screen-detail-item screen-button-group">
                         <button className="screen-button screen-button-buy" onClick={()=>{
-                                addCart(pro.id,pro.gia);
+                            setTimeout(()=>{
                                 history.push('/cart');
+                            },300)
+                                addCart(pro.id,pro.gia);
                         }}>Mua ngay</button>
                         <button className="screen-button screen-button-add" onClick={()=>addCart(pro.id,pro.gia)}>Thêm vào giỏ</button>
                     </div>

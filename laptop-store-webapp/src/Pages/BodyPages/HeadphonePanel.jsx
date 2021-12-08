@@ -21,8 +21,10 @@ const Headphone = (headphone,index,history,addCart,solver) =>{
                 </div>
                 <div className="headphone-button-group">
                     <button className="headphone-button buy-headphone" onClick={()=>{
+                        setTimeout(() => {
+                            history.push('/cart');
+                        },300)
                         addCart(headphone.id,headphone.gia);
-                        history.push('/cart');
                     }}>Mua ngay</button>
                     <button className="headphone-button add-headphone" onClick={()=>addCart(headphone.id,headphone.gia)}>Thêm vào giỏ</button>
                 </div>

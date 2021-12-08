@@ -20,8 +20,10 @@ const renderMouseItem = (mouse,index,solver,history,addCart)=> {
                 {mouse.uudai ?<div className="mouse-gift">{mouse.uudai}</div> : <div></div>}
                 <div className="mouse-button-group">
                     <div className="mouse-button mouse-button-buy" onClick={()=>{
-                            addCart(mouse.id,mouse.gia);
+                        setTimeout(()=>{
                             history.push('/cart');
+                        },300)
+                            addCart(mouse.id,mouse.gia);
                     }}>Mua ngay</div>
                     <div className="mouse-button mouse-button-add" onClick={()=>addCart(mouse.id,mouse.gia)}>Thêm vào giỏ</div>
                 </div>
