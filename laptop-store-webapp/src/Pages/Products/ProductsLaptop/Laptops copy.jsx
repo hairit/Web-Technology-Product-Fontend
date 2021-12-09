@@ -13,8 +13,6 @@ import logo_asus from "../../../Images/logo_asus.png"
 import logo_dell from "../../../Images/logo_dell.png"
 import logo_hp from "../../../Images/logo_hp.png"
 import logo_acer from "../../../Images/logo_acer.png"
-import banner_pro_right from "../../../Images/banner_pro_right.png"
-import banner_pro_left from "../../../Images/banner_pro_left.png"
 import AcerLogo1 from "../../../Images/AcerLogo1.png"
 import DareuLogo1 from "../../../Images/DareuLogo1.png"
 import Swal from "sweetalert2";
@@ -26,7 +24,7 @@ export default function Laptops({idUser,match,addProductToCart}) {
   const [load, setLoad] = useState(0);
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
-  const [display, setDisplay] = useState(true);
+  // const [page, setPage] = useState(false);
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -50,10 +48,6 @@ export default function Laptops({idUser,match,addProductToCart}) {
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
-  useEffect(() => {
-    window.addEventListener('scroll',banner);
-    // changeAdminMode('off');
-}, [])
   function addProductInCart(id,gia){
     addProductToCart(idUser,id,gia);
   }
@@ -126,17 +120,8 @@ export default function Laptops({idUser,match,addProductToCart}) {
     })
     .catch((err) =>console.error(err))
   }
-  
-  const banner = () => {
-    if(window.scrollY > 1800) setDisplay(false);
-    else setDisplay(true);
-}
   return (
     <div className="wrapper">
-      <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
-      </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
           <div className="banner">

@@ -86,7 +86,9 @@ img {
   background: #f8f8fc;
   padding-bottom: 30px;
 }
-
+#container-full {
+  height: auto;
+}
 .title {
   float: left;
   position: relative;
@@ -125,20 +127,18 @@ img {
 .products {
   display: flex;
   flex-flow: column;
-  border: 1px solid #e1e1e1;
   min-height: 400px;
   position: relative;
   overflow: hidden;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
   background: #fff;
   margin-bottom: 15px;
 }
 .products:hover {
   background: #fff;
-  border-color: blue;
-  -webkit-box-shadow: 0 0 5px 1px #d3d3d3;
-  box-shadow: 0 0 5px 1px #d3d3d3;
+  /* border-color: blue; */
+  /* -webkit-box-shadow: 0 0 5px 1px #d3d3d3; */
+  box-shadow: 1px 1px 3px 3px #d3d3d3;
+  z-index: 1;
 }
 
 .thumbnail {
@@ -602,6 +602,7 @@ form.newsletter input[type="submit"]:hover {
 
 .loc {
   padding-bottom: 10px;
+  display: flex;
 }
 
 .section-heading .line-bl {
@@ -618,6 +619,7 @@ form.newsletter input[type="submit"]:hover {
   margin: 20px 0 20px 0;
 }
 .btn-right {
+  display: flex;
   height: 30px;
 }
 .title-sort {
@@ -635,7 +637,14 @@ form.newsletter input[type="submit"]:hover {
   border-top-left-radius: 1rem;
   background-color: white;
 }
-
+.sort-brand {
+  border-radius: 2rem !important;
+  width: 22%;
+  padding: 5px !important;
+}
+.sort-brand img {
+  z-index: 0;
+}
 .btn-sort {
   margin-right: 20px;
   background-color: #ffffff;
@@ -658,16 +667,60 @@ form.newsletter input[type="submit"]:hover {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  transition: 0.5s;
 }
 
 .btn-sort:hover {
-  background-color: rgb(249, 250, 251);
+  border-color: blue;
 }
 .css-thuonghieu {
   border-radius: 1px solid;
 }
 .asus {
   padding: 2px 2px;
+}
+.banner-pros {
+  display: flex;
+}
+.bn-left {
+  padding-left: 20px;
+  margin-left: 2%;
+  width: 8%;
+  position: fixed;
+  margin-top: 6%;
+  float: left;
+  z-index: 10;
+  transition: 0.5s;
+}
+.bn-right {
+  padding-left: 20px;
+  margin-right: 3.5%;
+  width: 8%;
+  position: fixed;
+  margin-top: 6%;
+  right: 0;
+  z-index: 10;
+  transition: 0.5s;
+}
+.bn-hidden-left {
+  padding-left: 20px;
+  width: 8%;
+  position: fixed;
+  margin-top: 6%;
+  float: left;
+  z-index: 10;
+  margin-left: -10%;
+  transition: 0.5s;
+}
+.bn-hidden-right {
+  padding-left: 20px;
+  width: 8%;
+  position: fixed;
+  margin-top: 6%;
+  right: 0;
+  z-index: 10;
+  margin-right: -10%;
+  transition: 0.5s;
 }
 .price-save {
   width: 33%;

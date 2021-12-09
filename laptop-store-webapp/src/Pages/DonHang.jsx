@@ -37,7 +37,6 @@ export default function DonHang({idUser}) {
                                 </tr>
                             </thead>
                             {bills.map((bill,index) =>{
-                                console.log(bill.diachi);
                                 return (
                                     <tbody key={index}>
                                     <tr className="info-bill">

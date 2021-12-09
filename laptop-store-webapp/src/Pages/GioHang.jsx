@@ -62,7 +62,6 @@ useEffect(() => {
       .catch((err) => console.error("Không thể unchecker",err));
     }
   }
-  console.log("z",cartDetails)
   function btnThanhToan(){
     var tongprice = thanhtien(cartDetails)
     if(tongprice !== 0 ){
