@@ -73,3 +73,185 @@
 .cell-id {
     width: 80px;
 }
+
+.userncd-panel-lowform {
+    width           : auto;
+    display         : flex;
+    height          : 15%;
+    justify-content : center;
+    margin          : 5px 10px;
+    position        : relative;
+    background-color: #ffffff;
+    border-radius   : 5px;
+}
+
+.userncd-inForText {
+    justify-content: center;
+    width          : 100%;
+    flex-wrap      : wrap;
+    display        : flex;
+    align-items    : center;
+    flex-direction : row;
+}
+
+.userncd-inFor-item {
+    display    : flex;
+    height     : 50px;
+    padding    : 25px 20px;
+    align-items: center;
+}
+
+.Infor-name {
+    display       : flex;
+    flex-direction: row !important;
+}
+
+.inFor-name-item {
+    display       : flex;
+    align-items   : center;
+    flex-direction: row;
+}
+
+.inFor-item-text {
+    width       : auto;
+    font-size   : 14px;
+    font-weight : 500;
+    margin-right: 10px;
+}
+
+.userncd-input {
+    height       : 32px;
+    border       : #c5c4c4 solid 0.1px;
+    border-radius: 5px;
+    padding-left : 8px;
+    outline      : none;
+}
+
+.input-name {
+    width: 150px;
+}
+
+.input-address {
+    width: 240px;
+}
+
+.input-email {
+    width: 240px;
+}
+
+.input-sdt {
+    width: 150px;
+}
+
+.inFor-mode {
+    display        : flex;
+    justify-content: space-between;
+
+}
+
+.userncd-button-group {
+    margin-left    : 10px;
+    display        : flex;
+    height         : 50px;
+    justify-content: center;
+    width          : auto;
+    text-align     : center;
+}
+
+.userncd-search {
+    display   : flex;
+    margin-top: 7px;
+    height    : 35px;
+}
+
+.select-mode-search {
+    background-color         : #e4e3e3;
+    border                   : none;
+    width                    : 120px;
+    height                   : 35px;
+    font-size                : 13px;
+    padding-left             : 10px;
+    border-top-left-radius   : 5px;
+    border-bottom-left-radius: 5px;
+    margin-bottom            : 15px;
+}
+
+.select-mode-search:focus {
+    border : none;
+    outline: none;
+}
+
+.select-mode-search option {
+    border-radius: 5px;
+    font-size    : 13px;
+}
+
+.select-mode-userncd {
+    height          : 35px;
+    padding-left    : 10px;
+    font-size       : 13px;
+    border-radius   : 3px;
+    border          : none;
+    background-color: #e4e3e3;
+    outline         : none;
+}
+
+.select-mode-userncd option {
+    height      : 30px;
+    padding-left: 10px;
+    font-size   : 12px;
+}
+
+.userncd-input-search {
+    width           : 80%;
+    height          : 35px;
+    border          : #c5c4c4 solid 0.1px;
+    border-radius   : 5px;
+    background-color: #ffffff;
+    outline         : none;
+    padding-left    : 17px;
+    font-size       : 14px;
+    font-weight     : 500;
+    margin-bottom   : 15px;
+}
+
+.userncd-btn-search {
+    background-color: #596ce5;
+    border          : none;
+    height          : 35px;
+    width           : 70px;
+    color           : #ffffff;
+    font-size       : 16px;
+    font-weight     : 500;
+    border-radius   : 5px;
+    cursor          : pointer;
+    margin-bottom   : 15px;
+}
+
+.userncd-button {
+    background-color: #596ce5;
+    border          : none;
+    margin-top      : 7px;
+    height          : 35px;
+    width           : 70px;
+    color           : #ffffff;
+    font-size       : 16px;
+    font-weight     : 500;
+    border-radius   : 5px;
+    cursor          : pointer;
+    margin-bottom   : 10px;
+}
+
+.delete-userncd {
+    background-color: rgb(211, 17, 17);
+}
+
+.save-userncd {
+    background-color: #dd5b1f;
+    margin-left     : 5px;
+}
+
+.add-userncd {
+    background-color: seagreen;
+    margin-left     : 5px;
+}
