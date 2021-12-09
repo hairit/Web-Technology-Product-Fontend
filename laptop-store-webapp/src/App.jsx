@@ -248,7 +248,7 @@ function App() {
 
         <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode}/>}></Route>
 
-        <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
+        <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart}  />}></Route>
         <Route path="/laptop/:attribute/:value" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
         <Route path="/laptop/:attribute/:from/:to" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
 
