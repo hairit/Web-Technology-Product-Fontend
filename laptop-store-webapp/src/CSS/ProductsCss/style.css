@@ -415,11 +415,11 @@ img {
 }
 .footer {
   margin-top: 20px;
-  border-top: 3px solid blue;
   width: 100%;
   background: white;
 }
 .footer-info {
+  z-index: 0;
   position: relative;
   padding: 30px 0;
   color: #8f8f8f;
@@ -483,10 +483,11 @@ form.newsletter input[type="submit"]:hover {
   color: #f7544a;
 }
 .copyright-info {
+  z-index: 0;
   position: relative;
   overflow: hidden;
-  background: #e0e0e0;
-  border-top: 1px solid #c0c0c0;
+  background-color: rgb(245, 245, 245);
+  border-top: 1px solid #eaeaea;
 }
 .copyright-info p {
   padding-top: 10px;
@@ -636,6 +637,9 @@ form.newsletter input[type="submit"]:hover {
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   background-color: white;
+}
+.active-sort {
+  border-color: blue !important;
 }
 .sort-brand {
   border-radius: 2rem !important;
@@ -890,9 +894,61 @@ option {
   width: 85%;
   clear: both;
 }
-.footer-info-top {
-  border-bottom: 1px dashed #b6b6b6;
+.footer-choose {
+  text-align: center;
+  font-family: Avo, "Open Sans", Arial, sans-serif !important;
   padding-bottom: 20px;
+}
+.tittle-choose {
+  padding-bottom: 20px;
+}
+.tittle-choose strong {
+  font-family: Avo, "Open Sans", Arial, sans-serif !important;
+  font-weight: bold;
+  font-size: 30px;
+  color: #0624c9;
+}
+.icon-choose {
+  justify-content: center;
+  display: flex;
+  background-color: rgb(245, 245, 245);
+}
+.icon-choose-item {
+  width: 20%;
+  padding-top: 2%;
+}
+.icon-choose-item:hover {
+  transition: all 1s ease-in-out;
+  background-color: #0624c9;
+  /* transition: 0.8s; */
+}
+.icon-choose-item:hover .txt-nt {
+  color: white;
+}
+.icon-choose-item:hover .icon-us {
+  color: white;
+  transition: 0.1s;
+}
+.icon-us {
+  font-size: 4rem;
+  color: #00cc33;
+}
+.icon-choose p {
+  line-height: 39px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #00cc33;
+}
+.icon-item-ft {
+  min-height: 66px;
+  /* margin: auto 0; */
+  display: flex;
+  padding-right: 20px;
+}
+.footer-info-top {
+  border-top: 3px solid blue;
+  border-bottom: 1px dashed #b6b6b6;
+  padding: 25px 0;
 }
 .txt-ft {
   padding: 5px 0 5px 55px;

@@ -189,7 +189,8 @@ console.log("kokoo",detail)
                   </div>
                   <div className="button-gr">
                     <NavLink to="/cart">
-                    <button type="button" className="btn btn-primary btn-buy" onClick={() =>addProductToCart(idUser,detail.id,detail.gia)}>
+                    <button type="button" className="btn btn-primary btn-buy" 
+                    onClick={() =>addProductToCart(idUser,detail.id,detail.gia)}>
                       MUA NGAY
                     </button>
                     </NavLink>

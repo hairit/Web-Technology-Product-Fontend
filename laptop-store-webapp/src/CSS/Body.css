@@ -13,6 +13,7 @@
   color: #979696;
 }
 .right-scroll-panel {
+  z-index: 1;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -101,12 +102,14 @@
   transition: 0.5s;
 }
 .event-scroll-left {
+  z-index: 1;
   position: fixed;
   top: 160px;
   left: 40px;
   transform: scale(100%);
 }
 .event-scroll-right {
+  z-index: 1;
   position: fixed;
   top: 160px;
   right: 40px;
