@@ -168,13 +168,8 @@ export default function Users() {
                             {usersncd.map((item, index) => (
                                 <tr className="userncd-table-row userncd-item" key={index}
                                     onClick={() => {
-<<<<<<< HEAD
-                                        if (item.id === userncd.id) {
-                                            if (activencd === false) {
-=======
                                         if(item.id === userncd.id) {
                                             if(activencd === false){
->>>>>>> 967ee997a99770c0e6e42cae740e00c77fb2e839
                                                 setUserncd(item);
                                                 saveUserncd.current = item;
                                                 setActivencd(true);
