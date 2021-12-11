@@ -981,6 +981,10 @@ option {
   flex-direction: column;
   width: 15%;
 }
+.post {
+  width: 98%;
+  background-color: white;
+}
 @media (min-width: 768px) {
   .container {
     width: 750px;

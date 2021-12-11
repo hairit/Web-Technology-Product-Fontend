@@ -321,7 +321,9 @@ export default function DetailProductsPC({idUser, match, addProductToCart}) {
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span className="btn-prev btnnp"id="btn-prevs" >
                 <img src={prev_50px} />

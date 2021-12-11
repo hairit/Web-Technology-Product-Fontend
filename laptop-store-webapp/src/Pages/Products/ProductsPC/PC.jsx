@@ -8,6 +8,8 @@ import DellLogo1 from "../../../Images/DellLogo1.png"
 import HPLogo1 from "../../../Images/HPLogo1.png"
 import AcerLogo1 from "../../../Images/AcerLogo1.png"
 import DareuLogo1 from "../../../Images/DareuLogo1.png"
+import banner_pro_right from "../../../Images/banner_pro_right.png"
+import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductPC from "./ListProductPC";
 export default function PC({idUser,addProductToCart,match}) {
@@ -16,6 +18,7 @@ export default function PC({idUser,addProductToCart,match}) {
   const [itemsPage, setItemsPage] = useState(10);
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
+  const [display, setDisplay] = useState(true);
   useEffect(() => {
     var API;
     if(match !== undefined){
@@ -31,7 +34,9 @@ export default function PC({idUser,addProductToCart,match}) {
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(pros);
+  useEffect(() => {
+    window.addEventListener('scroll',banner);
+}, [])
 
   function addProductInCart(id,gia){
     addProductToCart(idUser,id,gia)
@@ -88,8 +93,16 @@ export default function PC({idUser,addProductToCart,match}) {
     .then((res) => setPros(res.data))
     .catch((err) =>console.error(err))
   }
+  const banner = () => {
+    if(window.scrollY > 1900) setDisplay(false);
+    else setDisplay(true);
+}
   return (
     <div className="wrapper">
+      <div className="banner-pros">
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+      </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
           <div className="banner">

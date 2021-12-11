@@ -20,6 +20,7 @@ import DareuLogo1 from "../../../Images/DareuLogo1.png"
 import Swal from "sweetalert2";
 
 import { NavLink, useHistory } from "react-router-dom";
+import PostsLaptop from "./PostsLaptop";
 const solver = new Solver();
 export default function Laptops({idUser,match,addProductToCart}) {
   const history = useHistory();
@@ -138,7 +139,7 @@ export default function Laptops({idUser,match,addProductToCart}) {
   }
   
   const banner = () => {
-    if(window.scrollY > 1750) setDisplay(false);
+    if(window.scrollY > 4000) setDisplay(false);
     else setDisplay(true);
 }
   return (
@@ -267,6 +268,9 @@ export default function Laptops({idUser,match,addProductToCart}) {
                   {renderPageNumber}
                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
+              </div>
+              <div className="post">
+                <PostsLaptop />
               </div>
             </div>
           </div>
