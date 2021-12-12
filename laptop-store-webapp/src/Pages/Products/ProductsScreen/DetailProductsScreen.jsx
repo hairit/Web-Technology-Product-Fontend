@@ -88,6 +88,34 @@ export default function DetailProductsScreen({idUser, match, addProductToCart}) 
       index--;
     }
   }
+  function videoReview() {
+    var cpu = detail.ten
+    if(new RegExp("60Hz").test(cpu) === true){
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/VM1-uLZJoiQ" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/bAziTE3mBE4" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </>
+    )
+    }else{
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/HP5wRjiHLrE" title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/BwNNgxtPpBU" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+        </>
+      )
+    }
+  }
   return (
     <div className="single-product">
       <div className="container">
@@ -399,7 +427,9 @@ export default function DetailProductsScreen({idUser, match, addProductToCart}) 
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span
                 className="btn-prev btnnp"
@@ -421,8 +451,12 @@ export default function DetailProductsScreen({idUser, match, addProductToCart}) 
                 <SanPhamKhac />
               </div>
             </div>
-            <PostsScreen />
-
+            <div className="xemthem">
+                <p>Video đánh giá</p>
+            </div>
+            <div className="video-danhgia">
+              {videoReview()}
+            </div>
           </div>
           <div className="info-bottom row">
             <div className="col-md-6 supports">

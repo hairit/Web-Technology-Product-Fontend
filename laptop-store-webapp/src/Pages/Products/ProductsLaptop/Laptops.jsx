@@ -20,6 +20,7 @@ import DareuLogo1 from "../../../Images/DareuLogo1.png"
 import Swal from "sweetalert2";
 
 import { NavLink, useHistory } from "react-router-dom";
+import PostsLaptop from "./PostsLaptop";
 const solver = new Solver();
 export default function Laptops({idUser,match,addProductToCart}) {
   const history = useHistory();
@@ -27,6 +28,8 @@ export default function Laptops({idUser,match,addProductToCart}) {
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
   const [display, setDisplay] = useState(true);
+  const [active, setActive] = useState(1);
+  const [actives, setActives] = useState(false);
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -67,10 +70,18 @@ export default function Laptops({idUser,match,addProductToCart}) {
   }
   
   function sortLaptop(e){
+    console.log("aa", active)
+    if(active % 2 !== 0){
       var sorts = e.target.value
       axios.get("https://localhost:44343/data/laptop/" + sorts,null)
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err))
+    }else{
+      axios.get("https://localhost:44343/data/Product/type=laptop", null)
+      .then((res) => setPros(res.data))
+      .catch((err) => console.log(err))
+    }
+      
   }
 
   const pages = []
@@ -128,7 +139,7 @@ export default function Laptops({idUser,match,addProductToCart}) {
   }
   
   const banner = () => {
-    if(window.scrollY > 1800) setDisplay(false);
+    if(window.scrollY > 4000) setDisplay(false);
     else setDisplay(true);
 }
   return (
@@ -159,15 +170,15 @@ export default function Laptops({idUser,match,addProductToCart}) {
               </div>
               <div className="col-12 ">
                 <div className="loc">
-                  <div className="title-sort">Thương hiệu</div>
+                  <div className="title-sort">Thương hiệu</div> 
                   <div className="btn-right">
-                    <input type="image" src={logo_asus} className="btn-sort sort-brand" value="brand=asus"  onClick={(e) => sortLaptop(e)}>
+                    <input type="image" src={logo_asus} className=" btn-sort sort-brand" value="brand=asus" id="brand=asus" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
                     </input>
-                    <input type="image" src={logo_dell} className="btn-sort sort-brand" value="brand=dell" onClick={(e) => sortLaptop(e)} >
+                    <input type="image" src={logo_dell} className="btn-sort sort-brand" value="brand=dell" id="brand=dell" onClick={(e) => {setActive(active + 1);sortLaptop(e)}} >
                     </input>
-                    <input type="image" src={logo_hp} className="btn-sort sort-brand" value="brand=hp" onClick={(e) => sortLaptop(e)}>
+                    <input type="image" src={logo_hp} className="btn-sort sort-brand" value="brand=hp" id="brand=hp" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
                     </input>
-                    <input type="image" src={logo_acer} className="btn-sort sort-brand" value="brand=acer" onClick={(e) => sortLaptop(e)}>
+                    <input type="image" src={logo_acer} className="btn-sort sort-brand" value="brand=acer" id="brand=acer" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
                     </input>
                   </div>
                 </div>
@@ -257,6 +268,9 @@ export default function Laptops({idUser,match,addProductToCart}) {
                   {renderPageNumber}
                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
+              </div>
+              <div className="post">
+                <PostsLaptop />
               </div>
             </div>
           </div>

@@ -336,7 +336,9 @@ export default function DetailProductsHeadphone({idUser, match, addProductToCart
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span
                 className="btn-prev btnnp"

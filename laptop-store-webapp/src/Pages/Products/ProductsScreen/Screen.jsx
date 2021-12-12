@@ -8,14 +8,19 @@ import DellLogo1 from "../../../Images/DellLogo1.png"
 import HPLogo1 from "../../../Images/HPLogo1.png"
 import AcerLogo1 from "../../../Images/AcerLogo1.png"
 import DareuLogo1 from "../../../Images/DareuLogo1.png"
+import banner_pro_right from "../../../Images/banner_pro_right.png"
+import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductKeyboard from "./ListProductScreen";
+import PostsScreen from "./PostsScreen";
 export default function Screen({idUser,match,addProductToCart}) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
+  const [display, setDisplay] = useState(true);
+
   useEffect(() => {
     var API;
     if(match !== undefined){
@@ -32,6 +37,10 @@ export default function Screen({idUser,match,addProductToCart}) {
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
+  useEffect(() => {
+    window.addEventListener('scroll',banner);
+    // changeAdminMode('off');
+}, [])
 
   function addProductInCart(id,gia){
     addProductToCart(idUser,id,gia)
@@ -89,8 +98,16 @@ const pages = []
     .then((res) => setPros(res.data))
     .catch((err) =>console.error(err))
   }
+  const banner = () => {
+    if(window.scrollY > 5300) setDisplay(false);
+    else setDisplay(true);
+}
   return (
     <div className="wrapper">
+      <div className="banner-pros">
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+      </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
           <div className="banner">
@@ -215,6 +232,9 @@ const pages = []
                   {renderPageNumber}
                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
+              </div>
+              <div className="post">
+                <PostsScreen />
               </div>
             </div>
           </div>

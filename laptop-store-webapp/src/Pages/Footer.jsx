@@ -9,10 +9,40 @@ import Shipper from "../Images/Shipper.png";
 import exchange from "../Images/exchange.png";
 import cardPay from "../Images/cardPay.png";
 import chat from "../Images/chat.png";
+import { AiOutlineHeart,AiOutlineUser,AiOutlineSketch,AiOutlineDollarCircle } from "react-icons/ai";
 export default function Footer({adminMode}) {
     return (
         <div className={adminMode === false ? "footer" : "footer-hide"}>
         <div className="footer-info">
+          <div className="footer-choose">
+            <div className="tittle-choose"><strong>VÌ SAO CHỌN CHÚNG TÔI ?</strong></div>
+            <div className="icon-choose">
+              <div className="icon-choose-item">
+                <div className="icon-item-ft">
+                  <AiOutlineHeart className="icon-us" />
+                  <p className="txt-nt">NỔI TIẾNG NHIỆT TÌNH</p>
+                </div>
+              </div>
+              <div className="icon-choose-item">
+                <div className="icon-item-ft">
+                  <AiOutlineUser className="icon-us"/>
+                  <p className="txt-nt">CHUYÊN GIA HÀNG ĐẦU</p>
+                </div>
+              </div>
+              <div className="icon-choose-item">
+                <div className="icon-item-ft">
+                  <AiOutlineSketch className="icon-us" />
+                  <p className="txt-nt">UY TÍN TẬN CÙNG</p>
+                </div>
+              </div>
+              <div className="icon-choose-item">
+                <div className="icon-item-ft">
+                  <AiOutlineDollarCircle   className="icon-us"/>
+                  <p className="txt-nt">GIÁ TỐT HƠN THỊ TRƯỜNG</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="footer-info-top">
             <div className="footer-top">
                 <div className="ft-item">

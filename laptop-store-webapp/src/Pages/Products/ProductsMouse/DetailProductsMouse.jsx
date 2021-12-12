@@ -72,6 +72,32 @@ export default function DetailProductsMouse({idUser, match, addProductToCart }) 
       index--;
     }
   }
+  function videoReview() {
+    var cpu = detail.mouseDetail && detail.mouseDetail.kieuketnoi
+    if(new RegExp("Chuột có dây").test(cpu) === true){
+      return (
+        <>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/lOFgEcmnuIk" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/tDaNmV5h7-s" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      </>
+    )
+    }else{
+      return (
+        <>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/IabfcavoNRc" title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/7BUE8r74Oac" title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </>
+      )
+    }
+  }
   return (
     <div className="single-product">
       <div className="container">
@@ -338,7 +364,9 @@ export default function DetailProductsMouse({idUser, match, addProductToCart }) 
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span className="btn-prev btnnp" id="btn-prevs">
                 <img src={prev_50px} />
@@ -352,7 +380,12 @@ export default function DetailProductsMouse({idUser, match, addProductToCart }) 
                 <SanPhamKhac />
               </div>
             </div>
-            <PostsMouse />
+            <div className="xemthem">
+                <p>Video đánh giá</p>
+            </div>
+            <div className="video-danhgia">
+              {videoReview()}
+            </div>
           </div>
           <div className="info-bottom row">
             <div className="col-md-6 supports">
