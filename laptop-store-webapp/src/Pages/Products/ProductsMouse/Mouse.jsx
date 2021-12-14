@@ -8,15 +8,19 @@ import DellLogo1 from "../../../Images/DellLogo1.png";
 import HPLogo1 from "../../../Images/HPLogo1.png";
 import AcerLogo1 from "../../../Images/AcerLogo1.png";
 import DareuLogo1 from "../../../Images/DareuLogo1.png";
+import banner_pro_right from "../../../Images/banner_pro_right.png"
+import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductMouse from "./ListProductMouse";
+import PostsMouse from "./PostsMouse";
 export default function Mouse({ idUser,addProductToCart }) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
-  
+  const [display, setDisplay] = useState(true);
+
   useEffect(() => {
     axios
       .get("https://localhost:44343/data/Product/type=mouse", null)
@@ -27,6 +31,10 @@ export default function Mouse({ idUser,addProductToCart }) {
   function addProductInCart(id, gia) {
     addProductToCart(idUser,id, gia);
   }
+  useEffect(() => {
+    window.addEventListener('scroll',banner);
+    // changeAdminMode('off');
+}, [])
 
   function sortMouse(e){
     var sorts = e.target.value
@@ -79,8 +87,16 @@ function showProWithPrice(){
   .then((res) => setPros(res.data))
   .catch((err) =>console.error(err))
 }
+const banner = () => {
+  if(window.scrollY > 4300) setDisplay(false);
+  else setDisplay(true);
+}
   return (
     <div className="wrapper">
+      <div className="banner-pros">
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+      </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
           <div className="banner">
@@ -180,6 +196,9 @@ function showProWithPrice(){
                   {renderPageNumber}
                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
+              </div>
+              <div className="post">
+                <PostsMouse />
               </div>
             </div>
           </div>

@@ -24,6 +24,7 @@ import { NavLink } from "react-router-dom";
 export default function DetailProductsLaptop({idUser, match,addProductToCart }) {
   const solver = new Solver();
   const [detail, setDetail] = useState({});
+  const [reload, setReload] = useState(0);
   useEffect(() => {
     axios
       .get(
@@ -34,7 +35,10 @@ export default function DetailProductsLaptop({idUser, match,addProductToCart }) 
       })
       .catch((err) => console.log(err + "Khong goi san pham"));
   }, []);
-
+  const reLoad = () =>{
+    if(reload === 0) setReload(1);
+    else setReload(0);
+  }
   const btnPrev = document.querySelector(".btn-prev");
   const btnNext = document.querySelector(".btn-next");
   const rowSlide = document.querySelector(".row_10");
@@ -43,7 +47,6 @@ export default function DetailProductsLaptop({idUser, match,addProductToCart }) 
   const slideItemsW = document.querySelector(".col_2");
   // const slideItemWidth = slideItemsW.offsetWidth;
   // const slideProLength = slidePro.length;
-  // console.log("mnmnmn", slideProLength);
   let positionX = 0;
   let index = 0;
   btnNext &&
@@ -79,7 +82,49 @@ export default function DetailProductsLaptop({idUser, match,addProductToCart }) 
       index--;
     }
   }
-console.log("kokoo",detail)
+function videoReview() {
+  var cpu = detail.ten
+  if(new RegExp("i5").test(cpu) === true || new RegExp("i7").test(cpu) === true){
+    return (
+      <>
+    <iframe  width="560" height="315" src="https://www.youtube.com/embed/gGqXfMDWPCE" title="YouTube video player" 
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/5Ma3DHFNTWs" title="YouTube video player" 
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    </>
+  )
+  }
+  else if(new RegExp("i9").test(cpu) === true){
+    return (
+      <>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zM2YRmn8LC8" title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+        <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/P0zniWKVhfw" title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </>
+    )
+  }else{
+    return (
+      <>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/J1LgPnvTMhU" title="YouTube video player" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+      <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/S1qsdK26Nx8" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      </>
+    )
+  }
+}
   return (
     <div className="single-product">
       <div className="container">
@@ -189,7 +234,8 @@ console.log("kokoo",detail)
                   </div>
                   <div className="button-gr">
                     <NavLink to="/cart">
-                    <button type="button" className="btn btn-primary btn-buy" onClick={() =>addProductToCart(idUser,detail.id,detail.gia)}>
+                    <button type="button" className="btn btn-primary btn-buy" 
+                    onClick={() =>addProductToCart(idUser,detail.id,detail.gia)}>
                       MUA NGAY
                     </button>
                     </NavLink>
@@ -422,7 +468,9 @@ console.log("kokoo",detail)
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span
                 className="btn-prev btnnp"
@@ -444,7 +492,12 @@ console.log("kokoo",detail)
                 <PhuKienMuaCung />
               </div>
             </div>
-            <PostsLaptop />
+            <div className="xemthem">
+                <p>Video đánh giá</p>
+            </div>
+            <div className="video-danhgia">
+              {videoReview()}
+            </div>
           </div>
           <div className="info-bottom row">
             <div className="col-md-6 supports">

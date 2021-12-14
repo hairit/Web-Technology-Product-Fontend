@@ -89,15 +89,18 @@ const reLoad = () =>{
       lastname: userOrder.lastname + '',
       email: userOrder.email + '',
       pass: userOrder.pass + '',
-      sdt: userinfo.sdt,
-      diachi: userinfo.diachi + '',
+      sdt: userinfo.sdt ,
+      diachi: userinfo.diachi + '' ,
       mode: userOrder.mode + '',
       nameimage: userOrder.nameimage + '',
       bills: [ ],
       cartDetails: [ ]
     }).then(res => {
       // updateData()
-      reLoad()
+      createBill(checkout,totalPrice(checkout), res.data.diachi)
+      setEditinfo(false)
+      updateData()
+      // reLoad()
     }).catch(err => {
       console.log("Lỗi", err)
     })
@@ -120,11 +123,53 @@ const reLoad = () =>{
   function editCart() {
     history.goBack();
   }
-
+function formAddDiaChi(){
+  <div className="formAddAdress">
+        <div className="formEdit">
+          <div className="info-editAdress">
+            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e) }>
+              <div className="form-center">
+                <div className="form-diachi">
+                  <div className="title-diachi text-title">Địa chỉ</div>
+                  <input className="form-control btn-formEdit" type="text" onChange={(e) => handleChane(e)} id="diachi" value={userinfo.diachi} placeholder="Nhập địa chỉ của bạn" />
+                </div>
+              </div>
+              <div className="btn-form">
+                <button className="btn btn-primary"  onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+}
+function formAddPhone(){
+  <div className="formAddAdress">
+        <div className="formEdit">
+          <div className="info-editAdress">
+            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e) }>
+                <div className="form-email">
+                  <div className="form-phone">
+                    <div className="text-title">Số điện thoại</div>
+                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="sdt" value={userinfo.sdt} placeholder="Nhập số điện thoại"/>
+                  </div>
+                </div>
+              <div className="btn-form">
+                <button className="btn btn-primary"  onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+}
   function AddressAndPhone(){
     if(userOrder.diachi && userOrder.sdt !== null){
-      return showAddAdress();
-    }else{
+      return <div></div>;
+    }else if(userOrder.diachi === null){
+      return formAddDiaChi()
+    }else if(userOrder.sdt === null){
+      return formAddPhone()
+    }
+    else{
       return  renderFormAddAdressAndPhone();
     }
   }
@@ -137,7 +182,6 @@ const reLoad = () =>{
             setTimeout(()=>{
               history.push("/bill");
               updateData()
-
             }, 1700)
             order()
             }} >Đặt hàng ngay </button>
@@ -206,13 +250,14 @@ const reLoad = () =>{
   function btnSaveNewAdress() {
     setAddress(false);
   }
-  function showAddAdress() {
-    if (address === false) {
-      return FormAddAdress();
-    } else {
-      return renderFormAddAdress();
-    }
-  }
+  // function showAddAdress() {
+  //   if (address === false) {
+  //     return FormAddAdress();
+  //   } else {
+  //     return renderFormAddAdress();
+  //   }
+  // }
+  
   function FormAddAdress() {
     return (
       <div className="info-addAdress" onClick={() => btnAddAdress()}>
@@ -223,50 +268,52 @@ const reLoad = () =>{
       </div>
     );
   }
-  function renderFormAddAdress() {
-    return (
-      <div className="formAddAdress">
-        <div className="formEdit">
-          <div className="info-editAdress">
-            <form className="form-edit">
-              <div className="form-center">
-                <div className="title-formEdit">Thêm thông tin người nhận hàng</div>
-                <div className="form-editName">
-                  <div className="text-title">Họ</div>
-                  <div className="form-input">
-                    <input className="form-control btn-formEdit" type="text" placeholder="Nhập họ của bạn"/></div>
-                </div>
-                <div className="form-editName">
-                  <div className="text-title">Tên</div>
-                  <div className="form-input">
-                    <input className="form-control btn-formEdit" type="text" placeholder="Nhập tên của bạn"/></div>
-                </div>
-                <div className="form-email">
-                  <div className="form-phone">
-                    <div className="text-title">Số điện thoại</div>
-                    <input className="form-control btn-formEdit" placeholder="Nhập số điện thoại"/>
-                  </div>
-                  <div className="form-editemail">
-                    <div className="text-title">Email</div>
-                    <input className="form-control btn-formEdit" placeholder="Nhập email của bạn" />
-                  </div>
-                </div>
-                <div className="form-diachi">
-                  <div className="title-diachi text-title">Địa chỉ</div>
-                  <input className="form-control btn-formEdit" placeholder="Nhập địa chỉ của bạn" />
-                </div>
-              </div>
-              <div className="btn-form">
-                <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
-                <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Thoát</button>
-                </div>
-            </form>
-          </div>
-        </div>
+
+
+  // function renderFormAddAdress() {
+  //   return (
+  //     <div className="formAddAdress">
+  //       <div className="formEdit">
+  //         <div className="info-editAdress">
+  //           <form className="form-edit">
+  //             <div className="form-center">
+  //               <div className="title-formEdit">Thêm thông tin người nhận hàng</div>
+  //               <div className="form-editName">
+  //                 <div className="text-title">Họ</div>
+  //                 <div className="form-input">
+  //                   <input className="form-control btn-formEdit" type="text" placeholder="Nhập họ của bạn"/></div>
+  //               </div>
+  //               <div className="form-editName">
+  //                 <div className="text-title">Tên</div>
+  //                 <div className="form-input">
+  //                   <input className="form-control btn-formEdit" type="text" placeholder="Nhập tên của bạn"/></div>
+  //               </div>
+  //               <div className="form-email">
+  //                 <div className="form-phone">
+  //                   <div className="text-title">Số điện thoại</div>
+  //                   <input className="form-control btn-formEdit" placeholder="Nhập số điện thoại"/>
+  //                 </div>
+  //                 <div className="form-editemail">
+  //                   <div className="text-title">Email</div>
+  //                   <input className="form-control btn-formEdit" placeholder="Nhập email của bạn" />
+  //                 </div>
+  //               </div>
+  //               <div className="form-diachi">
+  //                 <div className="title-diachi text-title">Địa chỉ</div>
+  //                 <input className="form-control btn-formEdit" placeholder="Nhập địa chỉ của bạn" />
+  //               </div>
+  //             </div>
+  //             <div className="btn-form">
+  //               <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+  //               <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Thoát</button>
+  //               </div>
+  //           </form>
+  //         </div>
+  //       </div>
         
-      </div>
-    );
-  }
+  //     </div>
+  //   );
+  // }
  
 // ===========================================================================================================
 

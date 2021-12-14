@@ -32,6 +32,7 @@ import GioHangCss from "./CSS/GioHangCss.css"
 import Headphone from "./Pages/Products/ProductsHeadphone/Headphone";
 import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailProductsHeadphone";
 import Products from "./Pages/Products/SearchProducts/Products";
+import PostFile from "./Pages/PostFile";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -274,6 +275,7 @@ function App() {
         <Route path="/screen/:id" exact component={(match) => <DetailProductsScreen idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/headphone/:id" exact component={(match) => <DetailProductsHeadphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/mouse/:id" exact component={(match) => <DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
+        <Route path="/post/file" exact component={() => <PostFile  />}></Route>
 
         <Route path="/cart" exact component={() => <GioHang
           user={user}

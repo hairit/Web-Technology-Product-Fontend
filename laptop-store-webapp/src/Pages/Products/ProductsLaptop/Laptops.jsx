@@ -9,18 +9,27 @@ import Solver from "../../../Classes/Solver";
 import AsusLogo1 from "../../../Images/AsusLogo1.png"
 import DellLogo1 from "../../../Images/DellLogo1.png"
 import HPLogo1 from "../../../Images/HPLogo1.png"
+import logo_asus from "../../../Images/logo_asus.png"
+import logo_dell from "../../../Images/logo_dell.png"
+import logo_hp from "../../../Images/logo_hp.png"
+import logo_acer from "../../../Images/logo_acer.png"
+import banner_pro_right from "../../../Images/banner_pro_right.png"
+import banner_pro_left from "../../../Images/banner_pro_left.png"
 import AcerLogo1 from "../../../Images/AcerLogo1.png"
 import DareuLogo1 from "../../../Images/DareuLogo1.png"
 import Swal from "sweetalert2";
 
 import { NavLink, useHistory } from "react-router-dom";
+import PostsLaptop from "./PostsLaptop";
 const solver = new Solver();
 export default function Laptops({idUser,match,addProductToCart}) {
   const history = useHistory();
   const [load, setLoad] = useState(0);
   const [firstprice, setFirstprice] = useState();
   const [lastprice, setLastprice] = useState();
-  // const [page, setPage] = useState(false);
+  const [display, setDisplay] = useState(true);
+  const [active, setActive] = useState(1);
+  const [actives, setActives] = useState(false);
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -44,6 +53,10 @@ export default function Laptops({idUser,match,addProductToCart}) {
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
+  useEffect(() => {
+    window.addEventListener('scroll',banner);
+    // changeAdminMode('off');
+}, [])
   function addProductInCart(id,gia){
     addProductToCart(idUser,id,gia);
   }
@@ -57,10 +70,18 @@ export default function Laptops({idUser,match,addProductToCart}) {
   }
   
   function sortLaptop(e){
+    console.log("aa", active)
+    if(active % 2 !== 0){
       var sorts = e.target.value
       axios.get("https://localhost:44343/data/laptop/" + sorts,null)
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err))
+    }else{
+      axios.get("https://localhost:44343/data/Product/type=laptop", null)
+      .then((res) => setPros(res.data))
+      .catch((err) => console.log(err))
+    }
+      
   }
 
   const pages = []
@@ -116,8 +137,17 @@ export default function Laptops({idUser,match,addProductToCart}) {
     })
     .catch((err) =>console.error(err))
   }
+  
+  const banner = () => {
+    if(window.scrollY > 4000) setDisplay(false);
+    else setDisplay(true);
+}
   return (
     <div className="wrapper">
+      <div className="banner-pros">
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+      </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
           <div className="banner">
@@ -140,20 +170,16 @@ export default function Laptops({idUser,match,addProductToCart}) {
               </div>
               <div className="col-12 ">
                 <div className="loc">
-                  <div className="title-sort">Thương hiệu</div>
+                  <div className="title-sort">Thương hiệu</div> 
                   <div className="btn-right">
-                    <button type="button"  className="btn-sort" value="brand=asus"  onClick={(e) => sortLaptop(e)}>
-                      Asus
-                    </button>
-                    <button type="button" className="btn-sort" value="brand=dell" onClick={(e) => sortLaptop(e)} >
-                      Dell
-                    </button>
-                    <button type="button" className="btn-sort" value="brand=hp" onClick={(e) => sortLaptop(e)}>
-                      HP
-                    </button>
-                    <button type="button" className="btn-sort" value="brand=acer" onClick={(e) => sortLaptop(e)}>
-                      Acer
-                    </button>
+                    <input type="image" src={logo_asus} className=" btn-sort sort-brand" value="brand=asus" id="brand=asus" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    </input>
+                    <input type="image" src={logo_dell} className="btn-sort sort-brand" value="brand=dell" id="brand=dell" onClick={(e) => {setActive(active + 1);sortLaptop(e)}} >
+                    </input>
+                    <input type="image" src={logo_hp} className="btn-sort sort-brand" value="brand=hp" id="brand=hp" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    </input>
+                    <input type="image" src={logo_acer} className="btn-sort sort-brand" value="brand=acer" id="brand=acer" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    </input>
                   </div>
                 </div>
                 <div className="loc">
@@ -242,6 +268,9 @@ export default function Laptops({idUser,match,addProductToCart}) {
                   {renderPageNumber}
                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
+              </div>
+              <div className="post">
+                <PostsLaptop />
               </div>
             </div>
           </div>

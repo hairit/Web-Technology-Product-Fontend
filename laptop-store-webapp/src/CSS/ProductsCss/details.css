@@ -377,6 +377,17 @@
   font-size: 25px;
   font-weight: 500;
   margin: 0 0 20px 20px;
+  background: linear-gradient(#667eea, #764ba2);
+  height: 50px;
+  border-top-left-radius: 69px;
+  width: 30%;
+  border-bottom-right-radius: 60px;
+  padding-left: 20px;
+}
+.xemthem p {
+  color: white;
+  line-height: 50px;
+  height: 50px;
 }
 .price-inf p {
   text-align: center;
@@ -485,11 +496,10 @@
   display: flex;
 }
 .posts {
+  margin: 0 auto;
   padding-top: 30px;
   width: 90%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 .panel-Posts p,
 strong {
@@ -602,6 +612,7 @@ strong {
 .title-detail-pro {
   color: #0f0fbe;
 }
+
 /* #img3:checked ~ .m3 {
   margin-left: -200%;
 }
@@ -610,7 +621,15 @@ strong {
 } */
 
 /* ------------------------------------------------------------------------------------------------------*/
-
+.video-danhgia {
+  display: flex;
+  margin: 0 auto;
+  padding-left: 3%;
+  padding-bottom: 50px;
+}
+.paddin {
+  padding-left: 20px;
+}
 /* --------------------------------------- Css Laptop -------------------------------------------------*/
 
 /* ---------------------------------------------------------------------------------------------------*/

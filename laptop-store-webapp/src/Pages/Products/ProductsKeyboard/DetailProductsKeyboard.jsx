@@ -97,6 +97,44 @@ export default function DetailProductsKeyboard({idUser, match, addProductToCart 
       index--;
     }
   }
+  function videoReview() {
+    var swich = detail.keyboardDetail && detail.keyboardDetail.brandswitch
+    if(new RegExp("DareU").test(swich) === true ){
+      return (
+        <>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Ejh-c6xfobA" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/eDnPU9DA0uI" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      </>
+    )
+    }
+    else if(new RegExp("RK").test(swich) === true){
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/6CvIClAOxOk" title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/JdN-hQmH5xk" title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+        </>
+      )
+    }else{
+      return (
+        <>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/iw-raTNBwHs" title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/04_6w2WB8nA" title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </>
+      )
+    }
+  }
   return (
     <div className="single-product">
       <div className="container">
@@ -374,7 +412,9 @@ export default function DetailProductsKeyboard({idUser, match, addProductToCart 
             </div>
           </div>
           <div className="panel-spkhac">
-            <div className="xemthem">Sản phẩm khác</div>
+            <div className="xemthem">
+              <p>Sản phẩm khác</p>
+            </div>
             <div className="prev-next">
               <span
                 className="btn-prev btnnp"
@@ -396,7 +436,12 @@ export default function DetailProductsKeyboard({idUser, match, addProductToCart 
                 <SanPhamKhac />
               </div>
             </div>
-            <PostsKeyboard />
+            <div className="xemthem">
+                <p>Video đánh giá</p>
+            </div>
+            <div className="video-danhgia">
+              {videoReview()}
+            </div>
           </div>
           <div className="info-bottom row">
             <div className="col-md-6 supports">

@@ -27,38 +27,33 @@ export default function Admin({ changeAdminMode, match, logout }) {
         changeAdminMode('on');
         console.log(match.match.params.idUser);
         call('GET', `data/user/${match.match.params.idUser}`, null)
-            .then(res => setUser(res.data))
+            .then(res => {
+                        if(res.data.mode === "ADMIN"){
+                                setUser(res.data);
+                        }else {
+
+                        }})
             .catch(() => setUser(null))
     }, [])
     return (
         <Router>
             <div className="admin">
                 <div className="admin-tabs">
-                    <div className="admin-tabs-top">
                         <div className="admin-page-logo">
+                            Admin
                         </div>
-                        <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}`}><FaHome className="admin-tab-icon" /></NavLink>
-                        <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/customer`} ><FaUserFriends className="admin-tab-icon" /></NavLink>
-                        {user === null ? <div></div>
-                            :
-                            user.mode === "STAFF" ? <NavLink className="admin-tab" to="/sell">
-                                <RiBillLine className="admin-tab-icon" />
-                            </NavLink> : <>
-                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/product/list`}><GrProductHunt className="admin-tab-icon" /></NavLink>
-                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/users`}><FaUser className="admin-tab-icon" /></NavLink>
-                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/bills`}><FaMoneyBillWave className="admin-tab-icon" /></NavLink>
-                                <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/report`}><FcStatistics className="admin-tab-icon" /></NavLink>
-                            </>
-                        }
-                    </div>
-                    <div className="admin-tabs-bottom">
-                        <div className="admin-tab" onClick={() => {
-                            logout();
-                            history.push('/login');
-                        }} ><CgLogOut className="admin-tab-icon" /></div>
-                    </div>
+                        <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}`}><FaHome className="admin-tab-icon" />Dashboard</NavLink>
+                        <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/product/list`}><GrProductHunt className="admin-tab-icon" />Products</NavLink>
+                        <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/users`}><FaUser className="admin-tab-icon" />Users</NavLink> 
+                    
                 </div>
                 <div className="admin-pages">
+                    <div className='admin-pages-header'>
+                        <div className="admin-logout" onClick={() => {
+                                logout();
+                                history.push('/login');
+                            }} ><CgLogOut className="admin-logout-icon" />Thoát</div>
+                        </div>
                     <div className="admin-pages-main">
                         <Route path="/admin/:iduser/customer" component={() => <Customer idUser={match.match.params.idUser} />}></Route>
                         <Route path="/admin/:idUser/bills/customer/:idCustomer" component={(match) => <BillsCustomer match={match} />}></Route>
