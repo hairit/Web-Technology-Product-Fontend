@@ -27,11 +27,12 @@ import ScrollToTop from "./ScrollToTop";
 import ThanhToan from "./Pages/ThanhToan";
 import DonHang from "./Pages/DonHang";
 import call from "./API/API";
-import load from "./Images/load.gif"
+import loadEffect from "./Images/loadEffect.gif"
 import GioHangCss from "./CSS/GioHangCss.css"
 import Headphone from "./Pages/Products/ProductsHeadphone/Headphone";
 import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailProductsHeadphone";
 import Products from "./Pages/Products/SearchProducts/Products";
+import PostFile from "./Pages/PostFile";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -54,6 +55,7 @@ function App() {
   }, []);
   useEffect(() => {
     if(user !== null) {
+      console.log("use Effect 2");
       call('GET', `data/user/${user.id}`, null)
         .then((res) => {
           cartDetails.current = res.data.cartDetails;
@@ -144,7 +146,7 @@ function App() {
     if(loading === true){
       return (
         <div className="loading">
-          <img src={load} />
+          <img src={loadEffect} />
         </div>
       )
     }else {
@@ -240,15 +242,13 @@ function App() {
       <ScrollToTop />
       <div className={adminMode === false ? "App" : "App-no-scroll"}>
       {loadQuantity()}
-        <Header user={user} adminMode={adminMode} logout={logout}  setUser={setUser} updateData={updateData}/>
+        <Header user={user} adminMode={adminMode} logout={logout}  setUser={setUser} />
       
         <Route path="/admin" exact component={() => <Login login={login}  />} ></Route>
         <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode} user={user} match={match} logout={logout}/>}></Route>
 
-
-        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode}/>}></Route>
-
-        <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart}  />}></Route>
+        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode}/>}></Route> 
+        <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
         <Route path="/laptop/:attribute/:value" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
         <Route path="/laptop/:attribute/:from/:to" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
 
@@ -275,6 +275,7 @@ function App() {
         <Route path="/screen/:id" exact component={(match) => <DetailProductsScreen idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/headphone/:id" exact component={(match) => <DetailProductsHeadphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/mouse/:id" exact component={(match) => <DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
+        <Route path="/post/file" exact component={() => <PostFile  />}></Route>
 
         <Route path="/cart" exact component={() => <GioHang
           user={user}
