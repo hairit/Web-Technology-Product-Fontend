@@ -161,13 +161,10 @@ function formAddPhone(){
         </div>
       </div>
 }
+console.log("qqq",typeof(userOrder.diachi) )
   function AddressAndPhone(){
     if(userOrder.diachi && userOrder.sdt !== null){
-      return <div></div>;
-    }else if(userOrder.diachi === null){
-      return formAddDiaChi()
-    }else if(userOrder.sdt === null){
-      return formAddPhone()
+      return showEditInfo();
     }
     else{
       return  renderFormAddAdressAndPhone();
@@ -383,7 +380,7 @@ function formAddPhone(){
               <div className="info-orderDataUser">
                 <div className="info-user">
                   <div className="info-nhanhang">Thông tin nhận hàng</div>
-                  {showEditInfo()}
+                  {/* {showEditInfo()} */}
                   {/* {Address()} */}
                  {AddressAndPhone()}
                 </div>

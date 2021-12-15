@@ -19,7 +19,7 @@ import ship from '../Images/ship.png'
 import daxem from '../Images/daxem.png'
 import chinhhang from '../Images/chinhhang.png'
 import tuvan from '../Images/tuvan.png'
-import {NavLink} from "react-router-dom";
+import {NavLink,Link} from "react-router-dom";
 import UserPanel from "./UserPanel";
 import axios from "axios";
 
@@ -51,10 +51,10 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
     return (
       <div className={adminMode === false ? "header" : "header-hide"}>
         <div className="header-top">
-          <NavLink className="header-top-item" to="/tincongnghe">
+          <Link to='/tincongnghe' className="header-top-item" target="_blank">
             <RiComputerFill className="header-top-item-icon" />
             <p className="header-top-item-content">Tin công nghệ</p>
-          </NavLink>
+          </Link>
           <NavLink className="header-top-item" to="/lienhe">
             <AiFillPhone className="header-top-item-icon" />
             <p className="header-top-item-content">Liên hệ</p>
