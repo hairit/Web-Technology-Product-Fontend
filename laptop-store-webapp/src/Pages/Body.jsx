@@ -22,10 +22,11 @@ import URL from '../DATA/URL'
 import HeadphonePanel from './BodyPages/HeadphonePanel'
 function Body({idUser,addProductToCart,changeAdminMode}) {
     useEffect(() => {
+        console.log("body rểnder");
         window.addEventListener('scroll',changeStatusRightItem);
         changeAdminMode('off');
     }, [])
-    console.log("body rểnder");
+
     const [display, setDisplay] = useState(false);
     const changeStatusRightItem = () => {
         if(window.scrollY >= 400) setDisplay(true);

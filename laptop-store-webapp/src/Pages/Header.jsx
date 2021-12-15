@@ -28,8 +28,8 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
   const [userPanel, setUserPanel] = useState(false);
   const [namepro, setNamePro] = useState([]);
   const history = useHistory();
-  console.log("Header : rerender");
   useEffect(() => {
+    console.log("Header : rerender");
     window.addEventListener('scroll', changeStatusHeader);
   }, [])
   const changeStatusHeader = () => {
@@ -109,7 +109,7 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
                     />
                   )}
                   <p className="login-text">
-                    {user.firstname + " " + user.lastname}
+                    {user.lastname + " " + user.firstname}
                   </p>
                   <AiOutlineCaretDown id="drop-user" onClick={()=>changeStatusUserPanel()} />
                   
