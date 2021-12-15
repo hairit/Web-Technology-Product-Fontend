@@ -15,7 +15,7 @@ export default function PostFile() {
     const postImage = () => {
         const image = new FormData();
         image.append('file',file);
-        axios.post('https://localhost:44343/data/image',image)
+        axios.post('https://localhost:44343/data/picture',image)
             .then(res => {
                 console.log(res.data);
             })

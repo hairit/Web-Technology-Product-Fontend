@@ -1,0 +1,128 @@
+.staff{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.staff-header{
+    width: 100%;
+    height: max-content;
+    background-color: #4252bd;
+    color: #FFFFFF;
+}
+.staff-menu{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #4252bd;
+}
+.staff-menu-left{
+    display: flex;
+    width: max-content;
+}
+.staff-menu-tab{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+.staff-menu-icon{
+    font-size: 30px;
+    margin-right: 10px;
+}
+.staff-main{
+    width: 100%;
+    overflow-y: scroll;
+    background-color: #eeeaea;
+}
+.staff-logout{
+    margin-right: 30px;
+    display: inline;
+    font-size: 16px;
+    color : #FFFFFF;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.staff-logout-icon{
+    color : #FFFFFF;
+    font-size: 30px;
+    margin-right: 10px;
+}
+.staff-bills{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+}
+.staff-bills-table{
+    margin: 30px 20px auto 20px;
+    width: auto;
+    height: 500px;
+    background-color: #FFFFFF;
+}
+.staff-bills-table-head{
+    background-color: #d1cece;
+}
+.staff-bill-table-cell{
+    padding: 10px 15px;
+}
+.staff-bills-form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    background-color: #eeeaea;
+}
+.staff-bills-form-inFor{
+    margin: 0 20px 0 20px;
+    width: auto;
+    background-color: #FFFFFF;
+    display: flex;
+
+}
+.thong-tin-nguoi-nhan{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.thong-tin-nguoi-nhan-item{
+    width: 100%;
+    height: max-content;
+    display: flex;
+}
+.thong-tin-nguoi-nhan-item label{
+    padding: 15px 20px 15px 20px;
+    width: 50%;
+    margin-bottom: 0 !important;
+    height: auto;
+    font-size: 15px;
+    font-weight: 500;
+    color : rgb(116, 116, 116) ;
+}
+.thong-tin-nguoi-nhan-item p{
+    padding: 15px 20px;
+    font-size: 15px;
+    width: 50%;
+    /* word-wrap: break-word; */
+    height: 70px;
+    font-weight: 500;
+    color : rgb(116, 116, 116) ;
+}
+
+.thong-tin-giao-hang{
+    width: 50%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.staff-bills-products{
+    margin: 0 20px 0 20px;
+    width: auto;
+    height: 300px;
+    background-color: #FFFFFF;
+}

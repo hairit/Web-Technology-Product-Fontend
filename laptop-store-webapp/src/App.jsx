@@ -33,6 +33,7 @@ import Headphone from "./Pages/Products/ProductsHeadphone/Headphone";
 import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailProductsHeadphone";
 import Products from "./Pages/Products/SearchProducts/Products";
 import PostFile from "./Pages/PostFile";
+import Staff from "./Pages/StaffPages/Staff";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -244,8 +245,10 @@ function App() {
       {loadQuantity()}
         <Header user={user} adminMode={adminMode} logout={logout}  setUser={setUser} />
       
-        <Route path="/admin" exact component={() => <Login login={login}  />} ></Route>
-        <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode} user={user} match={match} logout={logout}/>}></Route>
+        <Route path="/admin" exact    component={() => <Login login={login}  />} ></Route>
+        <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode}  match={match} logout={logout} />}></Route>
+        <Route path="/staff" exact    component={() => <Login login={login}   />} ></Route>
+        <Route path="/staff/:idUser"  component={(match) => <Staff changeAdminMode={changeAdminMode}  match={match} logout={logout} />}></Route>
 
         <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode}/>}></Route> 
         <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>

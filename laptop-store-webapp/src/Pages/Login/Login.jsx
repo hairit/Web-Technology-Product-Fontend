@@ -57,8 +57,12 @@ export default function Login({login,userCookie}) {
                                             login(res.data);
                                             history.push('/');
                                         }else {
-                                            if(res.data.mode === "ADMIN" || res.data.mode ==="STAFF"){
+                                            if(res.data.mode === "ADMIN"){
                                                 history.push(`/admin/${res.data.id}`);
+                                                return;
+                                            }
+                                            if(res.data.mode ==="STAFF"){
+                                                history.push(`/staff/${res.data.id}`);
                                                 return;
                                             }
                                         }       

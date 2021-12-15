@@ -22,18 +22,18 @@ import BillsCustomer from './Bill/BillsCustomer';
 import Users from './User/Users';
 export default function Admin({ changeAdminMode, match, logout }) {
     const history = useHistory();
-    const [user, setUser] = useState(null);
     useEffect(() => {
         changeAdminMode('on');
         console.log(match.match.params.idUser);
         call('GET', `data/user/${match.match.params.idUser}`, null)
             .then(res => {
                         if(res.data.mode === "ADMIN"){
-                                setUser(res.data);
-                        }else {
-
+                        }else{
+                            history.push("/login");
                         }})
-            .catch(() => setUser(null))
+            .catch(() => {
+                history.push("/login");
+            })
     }, [])
     return (
         <Router>
@@ -45,7 +45,7 @@ export default function Admin({ changeAdminMode, match, logout }) {
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}`}><FaHome className="admin-tab-icon" />Dashboard</NavLink>
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/product/list`}><GrProductHunt className="admin-tab-icon" />Products</NavLink>
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/users`}><FaUser className="admin-tab-icon" />Users</NavLink> 
-                    
+
                 </div>
                 <div className="admin-pages">
                     <div className='admin-pages-header'>
@@ -55,8 +55,8 @@ export default function Admin({ changeAdminMode, match, logout }) {
                             }} ><CgLogOut className="admin-logout-icon" />Thoát</div>
                         </div>
                     <div className="admin-pages-main">
-                        <Route path="/admin/:iduser/customer" component={() => <Customer idUser={match.match.params.idUser} />}></Route>
-                        <Route path="/admin/:idUser/bills/customer/:idCustomer" component={(match) => <BillsCustomer match={match} />}></Route>
+                        {/* <Route path="/admin/:iduser/customer" component={() => <Customer idUser={match.match.params.idUser} />}></Route>
+                        <Route path="/admin/:idUser/bills/customer/:idCustomer" component={(match) => <BillsCustomer match={match} />}></Route> */}
                         <Route path="/admin/:idUser/order" component={() => <Order />}></Route>
                         <Route path="/admin/:idUser/bills" component={() => <Bills />}></Route>
                         <Route path="/admin/:idUser/product" component={() => <Product idUser={match.match.params.idUser} />}></Route>
