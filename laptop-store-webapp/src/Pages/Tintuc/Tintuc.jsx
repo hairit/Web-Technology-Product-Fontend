@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import LogoFT from "../../Images/LogoFT.png";
 import win11 from "../../Images/win11.png";
 import halo from "../../Images/halo.png";
+import dowappadroi from "../../Images/dowappadroi.png";
+import sacvachoi from "../../Images/sacvachoi.png";
 import Tintucs from "../../CSS/Tintucs.css";
 import { NavLink } from "react-router-dom";
 
@@ -67,7 +69,7 @@ export default function Tintuc({changeAdminMode}) {
                     </div>
                     <div className="home-left">
                         <div className="home-left-top">
-                            <NavLink to="game" className="congnghe" >
+                            <NavLink to="game" className="congnghe game" >
                                 <img src={halo} />
                             </NavLink>
                             <div className="title-game">
@@ -76,16 +78,20 @@ export default function Tintuc({changeAdminMode}) {
                         </div>
                         <div className="home-left-bottom">
                             <div className="home-left-bottom-right">
-                            <NavLink to="game" className="congnghe" >
-                                <img src={halo} />
+                            <NavLink to="game" className="congnghe left-bottom" >
+                                <img src={dowappadroi} />
                             </NavLink>
-                            
+                            <div className="title-left-bottom">
+                                <p>Cách tải và cài đặt ứng dụng Android trên Windows 11</p>
                             </div>
-                            <div className="home-left-bottom-left">
-                            <NavLink to="game" className="congnghe" >
-                                <img src={halo} />
-                            </NavLink>
-                           
+                            </div>
+                            <div className="home-left-bottom-left left-bottom">
+                                <NavLink to="game" className="congnghe" >
+                                    <img src={sacvachoi} />
+                                </NavLink>
+                                <div className="title-right-bottom">
+                                    <p>Vừa sạc vừa dùng laptop có sao không? Cách sạc laptop đúng không bị chai pin</p>
+                                </div>
                             </div>
                         </div>
                     </div>
