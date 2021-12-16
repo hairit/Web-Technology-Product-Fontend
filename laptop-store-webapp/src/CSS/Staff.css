@@ -57,17 +57,25 @@
     height: auto;
     flex-direction: column;
 }
-.staff-bills-table{
-    margin: 30px 20px auto 20px;
-    width: auto;
+.staff-bills-list{
+    margin: 0 20px auto 20px;
+    background-color: #FFFFFF;
     height: 500px;
+}
+.staff-bills-table{
+    width: 100%;
+    height: auto;
     background-color: #FFFFFF;
 }
 .staff-bills-table-head{
     background-color: #d1cece;
 }
+.staff-bills-table-row{
+    border-bottom: rgb(145, 144, 144) 0.1px solid;
+}
 .staff-bill-table-cell{
     padding: 10px 15px;
+    border: none;
 }
 .staff-bills-form{
     width: 100%;
@@ -81,8 +89,7 @@
     margin: 0 20px 0 20px;
     width: auto;
     background-color: #FFFFFF;
-    display: flex;
-
+    padding: 25px 30px;
 }
 .thong-tin-nguoi-nhan{
     width: 50%;
@@ -125,4 +132,56 @@
     width: auto;
     height: 300px;
     background-color: #FFFFFF;
+}
+.staff-bill-inFor{
+    float: left;
+    width: 300px;
+    max-width: 500px;
+    display: flex;
+    height: auto;
+    margin: 10px 0;
+    flex-direction: column;
+    padding-left: 30px;
+}
+.staff-bill-inFor-label{
+    padding: 6px 0 6px 0;
+}
+.staff-bill-inFor-input{
+    padding: 6px 7px ;
+    border-radius: 4px;
+    outline: none;
+    border: 0.1px solid rgb(175, 174, 174);
+}
+.staff-bill-inFor-value{
+    font-size: 20px;
+    color :rgb(116, 116, 116) ;
+}
+.staff-bills-form-search{
+    background-color: #FFFFFF;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 30px;
+    align-items: center;
+}
+.search-bill-div{
+    position: relative;
+    height: auto;
+    width: max-content;
+}
+.search-bill-input{
+    width: 400px;
+    padding: 5px 7px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: 0.1px solid rgb(143, 141, 141);
+    outline: none;
+}
+.search-bill-button{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    background-color: #4252bd;
+    color: #FFFFFF;
 }

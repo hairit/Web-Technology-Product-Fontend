@@ -136,6 +136,7 @@ function App() {
   const order = () =>{
     axios.post('https://localhost:44343/data/bill/', bill)
       .then(res => {
+        console.log(res.status);
         updateData();
         showLoadOrder();
       })
