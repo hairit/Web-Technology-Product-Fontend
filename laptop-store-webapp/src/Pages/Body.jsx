@@ -44,8 +44,8 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
                     <img className="right-scroll-panel-item" src={addressicon} />
                     <img  className="right-scroll-panel-item" src={up} onClick={()=>window.scrollTo(0, 0)} />
                 </div>
-                <img className="event-scroll-left" src={`${URL}/Images/Panels/black-friday.png`} />
-                <img className="event-scroll-right" src={`${URL}/Images/Panels/black-friday.png`} />
+                {/* <img className="event-scroll-left" src={`${URL}/Images/Panels/black-friday.png`} />
+                <img className="event-scroll-right" src={`${URL}/Images/Panels/black-friday.png`} /> */}
                 {/* <img  className={display === true ? "scroll-to-top" : "scroll-to-top-hide"} src={up} onClick={()=>window.scrollTo(0, 0)} /> */}
                 <MainPanel />
                 <LaptopPanel addCart={addCart}/>

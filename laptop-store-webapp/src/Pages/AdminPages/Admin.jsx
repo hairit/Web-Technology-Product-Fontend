@@ -45,7 +45,6 @@ export default function Admin({ changeAdminMode, match, logout }) {
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}`}><FaHome className="admin-tab-icon" />Dashboard</NavLink>
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/product/list`}><GrProductHunt className="admin-tab-icon" />Products</NavLink>
                         <NavLink className="admin-tab" to={`/admin/${match.match.params.idUser}/users`}><FaUser className="admin-tab-icon" />Users</NavLink> 
-
                 </div>
                 <div className="admin-pages">
                     <div className='admin-pages-header'>

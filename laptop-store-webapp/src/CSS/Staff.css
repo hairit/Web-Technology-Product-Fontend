@@ -57,23 +57,33 @@
     height: auto;
     flex-direction: column;
 }
-.staff-bills-table{
-    margin: 30px 20px auto 20px;
-    width: auto;
+.staff-bills-list{
+    margin: 0 20px auto 20px;
+    background-color: #FFFFFF;
     height: 500px;
+}
+.staff-bills-table{
+    width: 100%;
+    height: auto;
     background-color: #FFFFFF;
 }
 .staff-bills-table-head{
     background-color: #d1cece;
 }
+.staff-bills-table-row{
+    border-bottom: rgb(212, 211, 211) 0.1px solid;
+}
 .staff-bill-table-cell{
     padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    user-select: none;
 }
 .staff-bills-form{
     width: 100%;
     height: auto;
     display: flex;
-    margin-top: 30px;
+    margin-top: 15px;
     flex-direction: column;
     background-color: #eeeaea;
 }
@@ -81,8 +91,7 @@
     margin: 0 20px 0 20px;
     width: auto;
     background-color: #FFFFFF;
-    display: flex;
-
+    padding: 25px 30px;
 }
 .thong-tin-nguoi-nhan{
     width: 50%;
@@ -121,8 +130,126 @@
     flex-direction: column;
 }
 .staff-bills-products{
-    margin: 0 20px 0 20px;
-    width: auto;
-    height: 300px;
+    width: 100%;
+    height: max-content;
     background-color: #FFFFFF;
+}
+.staff-bill-inFor{
+    float: left;
+    width: 300px;
+    max-width: 500px;
+    display: flex;
+    height: auto;
+    margin: 10px 0;
+    flex-direction: column;
+    padding-left: 30px;
+}
+.staff-bill-inFor-label{
+    padding: 6px 0 6px 0;
+    color : rgb(116, 116, 116) ;
+}
+.staff-bill-inFor-input{
+    padding: 6px 7px ;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    border: 0.1px solid rgb(68, 68, 68);
+}
+.staff-bill-inFor-value{
+    font-size: 16px;
+    color :rgb(41, 40, 40) ;
+}
+.staff-bills-form-search{
+    background-color: #FFFFFF;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 30px;
+    align-items: center;
+}
+.search-bill-div{
+    position: relative;
+    height: auto;
+    width: max-content;
+}
+.search-bill-input{
+    width: 400px;
+    padding: 10px 7px;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: 2px solid rgba(19, 70, 209, 0.493);
+    outline: none;
+}
+.search-bill-button{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    background-color: #4252bd;
+    color: #FFFFFF;
+}
+.staff-bill-button{
+    padding: 10px 15px ;
+    border-radius: 3px;
+    border: none;
+    float: right;
+    margin-right: 7px;
+    color : #FFFFFF;
+}
+.accept-bill-button{
+    background-color: #495ddf;
+}
+.cancel-bill-button{
+    background-color: rgb(212, 14, 14);
+}
+.bill-details-panel{
+    margin: 0 20px 0 20px;
+    background-color: #FFFFFF;
+    height: auto;
+    margin-bottom: 50px;
+}
+.staff-bill-detail-table-row{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.bill-product-inFor{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bill-product-name{
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 0 0 15px;
+}
+.bill-product-quantity{
+    border: 0.1px solid rgb(230, 227, 227) ;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.bill-quantity-button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #f5f1f1;
+}
+.bill-quantity-input{
+    width: 40px;
+    text-align: center;
+    height: 30px;
+    border: none;
+    background-color: #f5f1f1;
+}
+.delete-bill-detail{
+    float: right;
+    background-color: rgb(212, 14, 14);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 15px;
 }
