@@ -341,3 +341,142 @@ ol {
 .right-txt-care p {
   padding-top: 15px;
 }
+.review-product {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.title-post-rv {
+  padding-top: 70px;
+  padding-bottom: 1px;
+  border-bottom: 3px solid;
+  border-bottom-color: rgb(9, 9, 230);
+  margin-bottom: 20px;
+}
+.title-post-rv p {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 5px;
+  width: 15%;
+  background: rgb(9, 9, 230);
+}
+.video-review {
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.video-review iframe {
+  padding: 10px;
+}
+.old-post {
+  width: 100%;
+}
+.posts-info {
+  display: flex;
+  padding-bottom: 20px;
+}
+.posts-info img {
+  width: 20%;
+}
+.post-old-txt {
+  padding-left: 20px;
+}
+.post-old-txt p {
+  padding: 5px;
+}
+.txt-center {
+  display: flex;
+}
+.title-post-old {
+  font-size: 25px;
+  font-weight: 500;
+}
+.footer-tintuc {
+  padding-top: 30px;
+  background: #111111;
+  color: white;
+}
+#footer {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px 0 50px 0;
+}
+.ft-top-expost,
+.ft-top-plpost,
+.ft-top-xemnhieu {
+  padding-right: 40px;
+}
+.ft-top-expost {
+  width: 40%;
+}
+.ft-top-plpost {
+  width: 40%;
+}
+.ft-top {
+  display: flex;
+  border-bottom: 1px solid rgb(68, 68, 68);
+  padding-bottom: 40px;
+}
+.title-expost {
+  padding-bottom: 30px;
+}
+.title-expost P {
+  font-size: 18px;
+  font-weight: bold;
+}
+.item-post-ft {
+  display: flex;
+  padding: 20px 0;
+}
+.ct {
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+.ab-us-txt p {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.ab-us-txt span {
+  color: rgb(63, 5, 223);
+}
+.ft-bottom {
+  padding-top: 30px;
+  display: flex;
+}
+.item-fl {
+  width: auto;
+  height: 30px;
+  padding-right: 10px;
+}
+.icon-top-header,
+.item-fl:hover {
+  cursor: pointer;
+}
+.logo-ft {
+  width: 35%;
+}
+.logo-ft img {
+  padding-top: 5%;
+}
+.about-us {
+  width: 40%;
+}
+.txt-xemnhieu p {
+  font-size: 15px;
+  font-weight: 400;
+  padding: 5px;
+}
+.txt-xemnhieu p:hover {
+  color: blue;
+  cursor: pointer;
+}
+.hover-p:hover {
+  color: blue;
+  cursor: pointer;
+}
