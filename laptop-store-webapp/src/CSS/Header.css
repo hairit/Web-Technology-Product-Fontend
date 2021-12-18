@@ -7,7 +7,7 @@
   flex-direction: column;
   background-color: #ffffff;
 }
-.header-hide {
+.header-hide{
   display: none;
 }
 .header-item {
@@ -84,7 +84,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #596ce5;
-  z-index: 10;
+  z-index: 20;
   position: fixed;
   top: 0;
   left: 0;

@@ -23,7 +23,6 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
     else setReload(0);
   }
 useEffect(() => {
-  if (idUser !== null) {
     axios
       .get(`https://localhost:44343/data/cartdetail/iduser=${idUser}`, null)
       .then((res) => {
@@ -32,9 +31,6 @@ useEffect(() => {
         }
       })
       .catch((err) => setCartDetails([]) );
-  }else {
-    history.push("/");
-  }
 }, [reload]);
   
   useEffect(() => {
