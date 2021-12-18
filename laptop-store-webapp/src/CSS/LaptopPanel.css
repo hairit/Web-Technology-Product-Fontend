@@ -110,6 +110,7 @@
   width: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
   cursor: pointer;
   height: 478px;
   padding: 7px 7px;
@@ -215,4 +216,14 @@
   margin-top: 47px;
   width: 100%;
   text-align: center;
+}
+.giamgia-panel{
+  position: absolute;
+  left: 0;
+  top : 30px;
+  padding: 7px 16px;
+  background-color: #d12115;
+  border-radius: 3px;
+  color: #FFFFFF;
+  z-index: 100;
 }
