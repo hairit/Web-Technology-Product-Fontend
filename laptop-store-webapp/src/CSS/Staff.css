@@ -91,7 +91,8 @@
     margin: 0 20px 0 20px;
     width: auto;
     background-color: #FFFFFF;
-    padding: 25px 30px;
+    padding: 25px 30px 100px 30px;
+    position: relative;
 }
 .thong-tin-nguoi-nhan{
     width: 50%;
@@ -152,8 +153,9 @@
     padding: 6px 7px ;
     font-size: 16px;
     border-radius: 4px;
+    width: 100%;
     outline: none;
-    border: 0.1px solid rgb(68, 68, 68);
+    border: 3px solid rgba(14, 60, 160, 0.452);
 }
 .staff-bill-inFor-value{
     font-size: 16px;
@@ -220,6 +222,11 @@
     justify-content: space-between;
     align-items: center;
 }
+.staff-bill-inFor-address{
+    display: inline-block;
+    height: max-content;
+    width: 700px;
+}
 .bill-product-name{
     display: flex;
     flex-direction: column;
@@ -243,6 +250,8 @@
     text-align: center;
     height: 30px;
     border: none;
+    user-select: none;
+    outline: none;
     background-color: #f5f1f1;
 }
 .delete-bill-detail{
@@ -252,4 +261,18 @@
     border: none;
     border-radius: 4px;
     padding: 7px 15px;
+}
+.button-save-bill{
+    position: absolute;
+    left: 95%;
+    font-size: 13px;
+    font-weight: 500;
+    width: max-content;
+    top : 0 ;
+    bottom: 0px;
+    padding: 0 20px;
+    background-color: #f13716;
+    color:  #FFFFFF;
+    border-radius: 3px;
+    border: none;
 }

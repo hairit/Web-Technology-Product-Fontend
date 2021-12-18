@@ -32,6 +32,8 @@ useEffect(() => {
         }
       })
       .catch((err) => setCartDetails([]) );
+  }else {
+    history.push("/");
   }
 }, [reload]);
   

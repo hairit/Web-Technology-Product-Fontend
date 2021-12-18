@@ -20,7 +20,7 @@ import URL from '../../DATA/URL';
 import AddProduct from './Product/AddProduct/AddProduct';
 import BillsCustomer from './Bill/BillsCustomer';
 import Users from './User/Users';
-export default function Admin({ changeAdminMode, match, logout }) {
+export default function Admin({ changeAdminMode, match, logout ,setUser}) {
     const history = useHistory();
     useEffect(() => {
         changeAdminMode('on');
@@ -28,6 +28,7 @@ export default function Admin({ changeAdminMode, match, logout }) {
         call('GET', `data/user/${match.match.params.idUser}`, null)
             .then(res => {
                         if(res.data.mode === "ADMIN"){
+                            setUser(null);
                         }else{
                             history.push("/login");
                         }})
@@ -49,7 +50,7 @@ export default function Admin({ changeAdminMode, match, logout }) {
                 <div className="admin-pages">
                     <div className='admin-pages-header'>
                         <div className="admin-logout" onClick={() => {
-                                logout();
+                                logout(history);
                                 history.push('/login');
                             }} ><CgLogOut className="admin-logout-icon" />Thoát</div>
                         </div>

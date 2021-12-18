@@ -5,15 +5,20 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import Solver from "../Classes/Solver";
 import DetailBill from './DetailBill';
+import { useHistory } from 'react-router-dom';
 
 export default function DonHang({idUser}) {
     const solver = new Solver();
     const [bills, setBills] = useState([])
-  
+    const history = useHistory();
     useEffect(() => {
-        axios.get(`https://localhost:44343/data/bill/iduser=${idUser}`,null)
-        .then((res) => setBills(res.data))
-        .catch((err) =>console.error("Del mua ma doi co bill",err))
+        if(idUser !== null){
+            axios.get(`https://localhost:44343/data/bill/iduser=${idUser}`,null)
+                    .then((res) => setBills(res.data))
+                    .catch((err) =>console.error("",err))
+        }else {
+            history.push("/");
+        }
     },[])
     return (
         <div className="wrapper billInfo">

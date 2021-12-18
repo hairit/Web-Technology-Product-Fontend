@@ -32,8 +32,7 @@ export default function Staff({changeAdminMode,match,logout}) {
                     <NavLink className="staff-menu-tab" to={`/staff/${match.match.params.idUser}/customers`}><RiBillFill className="staff-menu-icon" />Customers</NavLink>
                 </div>
                 <div className="staff-logout" onClick={() => {
-                                logout();
-                                history.push('/login');
+                                logout(history);
                             }} ><BiLogOut className="staff-logout-icon" />Thoát
                 </div>
             </div>

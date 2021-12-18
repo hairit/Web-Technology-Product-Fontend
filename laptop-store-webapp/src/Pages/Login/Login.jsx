@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect } from 'react'
 import { useHistory } from 'react-router';
 import '../../CSS/Login.css'
 //import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from 'axios';
 import { IoMdShuffle } from 'react-icons/io';
-export default function Login({login,userCookie}) {
+export default function Login({login,userCookie,changeAdminMode}) {
+    useEffect(() => {
+        changeAdminMode('off');
+    }, [])
     const history = useHistory();
     const [flag, setFlag] = useState(false);
     const [flag2, setFlag2] = useState(false);

@@ -3,7 +3,7 @@ import React from 'react'
 import {useEffect,useState}  from 'react'
 import Solver from '../../Classes/Solver';
 const solver = new Solver();
-export default function BillDetailItem({idProduct,quantity}) {
+export default function BillDetailItem({idProduct,quantity,updateProductBill,idBill}) {
     const [product, setProduct] = useState(null);
     useEffect(() => {
         axios.get(`https://localhost:44343/data/product/${idProduct}`,null)
@@ -23,9 +23,9 @@ export default function BillDetailItem({idProduct,quantity}) {
                             <div style={{padding : '3px 0'}}>{'Giá: '}<p style={{display : 'inline',color : 'rgb(212, 14, 14)'}}>{solver.formatCurrency("vi-VN", "currency", "VND", product.gia)}</p></div>
                         </div>
                             <div className='bill-product-quantity'>
-                                <button className='bill-quantity-button'>-</button>
-                                <input className='bill-quantity-input' defaultValue={quantity}/>
-                                <button className='bill-quantity-button'>+</button>
+                                <button className='bill-quantity-button' onClick={()=>updateProductBill('decrease',idBill,product.id,quantity)}>-</button>
+                                <input className='bill-quantity-input' placeholder={quantity}/>
+                                <button className='bill-quantity-button' onClick={()=>updateProductBill('increase',idBill,product.id,quantity)}>+</button>
                             </div>
                     </div>
                 </>

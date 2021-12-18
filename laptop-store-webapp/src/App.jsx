@@ -79,13 +79,13 @@ function App() {
     setUserCookie("id", user.id);
     setUser(user);
   }
-  const changeAdminMode = (action) => {
-    if (action === 'off') setAdminMode(false);
+  const changeAdminMode = (mode) => {
+    if (mode === 'off') setAdminMode(false);
     else setAdminMode(true);
   }
-  const logout = () => {
+  const logout = (history) => {
+    if(history !== null) history.push("/login");
     removeCookie('id');
-    history.push("/login");
     changeAdminMode('off');
     setUser(null);
   }
@@ -247,7 +247,7 @@ function App() {
         <Header user={user} adminMode={adminMode} logout={logout}  setUser={setUser} />
       
         <Route path="/admin" exact    component={() => <Login login={login}  />} ></Route>
-        <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode}  match={match} logout={logout} />}></Route>
+        <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode}  match={match} logout={logout} setUser={setUser}/>}></Route>
         <Route path="/staff" exact    component={() => <Login login={login}   />} ></Route>
         <Route path="/staff/:idUser"  component={(match) => <Staff changeAdminMode={changeAdminMode}  match={match} logout={logout} />}></Route>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState , useEffect} from 'react';
+import {useState , useEffect ,useRef} from 'react';
 import axios from 'axios';
 import BillDetailItem from './BillDetailItem';
 import Solver from '../../Classes/Solver';
@@ -11,15 +11,31 @@ export default function StaffBills() {
     const [idBill, setIdBill] = useState('');
     const [bills, setBills] = useState([]);
     const [bill, setBill] = useState(null);
+    const saveBill = useRef(null);
     const [active  , setActive] = useState(false);
     useEffect(() => {
-        
         axios.get(`https://localhost:44343/data/bill/status=${statusBill}`,null)
                 .then(res => {   
                     setBills(res.data);
             })
                 .catch(() => setBills([]));
     }, [statusBill,reload])
+    useEffect(() => {
+        if(saveBill.current !== null) {
+            axios.get(`https://localhost:44343/data/bill/getbill/${saveBill.current.id}`,null)
+                .then(res => {
+                    console.log(res.data);
+                    setBill(res.data);
+                    saveBill.current = res.data;
+                })
+                .catch(() => {
+                    setBill(null);
+                    saveBill.current = null;
+                } )
+        }
+    }, [reload])
+    console.log(saveBill.current);
+    console.log(bill);
     const actionBill = (idBill,action) => {
         axios.get(`https://localhost:44343/data/bill/action=${action}/${idBill}`,null)
                 .then(res => {
@@ -40,12 +56,51 @@ export default function StaffBills() {
            alert("Nhập mã đơn hàng");
        }
     }
+    const updateBill = ()  => {
+            if(bill !== null){
+                axios.get(`https://localhost:44343/data/bill/address=${bill.diachinhan}`,null)
+                    .then(res => 
+                        {
+                            updateData();
+                            alert("Sửa địa chỉ thành công")
+                        })
+                    .catch(() => alert("Không thể sửa địa chỉ") )
+            }
+    }
+    const updateProductBill = (action,idBill,idProduct,quantity) => {
+        if(action =='decrease' && quantity === 1){
+            if(bill.billDetails.length === 1){
+                if(window.confirm("Xác nhận xóa đơn hàng?")){
+                    axios.delete(`https://localhost:44343/data/bill/${bill.id}`,null)
+                        .then(res => {
+                            setBill(null);
+                            updateData();
+                            saveBill.current = null ;
+                        })
+                        .catch(()=> alert("Không thể xóa đơn hàng"))
+                }
+            }else {
+                if(window.confirm("Xác nhận xóa 1 sản phẩm ?")){
+                    axios.get(`https://localhost:44343/data/bill/action=delete/billdetail/idbill=${idBill}/idproduct=${idProduct}`,null)
+                    .then(res => {
+                        updateData();
+                    })
+                    .catch(() => alert("Cập nhật thất bại"))
+                }
+            }
+        }else{
+            axios.get(`https://localhost:44343/data/bill/action=${action}/billdetail/idbill=${idBill}/idproduct=${idProduct}`,null)
+                .then(res => {
+                    updateData();
+                })
+                .catch(() => alert("Cập nhật thất bại"))
+        }
+        
+    }
     const updateData = () => {
         if(reload === true) setReload(false);
         else setReload(true);
     }
-    console.log(bill);
-    console.log(bills);
     return(
         <div className="staff-bills">
            <div className="staff-bills-form">
@@ -82,21 +137,24 @@ export default function StaffBills() {
                             if(bill !== null){
                                 if(item.id !== bill.id){
                                     setBill(item);
+                                    saveBill.current = item;
                                     setActive(true);
                                 }else{
                                     if(active === false){
                                         setBill(item);
+                                        saveBill.current = item;
                                         setActive(true);
                                     }else{
                                         setBill(null);
+                                        saveBill.current = null;
                                         setActive(false)
                                     }
                                 }
                             }else {
                                 setBill(item);
+                                saveBill.current = item;
                                 setActive(true);
                             }
-
                             }}>
                             <td className='staff-bill-table-cell'>{index}</td>
                             <td className='staff-bill-table-cell'>{item.iduserNavigation.firstname+' '+item.iduserNavigation.lastname}</td>
@@ -128,11 +186,11 @@ export default function StaffBills() {
                     </div>
                     <div className='staff-bill-inFor' style={{width : '150px'}}>
                         <label className='staff-bill-inFor-label'>Số điện thoại</label>
-                        <input className='staff-bill-inFor-input' defaultValue={bill !== null ? bill.iduserNavigation.sdt : ''}  />
+                        <p className='staff-bill-inFor-value' >{bill !== null ? bill.iduserNavigation.sdt : ''}</p>
                     </div>
                     <div className='staff-bill-inFor' style={{width : '550px'}}>
                         <label className='staff-bill-inFor-label'>Địa chỉ</label>
-                        <input className='staff-bill-inFor-input' defaultValue={bill !== null ? bill.iduserNavigation.diachi : ''} />
+                        <p className='staff-bill-inFor-value' >{bill !== null ? bill.iduserNavigation.diachi : ''}</p>
                     </div>
                         <div style={{color :'red',fontWeight : '600',fontSize : '20px',padding : '20px 30px 20px 30px',display : 'block',width : '100%',float : 'left'}}>Thông tin hóa đơn</div>
                     <div className='staff-bill-inFor'>
@@ -159,11 +217,14 @@ export default function StaffBills() {
                         <label className='staff-bill-inFor-label'>Tình trạng</label>
                         <p className='staff-bill-inFor-value' style={{ color : bill !== null ? bill.tinhtrang === 'Chờ xác nhận' ? 'rgb(212, 14, 14)' : ' rgb(6, 97, 6)'  : '' }}>{bill !== null ? bill.tinhtrang : ''}</p>
                     </div>
-                    <div className='staff-bill-inFor'>
+                    <div className='staff-bill-inFor-address'>
                         <label className='staff-bill-inFor-label'>Địa chỉ giao hàng</label>
-                        <input className='staff-bill-inFor-input' defaultValue={bill !== null ? bill.diachinhan : ''} style={{width : '500px'}} />
+                        <div style={{position : 'relative'}}>
+                            <input className='staff-bill-inFor-input' defaultValue={bill !== null ? bill.diachinhan : ''} />
+                            <button className='button-save-bill' onClick={() =>updateBill}>Lưu địa chỉ</button> 
+                        </div>
                     </div>
-                        <button style={{float : 'left'}}>Lưu thông tin</button>
+                        
                 </div>
                <div className='bill-details-panel'>
                <table className="staff-bills-products">
@@ -180,7 +241,7 @@ export default function StaffBills() {
                             bill !== null ? bill.billDetails.map((detail,index)=>(
                                 <tr className='staff-bills-table-row'>
                                     <td className='staff-bill-table-cell'>{index}</td>
-                                    <td className='staff-bill-table-cell'><BillDetailItem idProduct={detail.idProduct} quantity={detail.soluong}/></td>
+                                    <td className='staff-bill-table-cell'><BillDetailItem idProduct={detail.idProduct} quantity={detail.soluong} idBill={detail.idBill}  updateProductBill={updateProductBill}/></td>
                                     <td className='staff-bill-table-cell'>{solver.formatCurrency("vi-VN", "currency", "VND", detail.tongtien)}</td>
                                     <td className='staff-bill-table-cell'><button className='delete-bill-detail'>Delete</button></td>
                                 </tr>
