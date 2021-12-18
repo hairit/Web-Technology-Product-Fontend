@@ -4,7 +4,7 @@ class Solver{
         return Intl.NumberFormat(nationID,{style:style,currency:typeCurrency}).format(number);
     }
     getPercentPrice(newPrice,oldPrice){
-        return (100*newPrice/oldPrice);
+        return (100*(oldPrice-newPrice)/oldPrice).toFixed(0);
     }
     getPercentNumber(number){
         return  (100/number);

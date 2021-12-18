@@ -56,11 +56,9 @@
     -webkit-box-pack: justify;
     justify-content : space-between;
 }
-
 .col-md-4 {
     width: 33%;
 }
-
 .contact-block {
     border-radius: 10px;
 }
@@ -209,13 +207,11 @@ img {
     color         : #2d3877;
     margin-bottom : 10px;
 }
-
-.col-xs-12 .contact-company-info p {
+.col-xs-12 .contact-company-info p{
     margin-bottom: 0;
     font-weight  : 550;
 
 }
-
 .row-2 {
     width       : 100%;
     display     : flex;
