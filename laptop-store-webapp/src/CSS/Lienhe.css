@@ -95,7 +95,7 @@ em {
     font-weight : bold;
 }
 
-p {
+.text-contact {
     margin-top         : 0px;
     margin-bottom      : 1rem;
     display            : block;
@@ -107,7 +107,7 @@ p {
     font-weight        : 300;
 }
 
-a {
+.contact-href {
     color          : rgb(13, 110, 253);
     text-decoration: underline;
     cursor         : pointer;
@@ -121,7 +121,7 @@ a {
     padding: 0px 0px 20px 0px;
 }
 
-.row {
+.row-1 {
     width       : 100%;
     display     : flex;
     margin-right: -15px;
@@ -166,7 +166,7 @@ a {
     padding      : 0px 0px 20px 0px;
 }
 
-.col-xs-12 .col-xs-6 {
+.col-xs-12 .col-xs-7 {
     width  : 50%;
     padding: 5px;
 }
@@ -178,7 +178,7 @@ a {
     margin-top: 5px;
 }
 
-.col-xs-12 .col-xs-6 a {
+.col-xs-12 .col-xs-7 .contact-map-block {
     color          : rgb(13, 110, 253);
     text-decoration: underline;
 }
@@ -194,10 +194,6 @@ a {
 }
 
 
-img {
-    max-width     : 100%;
-    vertical-align: middle;
-}
 
 .col-xs-12 .contact-company-info .contact-company-title {
     text-transform: uppercase;
@@ -207,7 +203,12 @@ img {
     color         : #2d3877;
     margin-bottom : 10px;
 }
+<<<<<<< HEAD
 .col-xs-12 .contact-company-info p{
+=======
+
+.col-xs-12 .contact-company-info .text-contact {
+>>>>>>> f18684a67a8189eb8d0add8c9397b69f66fde7e4
     margin-bottom: 0;
     font-weight  : 550;
 
@@ -218,7 +219,7 @@ img {
     margin-right: -15px;
 }
 
-.col-xs-6 .bando {
+.col-xs-7 .bando {
     width : 100%;
     height: 320px;
     border: 0;
