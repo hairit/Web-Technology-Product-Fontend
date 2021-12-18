@@ -6,7 +6,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Login from "./Pages/Login/Login";
 import Admin from "./Pages/AdminPages/Admin";
 import Body from "./Pages/Body";
-import Lienhe from "./Pages/Lienhe";
 import Tintuc from "./Pages/Tintuc/Tintuc";
 import Showroom from "./Pages/Showroom";
 import Footer from "./Pages/Footer";
@@ -293,7 +292,7 @@ function App() {
         <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode}/>} ></Route>
         <Route path="/bill" component={() => <DonHang idUser={user !== null ? user.id : null} />}></Route>
         <Route path="/products/:namepro" exact component={(match) => <Products match={match} />}></Route>
-        <Route path="/lienhe" component={() => <Lienhe />}></Route>
+        {/* <Route path="/lienhe" component={() => <Lienhe />}></Route> */}
         <Route path="/tincongnghe" component={() => <Tintuc changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/showroom" component={() => <Showroom />}></Route>
         <Footer adminMode={adminMode} />
