@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddProduct.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function AddProduct({ }) {
@@ -34,13 +34,26 @@ export default function AddProduct({ }) {
         pcdetail: null,
         screenDetail: null
     });
-    const [pro, setPro] = useState(null);
-    console.log(product);
+    const [img, setimg] = useState(null);
+    const [preview, setpreview] = useState(null);
+    
+
+    useEffect(() => {
+        if (img)
+        {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setpreview(reader.result);
+            };
+            reader.readAsDataURL(img)
+        } else setpreview(null);
+    }, [img])
     const hanndleClickNext = () => {
         setproduct({ ...product, idloai: key });
         setflag(true);
         console.log(product);
     }
+
     const handleClickSend = () => {
         console.log(mouseDetail);
         console.log(key === "mouse");
@@ -731,18 +744,48 @@ export default function AddProduct({ }) {
                         </div>
                     </div>
                 </div>
-            ); else if (key === "") return (
-                <div className={flag === true ? "product-edit-page" : "page-hide"}>
-                    <h2 className="product-edit-title">Xác nhận</h2>
-                    <div className="product-button">
-                        <button className=" product-button-page1" onClick={() => handleClickPost()}>Xác nhận</button>
-                        <button className="product-button-page1" onClick={() => setflag(false)}>Hủy</button>
+            );  else if (key==="picture") return (
+                <div className={flag === true? "product-edit-page":"page-hide"}>
+                    <h2 className="product-edit-title">
+                        Thêm ảnh
+                    </h2>
+                    <div className="product-image">
+                        <input type="file" className='file' onChange={(e)=>handleChangeImg(e)} accept='image/*'></input>
+                        {showimg()}
+                        <button className='product-button-page1'>Gửi</button>
+                        <button className='product-button-page1' onClick={()=>setflag(false)}>Hủy</button>
                     </div>
                 </div>
             )
+
     }
-
-
+    const handleChangeImg = (e) =>{
+        setimg(e.target.files[0]);
+    }
+    const showimg = () =>{
+        if(!img)
+        {
+            return (
+                <div className='img-info'>
+                  <h2>Chưa có file nào được chọn</h2>
+              </div>
+            )
+        } else if (img.type.search("image")===-1)
+        {
+            return (
+                <div>
+                    <h2>Vui lòng chỉ chọn file hình ảnh!!</h2>
+                </div>
+            )
+        } else  return (
+            <div>
+            <h2>Thông tin ảnh:</h2>
+            <p>Tên ảnh: {img.name}</p>
+            <p>Kích cỡ: {img.size} kb</p>   
+            <p>Last Modified:{" "}{img.lastModifiedDate.toDateString()}</p>
+            <img className='product-img-preview' alt="not found" src={preview} />
+            </div>);
+        }
     return (
         <div className="product-add">
             <div className={flag === false ? "product-edit-page" : "page-hide"}>
@@ -786,6 +829,7 @@ export default function AddProduct({ }) {
                                     <option value="headphone" >Tai nghe</option>
                                     <option value="keyboard" >Bàn phím</option>
                                     <option value="pc" >Máy tính để bàn</option>
+                                    <option value="picture" >Test</option>
                                 </select>
                             </div>
                         </div>
