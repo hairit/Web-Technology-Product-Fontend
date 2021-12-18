@@ -29,17 +29,18 @@
     margin: 0;
 }
 
-.text-infor {
+.wrapper-text-infor .text-infor {
     width : 100%;
     margin: auto;
 }
 
-.text {
-    padding-top   : 8px;
-    font-weight   : bold;
+.wrapper-text-infor .text-infor .text {
+    padding-top   : 15px;
+    font-weight   : 550;
     font-size     : 18px;
     text-transform: uppercase;
     text-align    : center;
+    color         : #2d3877;
 }
 
 .contact-content {
@@ -57,7 +58,7 @@
     justify-content : space-between;
 }
 
-.col-md-4 {
+.contact-col1 {
     width: 33%;
 }
 
@@ -115,7 +116,7 @@ em {
     cursor         : pointer;
 }
 
-.col-md-8 {
+.contact-col2 {
     width: 66%;
 }
 
@@ -123,17 +124,29 @@ em {
     padding: 0px 0px 20px 0px;
 }
 
-.row-1 {
-    width       : 100%;
-    display     : flex;
-    margin-right: -15px;
-    margin-left : -15px;
+.contact-col2-row1 {
+    width      : 100%;
+    margin-left: 5px;
+
 }
 
-.col-xs-6 {
+.contact-row-1-col-1 {
     width      : 100%;
     margin-left: 5px;
 }
+
+.contact-row-1-col-2 {
+    width      : 100%;
+    margin-left: 5px;
+}
+
+.contact-row-1 {
+    width       : 100%;
+    display     : block;
+    margin-right: -15px;
+
+}
+
 
 .contact-main-info-title {
     display      : flex;
@@ -144,43 +157,54 @@ em {
     margin-left  : 7px;
 }
 
-.col-xs-12 {
+.contact-col-map {
     width: 100%;
 }
 
-.col-xs-12 .contact-main-info-block {
+.contact-col-map .contact-main-info-block {
     margin-top: 15px;
 }
 
 
-.col-xs-12 .contact-section {
+.contact-col-map .contact-section {
     background: #fff;
     padding   : 20px;
     box-shadow: 0 0 5px #999;
 }
 
-.col-xs-12 .contact-block {
+.contact-col-map .contact-block {
     border-radius: 10px;
 }
 
-.col-xs-12 .contact-main-info-row {
+.contact-col-map .contact-main-info-row {
     border-bottom: 1px solid #ebebeb;
     padding      : 0px 0px 20px 0px;
+    display      : flex;
 }
 
-.col-xs-12 .col-xs-7 {
+.contact-map-col-1 {
     width  : 50%;
     padding: 5px;
 }
 
-.col-xs-12 .contact-map-block {
+.contact-map-col-2 {
+    width  : 50%;
+    padding: 5px;
+}
+
+.contact-col-map .contact-map-col-1 .contact-map-col-2 {
+    width  : 50%;
+    padding: 5px;
+}
+
+.contact-col-map .contact-map-block {
     position  : relative;
     height    : 300px;
     width     : 100%;
     margin-top: 5px;
 }
 
-.col-xs-12 .col-xs-7 .contact-map-block {
+.contact-col-map .contact-map-col-1 .contact-map-block {
     color          : rgb(13, 110, 253);
     text-decoration: underline;
 }
@@ -190,36 +214,43 @@ em {
     margin       : auto;
     border-radius: 4px;
     height       : 100%;
-    position     : absolute;
+    position     : relative;
     top          : 0;
     left         : 0;
 }
 
 
 
-.col-xs-12 .contact-company-info .contact-company-title {
+.contact-col-map .contact-company-info .contact-company-title {
     text-transform: uppercase;
     margin-top    : 40px;
     font-weight   : 550;
     font-size     : 16px;
     color         : #2d3877;
     margin-bottom : 10px;
+    text-align    : center;
 }
 
-.col-xs-12 .contact-company-info .text-contact {
+.contact-col-map .contact-company-info .text-contact {
     margin-bottom: 0;
     font-weight  : 550;
+    text-align   : center;
 
 }
 
-.row-2 {
+.contact-row-map {
     width       : 100%;
     display     : flex;
     margin-right: -15px;
 }
 
-.col-xs-7 .bando {
+.contact-map-col-1 .bando {
     width : 100%;
     height: 320px;
     border: 0;
+}
+
+.contact-map {
+    width : 100% !important;
+    height: 300px !important;
 }
