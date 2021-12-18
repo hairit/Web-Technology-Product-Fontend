@@ -11,6 +11,12 @@ const solver = new Solver();
 const renderLaptopItem = (pro, index ,addCart,history) => {
   return (
     <div to={`/laptop/${pro.id}`} className="col-10-no-padding c-10-2 laptop-item" key={index}>
+      {
+        pro.giacu > pro.gia ? 
+        <div className="giamgia-panel">
+          {'Giảm '+solver.getPercentPrice(pro.gia,pro.giacu)+'%'}
+        </div> : <div></div>
+      }
       <div  className="laptop-infor">
         <div className="laptop-image">
           <NavLink to={`/laptop/${pro.id}`}><img className="laptop-image-img" src={URL + `/Images/Products/${pro.nameimage}`} alt={pro.nameimage} /></NavLink>

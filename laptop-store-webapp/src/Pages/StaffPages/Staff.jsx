@@ -5,6 +5,7 @@ import StaffCustomers from './StaffCustomers'
 import { useState , useEffect } from 'react'
 import { RiBillFill} from 'react-icons/ri'
 import { BiLogOut } from 'react-icons/bi';
+import {FaUserTie} from 'react-icons/fa';
 import { BrowserRouter as Router , Route, NavLink, useHistory } from 'react-router-dom'
 import '../../CSS/Staff.css'
 export default function Staff({changeAdminMode,match,logout}) {
