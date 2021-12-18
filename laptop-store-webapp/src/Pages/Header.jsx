@@ -109,7 +109,7 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
                     />
                   )}
                   <p className="login-text">
-                    {user.lastname + " " + user.firstname}
+                    {user.firstname + " " + user.lastname}
                   </p>
                   <AiOutlineCaretDown id="drop-user" onClick={()=>changeStatusUserPanel()} />
                   

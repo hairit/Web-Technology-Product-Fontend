@@ -65,7 +65,7 @@ export default function Login({login,userCookie,changeAdminMode}) {
                                                 return;
                                             }
                                             if(res.data.mode ==="STAFF"){
-                                                history.push(`/staff/${res.data.id}`);
+                                                history.push(`/staff/${res.data.id}/bills`);
                                                 return;
                                             }
                                         }       
