@@ -9,6 +9,7 @@ export default function StaffBills() {
     const [statusBill, setStatusBill] = useState('Chờ xác nhận');
     const [reload, setReload] = useState(false);
     const [idBill, setIdBill] = useState('');
+    const [idCustomer, setIdCustomer] = useState('');
     const [bills, setBills] = useState([]);
     const [bill, setBill] = useState(null);
     const saveBill = useRef(null);
@@ -55,6 +56,18 @@ export default function StaffBills() {
        }else {
            alert("Nhập mã đơn hàng");
        }
+    }
+    const searchBillByIdCustomer = () => {
+        if(idCustomer) {
+            axios.get(`https://localhost:44343/data/bill/idCustomer=${idCustomer}`,null)
+            .then(res => setBills(res.data))
+            .catch(()=>{
+                setBills([]);
+                alert("Không tìm thấy đơn hàng")
+            })
+           }else {
+               alert("Nhập mã đơn hàng");
+           }
     }
     const updateBill = ()  => {
             if(bill !== null){
@@ -109,6 +122,13 @@ export default function StaffBills() {
                             <label style={{marginBottom : 0}}>Tìm kiếm đơn hàng</label>
                             <input className='search-bill-input' placeholder='Nhập mã đơn hàng' onChange={(e)=>setIdBill(e.target.value.toString())}/>
                             <button className='search-bill-button' onClick={()=>searchBillByID()}>
+                                Tìm kiếm
+                            </button>
+                        </div>
+                        <div className='search-bill-div'>
+                            {/* <label style={{marginBottom : 0}}>Tìm kiếm đơn hàng</label> */}
+                            <input className='search-bill-input' placeholder='Nhập mã khách hàng' onChange={(e)=>setIdCustomer(e.target.value.toString())}/>
+                            <button className='search-bill-button' onClick={()=>searchBillByIdCustomer()}>
                                 Tìm kiếm
                             </button>
                         </div>

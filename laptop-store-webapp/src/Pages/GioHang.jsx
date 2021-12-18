@@ -79,7 +79,6 @@ useEffect(() => {
       )
     }
   }
-  
     if(cartDetails.length > 0 ){
     return(
       

@@ -5,7 +5,7 @@ import StaffCustomers from './StaffCustomers'
 import { useState , useEffect } from 'react'
 import { RiBillFill} from 'react-icons/ri'
 import { BiLogOut } from 'react-icons/bi';
-import {FaUserTie} from 'react-icons/fa';
+import {FaUserTie , FaUserFriends} from 'react-icons/fa';
 import { BrowserRouter as Router , Route, NavLink, useHistory } from 'react-router-dom'
 import '../../CSS/Staff.css'
 export default function Staff({changeAdminMode,match,logout}) {
@@ -29,8 +29,8 @@ export default function Staff({changeAdminMode,match,logout}) {
         <div className="staff">
             <div className="staff-menu">
                 <div className="staff-menu-left">
-                    <NavLink className="staff-menu-tab" to={`/staff/${match.match.params.idUser}/bills`}><RiBillFill className="staff-menu-icon" />Bills</NavLink>
-                    <NavLink className="staff-menu-tab" to={`/staff/${match.match.params.idUser}/customers`}><RiBillFill className="staff-menu-icon" />Customers</NavLink>
+                    <NavLink className="staff-menu-tab" to={`/staff/${match.match.params.idUser}/bills`}><RiBillFill className="staff-menu-icon" />Quản lý đơn hàng</NavLink>
+                    <NavLink className="staff-menu-tab" to={`/staff/${match.match.params.idUser}/customers`}><FaUserFriends className="staff-menu-icon" />Tra cứu khách hàng</NavLink>
                 </div>
                 <div className="staff-logout" onClick={() => {
                                 logout(history);
