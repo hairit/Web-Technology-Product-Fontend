@@ -1,0 +1,75 @@
+.lappe-general-static-container {
+    max-width       : 1630px;
+    margin          : 30px auto;
+    padding         : 30px;
+    background-color: #fff;
+}
+
+.lappe-general-heading1 {
+    position   : relative;
+    text-align : center;
+    font-size  : 36px;
+    font-weight: 700;
+    color      : #ff0000;
+}
+
+.lappe-general-content-box-container {
+    position  : relative;
+    margin-top: 56px;
+}
+
+.lappe-general-static-heading3 {
+    font-size: 20px;
+}
+
+.lappe-general-static-heading3 h3 {
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+}
+
+.lappe-general-content-box-ribbon {
+    border-left: 4px solid #ec1f27;
+    position   : absolute;
+    background : #243a76;
+    color      : #fff;
+    font-size  : 18px;
+    font-weight: 600;
+    padding    : 10px 20px;
+    margin     : auto;
+    display    : inline-block;
+    text-align : center;
+    top        : -23px;
+    left       : -10px;
+}
+
+.lappe-general-content-box-ribbon::after {
+    position     : absolute;
+    right        : -30px;
+    top          : 0;
+    content      : '';
+    width        : 26px;
+    height       : 32px;
+    border-left  : 14px solid #243a76;
+    border-right : 16px solid #00000000;
+    border-top   : 23.5px solid #243a76;
+    border-bottom: 16.2px solid #243a76;
+}
+
+.lappe-general-content-box {
+    border       : 1px solid #e8e8e8;
+    padding      : 25px 30px 10px;
+    border-radius: 5px;
+}
+
+.lappe-general-static-text {
+    font-size          : inherit;
+    display            : block;
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+    font-weight        : 500;
+    font-size          : 16px;
+}
