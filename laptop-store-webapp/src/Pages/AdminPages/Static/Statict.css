@@ -38,14 +38,14 @@
 }
 .static-input{
     height: 25px;
-    width: 200px;
+    width: 500px;
 }
 .static-form-label{
     margin:auto;
-    inline-size: fill;
 }
 .statict-chart{
-    width: 800px;
-    height: 500px;
+    width: 900px;
+    height: 600px;
     margin: auto;
+    padding-left: 30px;
 }
