@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import '../CSS/Lienhe.css'
 export default function LienHe() {
     return (
@@ -40,7 +41,7 @@ export default function LienHe() {
                                                     <div className="text-contact"> <p><strong>Sản phẩm đa dạng</strong> cho mọi khách hàng có nhu cầu về giá, tính năng, hãng sản xuất...</p> </div>
                                                 </div>
                                                 <div class="contact-main-info-section"><em class="pvi-Contact_Checked"></em>
-                                                    <div className="text-contact"><p><strong>Miễn phí giao hàng tận nơi</strong> trên Toàn Quốc với mọi đơn hàng từ 500.000Đ* (<a href="https://phongvu.vn/landing/chinh-sach-van-chuyen-lap-dat.html" className="contact-href">Chi tiết chính sách vận chuyển và lắp đặt</a>)</p> </div>
+                                                    <div className="text-contact"><p><strong>Miễn phí giao hàng tận nơi</strong> trên Toàn Quốc với mọi đơn hàng từ 500.000Đ* (<NavLink to='/chinhsachvanchuyen' className="contact-href">Chi tiết chính sách vận chuyển và lắp đặt</NavLink>)</p> </div>
                                                 </div>
                                                 <div class="contact-main-info-section"><em class="pvi-Contact_Checked"></em>
                                                     <div className="text-contact"> <p><strong>Khách hàng thoải mái trải nghiệm</strong> sản phẩm yêu thích và hot nhất thị trường</p> </div>
@@ -51,7 +52,7 @@ export default function LienHe() {
                                                     <div className="text-contact"><p><strong>Nhân viên tư vấn nhiệt tình</strong> giúp khách hàng lựa chọn được sản phẩm ưng ý và phù hợp nhất</p> </div>
                                                 </div>
                                                 <div class="contact-main-info-section"><em class="pvi-Contact_Checked"></em>
-                                                    <div className="text-contact"><p><strong>Bảo hành chính hãng</strong> cho các sản phẩm mua tại Lappe (<a href="https://phongvu.vn/landing/chinh-sach-bao-hanh.html" target="_blank" className="contact-href">Chi tiết chính sách bảo hành</a>)</p> </div>
+                                                    <div className="text-contact"><p><strong>Bảo hành chính hãng</strong> cho các sản phẩm mua tại Lappe (<NavLink to='/chinhsachbaohanh' className="contact-href">Chi tiết chính sách bảo hành</NavLink>)</p> </div>
                                                 </div>
                                                 <div class="contact-main-info-section"><em class="pvi-Contact_Checked"></em>
                                                     <div className="text-contact"><p><strong>Chính sách đổi trả ưu đãi</strong> dành cho khách hàng (<a href="https://phongvu.vn/landing/chinh-sach-doi-tra-hang-va-hoan-tien.html" target="_blank" className="contact-href">Chi tiết chính sách đổi trả</a>)</p> </div>
@@ -73,14 +74,59 @@ export default function LienHe() {
                                         </a>
                                     </div>
                                     <div className="contact-map-col-2">
-                                        <div className="contact-company-title">Văn phòng điều hành Lappe Miền Nam</div>
+                                        <div className="contact-company-title">Trung tâm bảo hành Lappe Miền Nam</div>
                                         <div className="text-contact">  <p>Địa chỉ: A75 Nguyễn Thần Hiến Phường 18 Quận 4,TP. Hồ Chí Minh</p> </div>
+                                        <div className="text-contact">  <p>Điện thoại: 0902535188</p> </div>
+                                        <div className="text-contact">  <p>Thời gian làm việc: 9h-17h</p> </div>
+                                    </div>
+
+                                </div>
+                                <div className="row contact-main-info-row contact-company-info">
+                                    <div className="contact-map-col-1">
+                                        <a className="contact-map-block">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3918.230664301628!2d106.59947381483698!3d10.870052760430818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zMjIvMWEg4bqkcCBDaMOhbmggMiwgeMOjIFTDom4gWHXDom4sIEjDs2MgTcO0biwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1639802599500!5m2!1svi!2s" className="contact-map" allowfullscreen="" loading="lazy"></iframe>
+                                        </a>
+                                    </div>
+                                    <div className="contact-map-col-2">
+                                        <div className="contact-company-title">Trung tâm bảo hành Lappe Miền Nam</div>
+                                        <div className="text-contact">  <p>Địa chỉ: 22/1A ấp chánh 2 , xã Tân Xuân , Hóc Môn</p> </div>
+                                        <div className="text-contact">  <p>Điện thoại: 0903412298</p> </div>
+                                        <div className="text-contact">  <p>Thời gian làm việc: 9h-17h</p> </div>
+                                    </div>
+
+                                </div>
+                                <div className="row contact-main-info-row contact-company-info">
+                                    <div className="contact-map-col-1">
+                                        <a className="contact-map-block">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31410.94766671419!2d106.22649737229612!3d10.231837715577145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aa0c92d16ad2b%3A0x3543e46285944c21!2zUGjDuiBTxqFuLCBDaOG7oyBMw6FjaCwgQuG6v24gVHJlLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1639802381913!5m2!1svi!2s" className="contact-map" allowfullscreen="" loading="lazy"></iframe>
+                                        </a>
+                                    </div>
+                                    <div className="contact-map-col-2">
+                                        <div className="contact-company-title">Văn phòng điều hành Lappe Miền Tây</div>
+                                        <div className="text-contact">  <p>Địa chỉ: 184/88 Phú Sơn Chợ Lách Bến Tre</p> </div>
+                                        <div className="text-contact">  <p>Điện thoại: 090678149</p> </div>
                                     </div>
 
                                 </div>
 
+                                <div className="row contact-main-info-row contact-company-info">
+                                    <div className="contact-map-col-1">
+                                        <a className="contact-map-block">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.2761035174967!2d109.1848061148429!3d11.9553758395941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170f2b324f27d09%3A0x273228f3e6a2f3d1!2zSMOyYQ!5e0!3m2!1svi!2s!4v1639804156438!5m2!1svi!2s" className="contact-map" allowfullscreen="" loading="lazy"></iframe>
+                                        </a>
+                                    </div>
+                                    <div className="contact-map-col-2">
+                                        <div className="contact-company-title">Văn phòng điều hành Lappe Miền Trung</div>
+                                        <div className="text-contact">  <p>Địa chỉ: Hoà do 1B, Cam Phúc Bắc, Cam Ranh, Khánh Hoà</p> </div>
+                                        <div className="text-contact">  <p>Điện thoại: 0779038245</p> </div>
+                                        <div className="text-contact">  <p>Thời gian làm việc: 9h-17h</p> </div>
+                                    </div>
+
+                                </div>
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
