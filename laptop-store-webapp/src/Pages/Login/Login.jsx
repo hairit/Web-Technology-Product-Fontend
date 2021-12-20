@@ -50,13 +50,15 @@ export default function Login({login,userCookie,changeAdminMode}) {
             alert("Bạn đang nhập sai định dạng email!");
             return;
         }
-        else {
+        else{
             axios.get(`https://localhost:44343/data/user/login/${user.email}/${user.pass}`)
                            .then(res => {
                                console.log(res.data);
-                                        if(res.data.mode === 'CUSTOMER'){
-                                            console.log("cust");
-                                            console.log(res.data.mode);
+                                        if(res.data.mode === 'SHIPPER'){
+                                            login(res.data);
+                                            history.push('/shipper');
+                                        }
+                                        else if(res.data.mode === 'CUSTOMER'){
                                             login(res.data);
                                             history.push('/');
                                         }else {

@@ -15,6 +15,7 @@ const renderLaptopItem = (pro, index ,addCart,history) => {
         pro.giacu > pro.gia ? 
         <div className="giamgia-panel">
           {'Giảm '+solver.getPercentPrice(pro.gia,pro.giacu)+'%'}
+          <div className="small-area"></div>
         </div> : <div></div>
       }
       <div  className="laptop-infor">

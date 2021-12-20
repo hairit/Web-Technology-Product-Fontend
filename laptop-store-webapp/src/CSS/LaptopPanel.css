@@ -221,9 +221,43 @@
   position: absolute;
   left: 0;
   top : 30px;
-  padding: 7px 16px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
   background-color: #d12115;
-  border-radius: 3px;
+  border-top-left-radius: 3px;
   color: #FFFFFF;
   z-index:5;
+}
+.giamgia-panel::after{
+  content: '';
+  position: absolute;
+  top : 0 ;
+  width: 15px;
+  height: 14px;
+  left: 100%;
+  background-color: #d12115;
+  border-right: 15px #FFFFFF solid;
+  border-top: 14px #d12115 solid;
+}
+.small-area{
+  position: absolute ;
+  top : 100% ;
+  left: 0;
+  height: 5px;
+  width: 7px ;
+  background-color: #971209;
+  border-bottom-left-radius: 3px;
+}
+.giamgia-panel::before{
+  content: '';
+  position: absolute;
+  width: 15px;
+  left: 100%;
+  bottom: 0;
+  background-color: #d12115;
+  border-right: 15px #FFFFFF solid;
+  border-bottom: 14px #d12115 solid;
 }

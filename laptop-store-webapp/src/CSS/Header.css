@@ -22,8 +22,12 @@
   padding: 0 10%;
   background-color: #4252bd;
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
   transition: 0.2s;
+}
+.header-top-right-menu{
+  display: flex;
+  flex-direction: row-reverse;
 }
 .header-top-item {
   display: flex;
@@ -41,14 +45,14 @@
   font-size: 20px;
   margin-right: 5px;
 }
-.home {
+.logo {
+  font-size: 30px;
+  color: #e2f208;
+  font-weight: 600;
   align-items: center;
+  font-family: 'Nunito', sans-serif;
   display: flex;
   text-decoration: none;
-}
-.logo {
-  font-size: 20px;
-  color: #e2f208;
 }
 .lappee-name {
   font-size: 30px;
@@ -92,7 +96,7 @@
 .header-center-left {
   display: flex;
   align-items: center;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 }
 .panel-search-product {
   position: relative;
@@ -384,4 +388,13 @@
 .change-pass-item-text {
   color: rgb(65, 65, 65);
   width: 150px;
+}
+.header-top-scroll{
+  width: 50%;
+  margin: 0 0;
+  display: flex;
+  align-items: center;
+  color : #FFFFFF;
+  font-size: 14px;
+  overflow: hidden;
 }

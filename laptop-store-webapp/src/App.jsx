@@ -33,6 +33,8 @@ import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailPr
 import Products from "./Pages/Products/SearchProducts/Products";
 import PostFile from "./Pages/PostFile";
 import Staff from "./Pages/StaffPages/Staff";
+import Shipper from "./Pages/Ship/Shipper";
+import { IoMdReturnLeft } from "react-icons/io";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -47,8 +49,13 @@ function App() {
       axios
         .get(`https://localhost:44343/data/user/${userCookie.id}`)
         .then((res) => {
-          cartDetails.current = res.data.cartDetails;
-          setUser(res.data);
+          if(res.data.mode === 'SHIPPER') {
+              setUser(null);
+          }else
+          {
+            cartDetails.current = res.data.cartDetails;
+            setUser(res.data);
+          }
         })
         .catch((err) => console.log("Đăng nhập fail" + err));
     }
@@ -279,6 +286,7 @@ function App() {
         <Route path="/headphone/:id" exact component={(match) => <DetailProductsHeadphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/mouse/:id" exact component={(match) => <DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/post/file" exact component={() => <PostFile  />}></Route>
+        <Route path="/shipper" exact component={()=><Shipper user={user} changeAdminMode={changeAdminMode}/>}></Route>
 
         <Route path="/cart" exact component={() => <GioHang
           user={user}

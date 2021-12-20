@@ -26,11 +26,26 @@ import axios from "axios";
 export default function Header({ user , adminMode, logout , updateData ,setUser}) {
   const [statusHeader, setStatusHeader] = useState(false);
   const [userPanel, setUserPanel] = useState(false);
+  const [space, setSpace] = useState(100);
+  const [transition, setTransition] = useState('5s');
   const [namepro, setNamePro] = useState([]);
   const history = useHistory();
   useEffect(() => {
     console.log("Header : rerender");
     window.addEventListener('scroll', changeStatusHeader);
+    setSpace(-50);
+    // setInterval(()=>{
+    //     console.log(space);
+    //     console.log(transition);
+    //     if(space === 100) {
+    //       setTransition('0s');
+    //       setSpace(-50);
+    //     }
+    //     if(space === -50){
+    //       setTransition('5s');
+    //       setSpace(100);
+    //     }
+    //     },5000);
   }, [])
   const changeStatusHeader = () => {
     if (window.scrollY >= 42) setStatusHeader(true);
@@ -51,7 +66,13 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
     return (
       <div className={adminMode === false ? "header" : "header-hide"}>
         <div className="header-top">
-          <Link to='/tincongnghe' className="header-top-item" target="_blank">
+          <div className="header-top-scroll">
+             <div className="scroll-content" style={{marginLeft : `${space}%`,transition : transition}}>
+               ádasdasdddddddddddddddddddddddddd
+             </div>
+          </div>
+          <div className="header-top-right-menu">
+            <Link to='/tincongnghe' className="header-top-item" target="_blank">
             <RiComputerFill className="header-top-item-icon" />
             <p className="header-top-item-content">Tin công nghệ</p>
           </Link>
@@ -66,12 +87,13 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
           <NavLink className="header-top-item" to="/showroom">
             <MdLocationOn className="header-top-item-icon" />
             <p className="header-top-item-content">Hệ thống showroom</p>
-          </NavLink>         
+          </NavLink> </div>        
         </div>
         <div className="header-center-container">
           <div className={statusHeader === false ? "header-center header-item" : "header-center-scroll"}>
             <div className="header-center-left">
-              <NavLink to="/" className="home">
+              <NavLink to="/" className="logo">
+                  Lappee.com
               </NavLink>
               <div className="panel-search-product">
                 <input
