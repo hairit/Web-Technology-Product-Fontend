@@ -239,21 +239,35 @@ export default function Users() {
                             </div>
                             <div className="userncd-button-group">
                                 <div className="userncd-inFor-item userncd-search">
+                                    <select defaultValue={modeSearch} className="select-mode-search-permission" onChange={(e) => {
+                                        if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
+                                            searchUserWithMode(e.target.value.toString());
+                                        } else {
+                                            setModeSearch(e.target.value.toString());
+                                        }
+
+
+                                    }}>
+
+                                        <option value="ADMIN">Admin</option>
+                                        <option value="CUSTOMER">Customer</option>
+                                        <option value="STAFF">Staff</option>
+                                    </select>
                                     <select defaultValue={modeSearch} className="select-mode-search" onChange={(e) => {
                                         if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
                                             searchUserWithMode(e.target.value.toString());
                                         } else {
                                             setModeSearch(e.target.value.toString());
                                         }
+
+
                                     }}>
                                         <option value="email">Email</option>
                                         <option value="sdt">SĐT</option>
                                         <option value="name">Tên</option>
                                         <option value="id">ID</option>
-                                        <option value="ADMIN">Admin</option>
-                                        <option value="CUSTOMER">Customer</option>
-                                        <option value="STAFF">Staff</option>
                                     </select>
+
                                     <input className="userncd-input-search" type="text" placeholder="value" defaultValue={value} onChange={(e) => setValue(e.target.value.toString())} />
                                     <button className="userncd-btn-search" onClick={() => searchUser(modeSearch, value)}>Search</button>
                                 </div>
