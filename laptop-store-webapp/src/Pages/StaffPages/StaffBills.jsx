@@ -3,7 +3,11 @@ import {useState , useEffect ,useRef} from 'react';
 import axios from 'axios';
 import BillDetailItem from './BillDetailItem';
 import Solver from '../../Classes/Solver';
-
+import LogoFT from "../../Images/LogoFT.png"
+import jsPDF from 'jspdf'
+import html2pdf from 'html2pdf.js'
+import PrintBills from './PrintBills';
+import ProductInBills from './ProductInBills';
 const solver = new Solver();
 export default function StaffBills() {
     const [statusBill, setStatusBill] = useState('Chờ xác nhận');
@@ -14,6 +18,15 @@ export default function StaffBills() {
     const [bill, setBill] = useState(null);
     const saveBill = useRef(null);
     const [active  , setActive] = useState(false);
+    const [invoice  , setInvoice] = useState([]);
+    useEffect(() => {
+        axios.get(`https://localhost:44343/data/bill/status=Đã xác nhận`,null)
+                .then(res => {   
+                    setInvoice(res.data);
+            })
+                .catch((err) => console.log("Errol",err));
+    }, [])
+    console.log("ôpp", invoice)
     useEffect(() => {
         axios.get(`https://localhost:44343/data/bill/status=${statusBill}`,null)
                 .then(res => {   
@@ -44,6 +57,7 @@ export default function StaffBills() {
                     alert("Xác nhận thành công");
                 })
                 .catch(()=> alert("Không thể xác nhận đơn hàng"))
+                console.log("idbill",idBill);
     }
     const searchBillByID = () => {
        if(idBill) {
@@ -57,6 +71,7 @@ export default function StaffBills() {
            alert("Nhập mã đơn hàng");
        }
     }
+    console.log("23",bills)
     const searchBillByIdCustomer = () => {
         if(idCustomer) {
             axios.get(`https://localhost:44343/data/bill/idCustomer=${idCustomer}`,null)
@@ -110,10 +125,121 @@ export default function StaffBills() {
         }
         
     }
+    function tlHoadon(idBill) {
+        return (
+            <div className='invoice-bill'>
+                <div className="col-md-12 wt">
+                    <div className="card" id="invoice">
+                        <div className="top-invoice">
+                            <div className="left-top-invoice">
+                                <img src={LogoFT} />
+                                <p>LAPPEE</p>
+                            </div>
+                            <div className="right-top-invoice">
+                                <p>Chi nhánh TP Hồ Chí Minh</p>
+                                <p>Địa chỉ: 273 An Dương Vương, phường 6 quận 5</p>
+                            </div>
+                        </div>
+                        <div className="center-invoice">
+                            <div className="center-invoice-top">
+                                HÓA ĐƠN 
+                            </div>
+                        </div>
+                        <div className="centerTitle-bill">
+                            <table className="table table-hover table-bill">
+                                <thead>
+                                    <tr className="">
+                                        <th className="col cols row-idOrder">ID</th>
+                                        <th className="col cols row-pro">Sản phẩm</th>
+                                        <th className="col cols row-sltt">Tổng tiền</th>
+                                        <th className="col cols row-date">Ngày đặt</th>
+                                        <th className="col cols row-address">Địa chỉ</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr className="info-bill">
+                                            <td className="id-bill"></td> 
+                                                <ProductInBills idbill={idBill}/>
+                                            <td className="info-productInBill bill-price" ></td>
+                                            <td className="info-productInBill"></td>
+                                            <td className="info-productInBill"></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                        <div className="price-printbill"><p>Tổng tiền:</p> </div>
+                        <div className="bottom-invoice">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    function generateBill(idbill) {
+            // console.log("111", tlHoadon())
+            setTimeout(() => {
+                const hoadon = document.getElementById("invoice");
+                console.log("vv",hoadon);    
+                html2pdf().from(hoadon).save();
+            },1000);
+            return (
+                <div className='invoice-bill'>
+                    <div className="col-md-12 wt">
+                        <div className="card" id="invoice">
+                            <div className="top-invoice">
+                                <div className="left-top-invoice">
+                                    <img src={LogoFT} />
+                                    <p>LAPPEE</p>
+                                </div>
+                                <div className="right-top-invoice">
+                                    <p>Chi nhánh TP Hồ Chí Minh</p>
+                                    <p>Địa chỉ: 273 An Dương Vương, phường 6 quận 5</p>
+                                </div>
+                            </div>
+                            <div className="center-invoice">
+                                <div className="center-invoice-top">
+                                    HÓA ĐƠN 
+                                </div>
+                            </div>
+                            <div className="centerTitle-bill">
+                                <table className="table table-hover table-bill">
+                                <thead>
+                                    <tr className="">
+                                        <th className="col cols row-idOrder">ID</th>
+                                        <th className="col cols row-pro">Sản phẩm</th>
+                                        <th className="col cols row-sltt">Tổng tiền</th>
+                                        <th className="col cols row-date">Ngày đặt</th>
+                                        <th className="col cols row-address">Địa chỉ</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr className="info-bill">
+                                            <td className="id-bill"></td> 
+                                                <ProductInBills idbill={idbill}/>
+                                            <td className="info-productInBill bill-price" ></td>
+                                            <td className="info-productInBill"></td>
+                                            <td className="info-productInBill"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="price-printbill"><p>Tổng tiền:</p> </div>
+                            <div className="bottom-invoice">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+            
+            
+    }
+
     const updateData = () => {
         if(reload === true) setReload(false);
         else setReload(true);
     }
+    
     return(
         <div className="staff-bills">
            <div className="staff-bills-form">
@@ -151,7 +277,9 @@ export default function StaffBills() {
                         <th className="staff-bill-table-cell" style={{width : 'max-content'}}></th>
                     </tr>
                 </thead>
+               
                 <tbody>
+                    <button onClick={() =>generateBill()}>Download PDF</button>
                     {bills.map((item,index) => {
                         return <tr style={{backgroundColor : bill !== null ? item.id === bill.id ? 'rgb(230, 227, 227)' : '#FFFFFF' : ''}} key={index} className='staff-bills-table-row' onClick={()=>{
                             if(bill !== null){
@@ -184,7 +312,17 @@ export default function StaffBills() {
                             <td className='staff-bill-table-cell'>
                             <button className='staff-bill-button cancel-bill-button' onClick={()=>actionBill(item.id,'cancel')} >Delete</button>
                             {
-                                item.tinhtrang === 'Chờ xác nhận' ? <button className='staff-bill-button accept-bill-button' onClick={()=>actionBill(item.id,'accept')}>Accept</button>
+                                item.tinhtrang === 'Chờ xác nhận' ? 
+                                
+                                    <button className='staff-bill-button accept-bill-button' 
+                                    onClick={()=> { setTimeout(() => {
+                                        generateBill(item.id)
+                                    },800)
+                                        // tlHoadon(item.id)
+                                        actionBill(item.id,'accept')}}
+                                        
+                                        >Accept
+                                    </button>
                                                                   : <div></div>
                             }
                             </td>
@@ -271,6 +409,7 @@ export default function StaffBills() {
                 </table>
                </div>
             </div>
+            
         </div>
     )
 }

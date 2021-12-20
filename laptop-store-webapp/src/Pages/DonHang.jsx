@@ -44,17 +44,17 @@ export default function DonHang({idUser}) {
                             {bills.map((bill,index) =>{
                                 return (
                                     <tbody key={index}>
-                                    <tr className="info-bill">
-                                        <td className="id-bill">{bill.id}</td> 
-                                        {bill.billDetails.map((item,index) => 
-                                            <DetailBill item={item} index={index}/>
-                                        )}
-                                        <td className="info-productInBill bill-price" >{solver.formatCurrency("vi-VN","currency","VND",bill.tongtien)}</td>
-                                        <td className="info-productInBill">{bill.ngaydat.split("T",1)}</td>
-                                        <td className="info-productInBill">{bill.diachinhan}</td>
-                                        <td className="info-productInBill">{bill.tinhtrang}</td>
-                                    </tr>
-                                </tbody>
+                                        <tr className="info-bill">
+                                            <td className="id-bill">{bill.id}</td> 
+                                            {bill.billDetails.map((item,index) => 
+                                                <DetailBill item={item} index={index}/>
+                                            )}
+                                            <td className="info-productInBill bill-price" >{solver.formatCurrency("vi-VN","currency","VND",bill.tongtien)}</td>
+                                            <td className="info-productInBill">{bill.ngaydat.split("T",1)}</td>
+                                            <td className="info-productInBill">{bill.diachinhan}</td>
+                                            <td className="info-productInBill">{bill.tinhtrang}</td>
+                                        </tr>
+                                    </tbody>
                                 )
                             })}
                            

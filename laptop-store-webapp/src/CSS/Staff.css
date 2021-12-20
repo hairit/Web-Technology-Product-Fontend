@@ -1,351 +1,414 @@
-.staff{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+.staff {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
-.staff-header{
-    width: 100%;
-    height: max-content;
-    background-color: #4252bd;
-    color: #FFFFFF;
+.staff-header {
+  width: 100%;
+  height: max-content;
+  background-color: #4252bd;
+  color: #ffffff;
 }
-.staff-menu{
-    height: max-content;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    background-color: #4252bd;
+.staff-menu {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #4252bd;
 }
-.staff-menu-left{
-    display: flex;
-    width: max-content;
+.staff-menu-left {
+  display: flex;
+  width: max-content;
 }
-.staff-menu-tab{
-    padding: 5px 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    font-size: 13px;
+.staff-menu-tab {
+  padding: 5px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 13px;
 }
-.staff-menu-icon{
-    font-size: 16px;
-    margin-right: 10px;
+.staff-menu-icon {
+  font-size: 16px;
+  margin-right: 10px;
 }
-.staff-main{
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: #eeeaea;
+.staff-main {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #eeeaea;
 }
-.staff-logout{
-    margin-right: 30px;
-    display: inline;
-    font-size: 13px;
-    color : #FFFFFF;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.staff-logout {
+  margin-right: 30px;
+  display: inline;
+  font-size: 13px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-.staff-logout-icon{
-    color : #FFFFFF;
-    font-size: 16px;
-    margin-right: 10px;
+.staff-logout-icon {
+  color: #ffffff;
+  font-size: 16px;
+  margin-right: 10px;
 }
-.staff-bills{
-    display: flex;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
+.staff-bills {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
 }
-.staff-bills-list{
-    margin: 0 20px auto 20px;
-    background-color: #FFFFFF;
-    height: 500px;
+.staff-bills-list {
+  margin: 0 20px auto 20px;
+  background-color: #ffffff;
+  height: 500px;
 }
-.staff-bills-table{
-    width: 100%;
-    height: auto;
-    background-color: #FFFFFF;
+.staff-bills-table {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
 }
-.staff-bills-table-head{
-    background-color: #d1cece;
+.staff-bills-table-head {
+  background-color: #d1cece;
 }
-.staff-bills-table-row{
-    border-bottom: rgb(212, 211, 211) 0.1px solid;
+.staff-bills-table-row {
+  border-bottom: rgb(212, 211, 211) 0.1px solid;
 }
-.staff-bill-table-cell{
-    padding: 10px 15px;
-    border: none;
-    font-size: 14px;
-    user-select: none;
+.staff-bill-table-cell {
+  padding: 10px 15px;
+  border: none;
+  font-size: 14px;
+  user-select: none;
 }
-.staff-bills-form{
-    width: 100%;
-    height: auto;
-    display: flex;
-    margin-top: 15px;
-    flex-direction: column;
-    background-color: #eeeaea;
+.staff-bills-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  margin-top: 15px;
+  flex-direction: column;
+  background-color: #eeeaea;
 }
-.staff-bills-form-inFor{
-    margin: 0 20px 0 20px;
-    width: auto;
-    background-color: #FFFFFF;
-    padding: 25px 30px 100px 30px;
-    position: relative;
+.staff-bills-form-inFor {
+  margin: 0 20px 0 20px;
+  width: auto;
+  background-color: #ffffff;
+  padding: 25px 30px 100px 30px;
+  position: relative;
 }
-.thong-tin-nguoi-nhan{
-    width: 50%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+.thong-tin-nguoi-nhan {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
-.thong-tin-nguoi-nhan-item{
-    width: 100%;
-    height: max-content;
-    display: flex;
+.thong-tin-nguoi-nhan-item {
+  width: 100%;
+  height: max-content;
+  display: flex;
 }
-.thong-tin-nguoi-nhan-item label{
-    padding: 15px 20px 15px 20px;
-    width: 50%;
-    margin-bottom: 0 !important;
-    height: auto;
-    font-size: 15px;
-    font-weight: 500;
-    color : rgb(116, 116, 116) ;
+.thong-tin-nguoi-nhan-item label {
+  padding: 15px 20px 15px 20px;
+  width: 50%;
+  margin-bottom: 0 !important;
+  height: auto;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(116, 116, 116);
 }
-.thong-tin-nguoi-nhan-item p{
-    padding: 15px 20px;
-    font-size: 15px;
-    width: 50%;
-    /* word-wrap: break-word; */
-    height: 70px;
-    font-weight: 500;
-    color : rgb(116, 116, 116) ;
+.thong-tin-nguoi-nhan-item p {
+  padding: 15px 20px;
+  font-size: 15px;
+  width: 50%;
+  /* word-wrap: break-word; */
+  height: 70px;
+  font-weight: 500;
+  color: rgb(116, 116, 116);
 }
 
-.thong-tin-giao-hang{
-    width: 50%;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
+.thong-tin-giao-hang {
+  width: 50%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
 }
-.staff-bills-products{
-    width: 100%;
-    height: max-content;
-    background-color: #FFFFFF;
+.staff-bills-products {
+  width: 100%;
+  height: max-content;
+  background-color: #ffffff;
 }
-.staff-bill-inFor{
-    float: left;
-    width: 300px;
-    max-width: 500px;
-    display: flex;
-    height: auto;
-    margin: 10px 0;
-    flex-direction: column;
-    padding-left: 30px;
+.staff-bill-inFor {
+  float: left;
+  width: 300px;
+  max-width: 500px;
+  display: flex;
+  height: auto;
+  margin: 10px 0;
+  flex-direction: column;
+  padding-left: 30px;
 }
-.staff-bill-inFor-label{
-    padding: 6px 0 6px 0;
-    color : rgb(116, 116, 116) ;
+.staff-bill-inFor-label {
+  padding: 6px 0 6px 0;
+  color: rgb(116, 116, 116);
 }
-.staff-bill-inFor-input{
-    padding: 6px 7px ;
-    font-size: 16px;
-    border-radius: 4px;
-    width: 100%;
-    outline: none;
-    border: 3px solid rgba(14, 60, 160, 0.452);
+.staff-bill-inFor-input {
+  padding: 6px 7px;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+  border: 3px solid rgba(14, 60, 160, 0.452);
 }
-.staff-bill-inFor-value{
-    font-size: 16px;
-    color :rgb(41, 40, 40) ;
+.staff-bill-inFor-value {
+  font-size: 16px;
+  color: rgb(41, 40, 40);
 }
-.staff-bills-form-search{
-    background-color: #FFFFFF;
-    margin: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    padding: 25px 30px;
-    align-items: center;
+.staff-bills-form-search {
+  background-color: #ffffff;
+  margin: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 30px;
+  align-items: center;
 }
-.search-bill-div{
-    position: relative;
-    height: auto;
-    width: max-content;
+.search-bill-div {
+  position: relative;
+  height: auto;
+  width: max-content;
 }
-.search-bill-input{
-    width: 400px;
-    padding: 10px 7px;
-    margin-left: 10px;
-    border-radius: 4px;
-    font-size: 15px;
-    border: 2px solid rgba(19, 70, 209, 0.493);
-    outline: none;
+.search-bill-input {
+  width: 400px;
+  padding: 10px 7px;
+  margin-left: 10px;
+  border-radius: 4px;
+  font-size: 15px;
+  border: 2px solid rgba(19, 70, 209, 0.493);
+  outline: none;
 }
-.search-bill-button{
-    position: absolute;
-    top: 0;
-    left: 95%;
-    width: 100px;
-    border-radius: 4px;
-    border:  none;
-    bottom: 0;
-    background-color: #4252bd;
-    color: #FFFFFF;
+.search-bill-button {
+  position: absolute;
+  top: 0;
+  left: 95%;
+  width: 100px;
+  border-radius: 4px;
+  border: none;
+  bottom: 0;
+  background-color: #4252bd;
+  color: #ffffff;
 }
-.staff-bill-button{
-    padding: 10px 15px ;
-    border-radius: 3px;
-    border: none;
-    float: right;
-    margin-right: 7px;
-    color : #FFFFFF;
+.staff-bill-button {
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: none;
+  float: right;
+  margin-right: 7px;
+  color: #ffffff;
 }
-.accept-bill-button{
-    background-color: #495ddf;
+.accept-bill-button {
+  background-color: #495ddf;
 }
-.cancel-bill-button{
-    background-color: rgb(212, 14, 14);
+.cancel-bill-button {
+  background-color: rgb(212, 14, 14);
 }
-.bill-details-panel{
-    margin: 0 20px 0 20px;
-    background-color: #FFFFFF;
-    height: auto;
-    margin-bottom: 50px;
+.bill-details-panel {
+  margin: 0 20px 0 20px;
+  background-color: #ffffff;
+  height: auto;
+  margin-bottom: 50px;
 }
-.staff-bill-detail-table-row{
-    width: 100%;
-    height: auto;
-    display: flex;
+.staff-bill-detail-table-row {
+  width: 100%;
+  height: auto;
+  display: flex;
 }
-.bill-product-inFor{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.bill-product-inFor {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.staff-bill-inFor-address{
-    display: inline-block;
-    height: max-content;
-    padding-left: 30px;
-    width: 550px;
+.staff-bill-inFor-address {
+  display: inline-block;
+  height: max-content;
+  padding-left: 30px;
+  width: 550px;
 }
-.bill-product-name{
-    display: flex;
-    flex-direction: column;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 10px 0 0 15px;
+.bill-product-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 0 0 15px;
 }
-.bill-product-quantity{
-    border: 0.1px solid rgb(230, 227, 227) ;
-    border-radius: 3px;
-    overflow: hidden;
+.bill-product-quantity {
+  border: 0.1px solid rgb(230, 227, 227);
+  border-radius: 3px;
+  overflow: hidden;
 }
-.bill-quantity-button{
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: #f5f1f1;
+.bill-quantity-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #f5f1f1;
 }
-.bill-quantity-input{
-    width: 40px;
-    text-align: center;
-    height: 30px;
-    border: none;
-    user-select: none;
-    outline: none;
-    background-color: #f5f1f1;
+.bill-quantity-input {
+  width: 40px;
+  text-align: center;
+  height: 30px;
+  border: none;
+  user-select: none;
+  outline: none;
+  background-color: #f5f1f1;
 }
-.delete-bill-detail{
-    float: right;
-    background-color: rgb(212, 14, 14);
-    color: #FFFFFF;
-    border: none;
-    border-radius: 4px;
-    padding: 7px 15px;
+.delete-bill-detail {
+  float: right;
+  background-color: rgb(212, 14, 14);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 15px;
 }
-.button-save-bill{
-    position: absolute;
-    left: 95%;
-    font-size: 13px;
-    font-weight: 500;
-    width: max-content;
-    top : 0 ;
-    bottom: 0px;
-    padding: 0 20px;
-    background-color: #f13716;
-    color:  #FFFFFF;
-    border-radius: 3px;
-    border: none;
+.button-save-bill {
+  position: absolute;
+  left: 95%;
+  font-size: 13px;
+  font-weight: 500;
+  width: max-content;
+  top: 0;
+  bottom: 0px;
+  padding: 0 20px;
+  background-color: #f13716;
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
 }
-.staff-customers{
-    width: 100%;
-    height: 100%;
-    background-color: #eeeaea;
+.staff-customers {
+  width: 100%;
+  height: 100%;
+  background-color: #eeeaea;
 }
-.staff-customer-search{
-    height:  80px;
-    border-radius: 5px;
-    padding: 0 30px;
-    margin : 20px 30px 10px 30px;
-    background-color: #FFFFFF;
-    display: flex;
-    align-items: center;
+.staff-customer-search {
+  height: 80px;
+  border-radius: 5px;
+  padding: 0 30px;
+  margin: 20px 30px 10px 30px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
 }
-.staff-customer-search-item{
-    display: flex;
-    position: relative;
-    height: auto;
-    width: max-content;
-    align-items: center;
+.staff-customer-search-item {
+  display: flex;
+  position: relative;
+  height: auto;
+  width: max-content;
+  align-items: center;
 }
-.staff-customer-search-item p{
-    font-size: 13px;
-    font-weight: 600;
+.staff-customer-search-item p {
+  font-size: 13px;
+  font-weight: 600;
 }
-.staff-customer-search-item input{
-    padding: 10px 7px;
-    border: 2px solid rgba(19, 70, 209, 0.493);
-    width: 400px;
-    outline: none;
-    margin-left: 10px;
-    border-radius: 4px;
+.staff-customer-search-item input {
+  padding: 10px 7px;
+  border: 2px solid rgba(19, 70, 209, 0.493);
+  width: 400px;
+  outline: none;
+  margin-left: 10px;
+  border-radius: 4px;
 }
-.staff-customer-list{
-    background-color: #FFFFFF;
-    margin: 10px 30px 10px 30px;
-    height: 500px;
+.staff-customer-list {
+  background-color: #ffffff;
+  margin: 10px 30px 10px 30px;
+  height: 500px;
 }
-.staff-customer-table{
-    width: 100%;
-    height: auto;
+.staff-customer-table {
+  width: 100%;
+  height: auto;
 }
-.staff-customer-table-head{
-    background-color: #d1cece;
+.staff-customer-table-head {
+  background-color: #d1cece;
 }
-.staff-customer-table-cell{
-    padding: 10px 15px;
-    font-size: 13px;
-    user-select: none;
-    border: none;
+.staff-customer-table-cell {
+  padding: 10px 15px;
+  font-size: 13px;
+  user-select: none;
+  border: none;
 }
-.staff-customer-value{
-    padding: 3px 0;
-    font-weight: 500;
+.staff-customer-value {
+  padding: 3px 0;
+  font-weight: 500;
 
-    font-size: 14px;
+  font-size: 14px;
 }
-.staff-customer-table-row{
-    border-bottom: rgb(212, 211, 211) 0.1px solid;
+.staff-customer-table-row {
+  border-bottom: rgb(212, 211, 211) 0.1px solid;
 }
-.staff-customer-bill{
-    float: right;
-    padding: 6px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    border-radius: 3px;
-    background-color: #eceaea;
+.staff-customer-bill {
+  float: right;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+  background-color: #eceaea;
+}
+/*==============================================in hoa don====================================================*/
+.wt {
+  width: 100%;
+}
+.card {
+  padding: 80px 30px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: 100%;
+  height: auto;
+}
+.top-invoice {
+  display: flex;
+  padding-bottom: 150px;
+}
+.right-top-invoice p {
+  font-size: 15px;
+  font-weight: 500;
+}
+.invoice-bill {
+  /* display: none; */
+}
+.left-top-invoice {
+  display: flex;
+  width: 100%;
+  padding-right: 30px;
+}
+.left-top-invoice img {
+  width: 30%;
+}
+.left-top-invoice p {
+  justify-content: center;
+  font-size: 25px;
+  font-weight: 500;
+}
+.center-invoice {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 112px;
+}
+.center-invoice-top {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 30px;
+}
+.center-invoice-mid {
+  padding: 20px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+.center-invoice-mid p {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.price-printbill {
+  font-size: 20px;
+  font-weight: 400;
+}
+.name-hoadon {
+  height: auto;
 }

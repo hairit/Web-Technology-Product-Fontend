@@ -43,7 +43,11 @@ export default function MousePanel({addCart}) {
     }, [])
     return (
         <div className="mouse-panel">
-            <div className="mouse-panel-header"></div>
+            <div className="mouse-panel-header">
+                <div className="keyboard-panel-header-logo">
+                    <p>Chuột mới nhất</p>    
+                </div>
+            </div>
             <div className="mouse-panel-list-pro container10Col">
                 <div className="row-10-no-margin">
                     {mouses.map((mouse,index)=>renderMouseItem(mouse,index,solver,history,addCart))}

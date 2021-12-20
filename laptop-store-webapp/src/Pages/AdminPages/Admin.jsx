@@ -21,7 +21,7 @@ import URL from '../../DATA/URL';
 import AddProduct from './Product/AddProduct/AddProduct';
 import BillsCustomer from './Bill/BillsCustomer';
 import Users from './User/Users';
-import Thongke from './Chart/Thongke';
+// import Thongke from './Chart/Thongke';
 export default function Admin({ changeAdminMode, match, logout ,setUser}) {
     const history = useHistory();
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function Admin({ changeAdminMode, match, logout ,setUser}) {
                         <Route path="/admin/:idUser/bills/customer/:idCustomer" component={(match) => <BillsCustomer match={match} />}></Route> */}
                         <Route path="/admin/:idUser/order" component={() => <Order />}></Route>
                         <Route path="/admin/:idUser/bills" component={() => <Bills />}></Route>
-                        <Route path="/admin/thongke" component={() => <Thongke />}></Route>
+                        {/* <Route path="/admin/thongke" component={() => <Thongke />}></Route> */}
                         <Route path="/admin/:idUser/product" component={() => <Product idUser={match.match.params.idUser} />}></Route>
                         <Route path="/admin/:idUser/users" component={() => <Users />}></Route>
                     </div>
