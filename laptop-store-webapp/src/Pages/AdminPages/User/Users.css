@@ -257,3 +257,16 @@
     background-color: seagreen;
     margin-left     : 5px;
 }
+
+.select-mode-search-permission{
+    background-color: #e4e3e3;
+    border: none;
+    width: 120px;
+    height: 35px;
+    font-size: 13px;
+    padding-left: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
