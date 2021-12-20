@@ -44,8 +44,10 @@
     margin:auto;
 }
 .statict-chart{
-    width: 900px;
+    width: 1000px;
     height: 600px;
     margin: auto;
-    padding-left: 30px;
+    padding-left: 100px;
+    display: flex;
+
 }

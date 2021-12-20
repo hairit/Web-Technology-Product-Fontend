@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,34 +12,247 @@ import moment from 'moment';
 export default function Statict ({ }){
     const [select, setSelect] = useState("month");
     const [dateRange, setDateRange] = useState([null, null]);
-    const [year, setYear] = useState(null);
-    const [day, setDay] = useState(null);
-    const [month, setMonth] = useState(null);
     const [startDate, endDate] = dateRange;
-    const [datares, setDatares] = useState([]);
-    const [flag, setFlag] = useState(false);
-    const [label, setLabel] = useState([]);
-    const [datas, setData] = useState([]);
-    const [isnull, setIsnull] = useState(false);
-    const showSelect = () =>{
+    const [day, setDay] = useState("");
+    const [month, setMonth] = useState("");
+    const [year, setYear] = useState("");
+    const [graph, setgraph] = useState([]);
+    const refmonth = useRef(null);
+    const refyear = useRef(null);
+
+    const selectChartMonth = (e) =>
+    {
+        axios.get(`https://localhost:44343/data/statistics/bill/month=${moment(month).toDate().getMonth()+1}/year=${moment(month).toDate().getFullYear().toString()}`)
+            .then(
+                res=>{
+                    const resData = res.data;
+                    let labels = [];
+                    let datas = [];
+                    let z =  moment(month).toDate().getFullYear().toString()+ "-" + moment(month).toDate().getMonth()+1;
+                    if (labels.length!==(moment(z,"yyyy mm").daysInMonth()))
+                    for (let i=1; i<=moment(z,"yyyy mm").daysInMonth();i++)
+                    {
+                        labels.push(i);
+                        datas.push(0);
+                    }
+                    resData.forEach((datare)=>{                
+                        const temp = (moment(datare.ngaydat).toDate().getDate());
+                        datas[temp]+=datare.tongtien;
+                    });
+                    setgraph(
+                        {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "Doanh thu",
+                                    data: datas,
+                                    fill: true,
+                                    backgroundColor: "rgba(75,192,192,0.2)",
+                                    borderColor: "rgba(75,192,192,1)"
+                                }
+                            ]
+                        }
+                    );
+                    console.log(graph);
+                }
+            )
+            .catch(err=>{
+                let labels = [];
+                let datas = [];
+                let z =  moment(month).toDate().getFullYear().toString()+ "-" + moment(month).toDate().getMonth()+1;
+                for (let i=1; i<=moment(z,"yyyy mm").daysInMonth();i++)
+                {
+                    console.log(i);
+                    labels.push(i);
+                    datas.push(0);
+                }
+                setgraph(
+                    {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "Doanh thu",
+                                data: datas,
+                                fill: true,
+                                backgroundColor: "rgba(75,192,192,0.2)",
+                                borderColor: "rgba(75,192,192,1)"
+                            }
+                        ]
+                    }
+                );
+                console.log(graph);
+            });
+    }
+
+    useEffect(() => {
+        selectChartMonth()
+    }, [month])
+
+    const selectChartYear = (e) =>
+    {
+        axios.get(`https://localhost:44343/data/statistics/bill/year/${year}`)
+            .then(
+                res=>{
+                    const resData = res.data;
+                    let labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                    let datas = [];
+                    labels.forEach((la)=>{
+                        datas.push(0);
+                    })
+                    resData.forEach((datare)=>{                
+                        const temp = (moment(datare.ngaydat).toDate().getMonth());
+                        datas[temp]+=datare.tongtien;
+                    });
+                    console.log(datas);
+                    setgraph(
+                        {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "Doanh thu",
+                                    data: datas,
+                                    fill: true,
+                                    backgroundColor: "rgba(75,192,192,0.2)",
+                                    borderColor: "rgba(75,192,192,1)"
+                                }
+                            ]
+                        }
+                    );
+                    console.log(graph);
+                }
+            )
+            .catch(err=>{
+                let labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                let datas = [];
+                labels.forEach((la)=>{
+                    datas.push(0);
+                })
+                setgraph(
+                    {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "Doanh thu",
+                                data: datas,
+                                fill: true,
+                                backgroundColor: "rgba(75,192,192,0.2)",
+                                borderColor: "rgba(75,192,192,1)"
+                            }
+                        ]
+                    }
+                );
+                console.log(graph);
+            });
+    }
+
+    useEffect(() => {
+        selectChartYear()
+    }, [year])
+
+    const selectChartFrom = (e) =>
+    {
+        console.log(dateRange);
+        let sd = (moment(dateRange[0]).toDate().getMonth()+1).toString() + "-" + moment(dateRange[0]).toDate().getDate().toString() + "-" + moment(dateRange[0]).toDate().getFullYear().toString();
+        let ed = (moment(dateRange[1]).toDate().getMonth()+1).toString() + "-" + moment(dateRange[1]).toDate().getDate().toString() + "-" + moment(dateRange[1]).toDate().getFullYear().toString();
+        console.log(`https://localhost:44343/data/statistics/bill/from=${sd}to=${ed}`);
+        axios.get(`https://localhost:44343/data/statistics/bill/from=${sd}to=${ed}			`)
+            .then(
+                res=>{
+
+                    const resData = res.data;
+                    let labels = [];
+                    let datas = [];
+                    let start = moment(dateRange[0],"mm dd yyyy");
+                    let end = moment(dateRange[1],"mm dd yyyy");
+                    console.log("Chạy nè");
+                    let diff = end.diff(start, 'day')
+                    let range = []
+                    for (let i = 0; i <= diff; i++) {
+                        range.push(moment(dateRange[0]).add(i, 'day'));
+                    }
+                    range.forEach((ran)=>{
+                        labels.push(ran.toDate().toLocaleDateString());
+                        datas.push(0);
+                    })
+                    resData.forEach((datare)=>{                
+                        const temp = (moment(datare.ngaydat).toDate().toLocaleDateString());
+                        let i = labels.indexOf(temp)
+                        datas[i]+=datare.tongtien;
+                    });
+                    setgraph(
+                        {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "Doanh thu",
+                                    data: datas,
+                                    fill: true,
+                                    backgroundColor: "rgba(75,192,192,0.2)",
+                                    borderColor: "rgba(75,192,192,1)"
+                                }
+                            ]
+                        }
+                    );
+
+                }
+            )
+            .catch(err=>{
+                let labels = [];
+                let datas = [];
+                let start = moment(dateRange[0],"mm dd yyyy");
+                let end = moment(dateRange[1],"mm dd yyyy");
+                let diff = end.diff(start, 'day')
+                let range = []
+                for (let i = 0; i <= diff; i++) {
+                    range.push(moment(dateRange[0]).add(i, 'day'));
+                }
+                range.forEach((ran)=>{
+                    labels.push(ran.toDate().toLocaleDateString());
+                });
+                labels.forEach((la)=>{
+                    datas.push(0);
+                })
+                setgraph(
+                    {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "Doanh thu",
+                                data: datas,
+                                fill: true,
+                                backgroundColor: "rgba(75,192,192,0.2)",
+                                borderColor: "rgba(75,192,192,1)"
+                            }
+                        ]
+                    }
+                );
+                console.log(graph);
+            });
+    }
+
+    useEffect(() => {
+        selectChartFrom()
+    }, [dateRange])
+
+    const showSelect = () => {
         switch (select) {
             case "day":
                 return(
                     <div className="statict-form-value">
                         <p className="static-form-label" >Nhập ngày cần tìm: </p>
-                        <input type="date" className="static-input" onChange={(e)=>handelClickStatict(e)}></input>
+                        <input type="date" className="static-input" ></input>
                     </div>);
             case "month":
                 return(
                     <div className="statict-form-value">
                         <p className="static-form-label" >Nhập tháng cần tìm: </p>
-                        <input type="month" className="static-input" onChange={(e)=>handelClickStatict(e)}></input>
+                        <input type="month" className="static-input" ref={refmonth} onClick={(e)=>setMonth(e.target.value)}></input>
                     </div>)
             case "year":
                 return(
                     <div className="statict-form-value">
                         <p className="static-form-label">Nhập năm cần tìm: </p>
-                        <input type="number" min="1900" max="2099" step="1" defaultValue="2021" className="static-input" onChange={(e)=>handelClickStatict(e)}/>
+                        <input type="number" min="1900" max="2099" step="1" defaultValue="2021" ref={refyear} className="static-input" onClick={(e)=>setYear(e.target.value)}/>
                     </div>);
             case "fromto":
                 return (
@@ -58,111 +271,19 @@ export default function Statict ({ }){
             default:
                 break;
         }    
-        
-        
     }
-    
-      const handleClick = () =>{
+    const handleClick = () =>{
         switch (select) {
-            case "day":
-                if (datares.length!==0)
-                {                
-                    datares.forEach((data)=>{
-                        label.push(data.id);
-                        datas.push(data.tongtien);
-                })}
-                else setIsnull(true);  
-                break;
             case "month":
-                if (datares.length!==0)
-                {
-                    datares.forEach((datare)=>{
-                        const temp = (moment(datare.ngaydat).toDate().getDate());
-                        datas.splice(temp-1,1,datare.tongtien);
-                    });
-                } else setIsnull(true);
-                break;
-            case "year": 
-                if (datares.length!==0)
-                {
-                   datares.forEach((datare)=>{
-                    const temp = (moment(datare.ngaydat).toDate().getMonth());
-                       datas.splice(temp-1,1,datas[temp-1]+datare.tongtien);
-                   })
-                } else setIsnull(true);
-                break;
-        }
-      }
-      const handelClickStatict = (e) =>{
-          let value = e.target.value;
-        switch (select) {
-            case "day":
-                let d = (moment(value).toDate().getMonth()+1).toString();
-                d = d+"-"+moment(value).toDate().getDate().toString() + "-" + moment(value).toDate().getFullYear().toString();
-                console.log(d);
-                axios.get(`https://localhost:44343/data/statistics/bill/date=${d}`)
-                .then((res)=>{
-                    setDatares(res.data);
-                    console.log(datares);
-                })
-                .catch ((err)=>console.log(err));	
-                console.log(label);		
-                break;
-            case "month":
-                axios.get(`https://localhost:44343/data/statistics/bill/month=${moment(value).toDate().getMonth()+1}/year=${moment(value).toDate().getFullYear().toString()}`)
-                .then((res)=>{
-                    setDatares(res.data);
-                    console.log(datares);
-                })
-                .catch ((err)=>console.log(err));
-                let z =  moment(value).toDate().getFullYear().toString()+ "-" + moment(value).toDate().getMonth()+1;
-                console.log(moment(z,"yyyy mm").daysInMonth());	
-                if (label.length!==(moment(z,"yyyy mm").daysInMonth()))
-                    for (let i=1; i<=moment(z,"yyyy mm").daysInMonth();i++)
-                    {
-                        label.push(i);
-                        datas.push(0);
-                    }
-                    datares.forEach((datare)=>{
-                        const temp = (moment(datare.ngaydat).toDate().getDate());
-                        datas.splice(temp-1,1,datare.tongtien);
-                    });
+                refmonth.current.click();
                 break;
             case "year":
-                axios.get(`https://localhost:44343/data/statistics/bill/year/${value}`)
-                .then((res)=>{
-                    setDatares(res.data);
-                    console.log(datares);
-                })
-                .catch ((err)=>console.log(err));
-                let temp = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-                setLabel(temp);
-                console.log(label);
+                refyear.current.click();
                 break;
-      }
-      }
-
-      const showchart = () =>{
-          console.log(datas);
-          console.log(label);
-          if (label && datas)
-          {
-            const data = {
-                labels: label,
-                datasets:[{
-                    label: "Doanh thu",
-                    data: datas,
-                    fill: true,
-                    backgroundColor: "rgba(75,192,192,0.2)",
-                    borderColor: "rgba(75,192,192,1)"
-                  }] 
-              };
-              console.log(data);
-            return (
-                <Line data={data} className="statict-chart"/>
-            );
-          } else return (<p>Vui lòng chọn thời gian</p>);
-      }
+            default:
+                break;
+        }     
+    }
     return (
         <div className="statict-main">
             <div className="statict-layout">
@@ -170,7 +291,6 @@ export default function Statict ({ }){
                 <div className="statict-main-page">
                     <div className="statict-top-button">
                         <select name="statict type" className="statict-select" defaultValue="month" onChange={(e)=>setSelect(e.target.value)}>
-                            <option value="day" >Ngày</option>
                             <option value="month">Tháng</option>
                             <option value="year">Năm</option>
                             <option value="fromto">Khoản ngày</option>
@@ -179,8 +299,13 @@ export default function Statict ({ }){
                         <button onClick={()=>handleClick()}>Chọn</button>
                     </div>
                     <div className="statict-chart-panel">
-                        <div className=""></div>
-                        {showchart()}
+                        {graph.length!==0?
+                        <div className="statict-show-panel">
+                            <Line data={graph} className="statict-chart"/>
+                        </div>
+                        
+
+                        :<div>Vui lòng chọn điều kiện lọc</div>}
                     </div>
                 </div>
             </div>
