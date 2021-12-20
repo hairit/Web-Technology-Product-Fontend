@@ -16,8 +16,6 @@ export default function DonHang({idUser}) {
             axios.get(`https://localhost:44343/data/bill/iduser=${idUser}`,null)
                     .then((res) => setBills(res.data))
                     .catch((err) =>console.error("",err))
-        }else {
-            history.push("/");
         }
     },[])
     return (

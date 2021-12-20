@@ -17,13 +17,16 @@ export default function StaffBills() {
     useEffect(() => {
         axios.get(`https://localhost:44343/data/bill/status=${statusBill}`,null)
                 .then(res => {   
+                    // res.data.forEach(element => {
+                    //     if(element.idBill === saveBill.current.id)  setBill(element);
+                    // });
                     setBills(res.data);
             })
                 .catch(() => setBills([]));
     }, [statusBill,reload])
     useEffect(() => {
         if(saveBill.current !== null) {
-            axios.get(`https://localhost:44343/data/bill/getbill/${saveBill.current.id}`,null)
+            axios.get(`https://localhost:44343/data/bill/getbill/update/${saveBill.current.id}`,null)
                 .then(res => {
                     console.log(res.data);
                     setBill(res.data);

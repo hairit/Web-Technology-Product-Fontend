@@ -259,7 +259,7 @@ function App() {
         <Route path="/admin" exact component={() => <Login login={login} />} ></Route>
         <Route path="/admin/:idUser" component={(match) => <Admin changeAdminMode={changeAdminMode} match={match} logout={logout} setUser={setUser} />}></Route>
         <Route path="/staff" exact component={() => <Login login={login} />} ></Route>
-        <Route path="/staff/:idUser" component={(match) => <Staff changeAdminMode={changeAdminMode} match={match} logout={logout} />}></Route>
+        <Route path="/staff/:idUser" component={(match) => <Staff changeAdminMode={changeAdminMode} match={match} logout={logout} showLoadOrder ={showLoadOrder}/>}></Route>
 
         <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
@@ -291,7 +291,7 @@ function App() {
         <Route path="/mouse/:id" exact component={(match) => <DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/post/file" exact component={() => <PostFile />}></Route>
         <Route path="/post/file" exact component={() => <PostFile />}></Route>
-        <Route path="/shipper" exact component={()=><Shipper changeAdminMode={changeAdminMode} />}></Route>
+        <Route path="/shipper" exact component={()=><Shipper changeAdminMode={changeAdminMode} showLoadOrder={showLoadOrder}/>}></Route>
         <Route path="/cart" exact component={() => <GioHang
           user={user}
           deleteProductFromCart={deleteProductFromCart}
@@ -301,7 +301,7 @@ function App() {
           idUser={user !== null ? user.id : null}
           createBill={createBill}
         />}></Route>
-        <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} />} ></Route>
+        <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />} ></Route>
         <Route path="/bill" component={() => <DonHang idUser={user !== null ? user.id : null} />}></Route>
         <Route path="/products/:namepro" exact component={(match) => <Products match={match} />}></Route>
         <Route path="/lienhe" component={() => <LienHe />}></Route>

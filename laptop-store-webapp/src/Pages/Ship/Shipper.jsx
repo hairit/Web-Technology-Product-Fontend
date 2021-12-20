@@ -51,7 +51,10 @@ export default function Shipper({changeAdminMode}) {
         <div className='shipper-page'>
             <div className='shipper-form-bill'>
                 <div className='shipper-search-bill'>
-                    <input  className='shipper-search-input' type="text" placeholder='Nhập mã đơn hàng' onChange={(e) => setIdBill(e.target.value.toString())} />
+                    <input  className='shipper-search-input' type="text" 
+                                                             placeholder='Nhập mã đơn hàng' 
+                                                             onChange={(e) => setIdBill(e.target.value.toString())}
+                                                             defaultValue={idBill} />
                     <button className='shipper-search-button' onClick={()=>searchBill()}>Search</button>
                 </div>
             </div>
@@ -60,19 +63,23 @@ export default function Shipper({changeAdminMode}) {
                         <>
                         <div style={{textAlign : 'left',padding :'10px 0 10px 0',color : 'red',fontSize : '16px',fontWeight : '500'}}>Thông tin hóa đơn</div>
                             <div className='shipper-inFor-bill-item'>
-                                <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Mã đơn hàng</div>
+                                <div style={{color: 'black',padding : '7px 0'}}>Mã đơn hàng</div>
                                 <div style={{fontSize : '16px'}}>{bill.id}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>
-                                <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Ngày đặt</div>
+                                <div style={{color: 'black',padding : '7px 0'}}>Ngày đặt</div>
                                 <div>{solver.getDateFormat(bill.ngaydat)}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>
-                                <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Số điện thoại người nhận</div>
+                                <div style={{color: 'black',padding : '7px 0'}}>Người nhận</div>
+                                <div>{bill.iduserNavigation.lastname +' '+bill.iduserNavigation.firstname}</div>
+                            </div>
+                            <div className='shipper-inFor-bill-item'>
+                                <div style={{color: 'black',padding : '7px 0'}}>Số điện thoại người nhận</div>
                                 <div>{bill.iduserNavigation.sdt}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>
-                                <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Địa chỉ giao</div>
+                                <div style={{color: 'black',padding : '7px 0'}}>Địa chỉ giao</div>
                                 <div>{bill.diachinhan}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>

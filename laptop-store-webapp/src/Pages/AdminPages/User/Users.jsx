@@ -189,7 +189,7 @@ export default function Users() {
                                     }
                                         : { borderBottom: '0.1px solid rgb(228, 224, 224)' }}>
                                     <td className="userncd-table-cell">{item.id}</td>
-                                    <td className="userncd-table-cell">{item.firstname + " " + item.lastname}</td>
+                                    <td className="userncd-table-cell">{item.lastname + " " + item.firstname}</td>
                                     <td className="userncd-table-cell">{item.email}</td>
                                     <td className="userncd-table-cell">{item.pass}</td>
                                     <td className="userncd-table-cell">{item.diachi}</td>
@@ -239,28 +239,16 @@ export default function Users() {
                             </div>
                             <div className="userncd-button-group">
                                 <div className="userncd-inFor-item userncd-search">
-                                    <select defaultValue={modeSearch} className="select-mode-search-permission" onChange={(e) => {
-                                        if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
+                                    <select defaultValue={''} className="select-mode-search-permission" onChange={(e) => {
                                             searchUserWithMode(e.target.value.toString());
-                                        } else {
-                                            setModeSearch(e.target.value.toString());
-                                        }
-
-
                                     }}>
-
                                         <option value="ADMIN">Admin</option>
                                         <option value="CUSTOMER">Customer</option>
                                         <option value="STAFF">Staff</option>
                                     </select>
+                                
                                     <select defaultValue={modeSearch} className="select-mode-search" onChange={(e) => {
-                                        if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
-                                            searchUserWithMode(e.target.value.toString());
-                                        } else {
-                                            setModeSearch(e.target.value.toString());
-                                        }
-
-
+                                        setModeSearch(e.target.value.toString());
                                     }}>
                                         <option value="email">Email</option>
                                         <option value="sdt">SĐT</option>
