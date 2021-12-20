@@ -60,9 +60,9 @@ export default function Statict ({ }){
                 let labels = [];
                 let datas = [];
                 let z =  moment(month).toDate().getFullYear().toString()+ "-" + moment(month).toDate().getMonth()+1;
-                if (labels.length!==(moment(z,"yyyy mm").daysInMonth()))
                 for (let i=1; i<=moment(z,"yyyy mm").daysInMonth();i++)
                 {
+                    console.log(i);
                     labels.push(i);
                     datas.push(0);
                 }
@@ -151,24 +151,64 @@ export default function Statict ({ }){
 
     const selectChartFrom = (e) =>
     {
-        let sd = (moment(dateRange.startDate).toDate().getMonth()+1).toString() + "-" + moment(dateRange.startDate).toDate().getDate().toString() + "-" + moment(startDate).toDate().getFullYear().toString();
-        let ed = (moment(dateRange.endDate).toDate().getMonth()+1).toString() + "-" + moment(dateRange.endDate).toDate().getDate().toString() + "-" + moment(endDate).toDate().getFullYear().toString();
+        console.log(dateRange);
+        let sd = (moment(dateRange[0]).toDate().getMonth()+1).toString() + "-" + moment(dateRange[0]).toDate().getDate().toString() + "-" + moment(dateRange[0]).toDate().getFullYear().toString();
+        let ed = (moment(dateRange[1]).toDate().getMonth()+1).toString() + "-" + moment(dateRange[1]).toDate().getDate().toString() + "-" + moment(dateRange[1]).toDate().getFullYear().toString();
+        console.log(`https://localhost:44343/data/statistics/bill/from=${sd}to=${ed}`);
         axios.get(`https://localhost:44343/data/statistics/bill/from=${sd}to=${ed}			`)
             .then(
                 res=>{
+
                     const resData = res.data;
                     let labels = [];
                     let datas = [];
-                    let start = moment(startDate,"mm dd yyyy");
-                    let end = moment(endDate,"mm dd yyyy");
-                    let range = moment().range(start, end);
-                    let arr = range.toArray('days');
-                    console.log(arr);
+                    let start = moment(dateRange[0],"mm dd yyyy");
+                    let end = moment(dateRange[1],"mm dd yyyy");
+                    console.log("Chạy nè");
+                    let diff = end.diff(start, 'day')
+                    let range = []
+                    for (let i = 0; i <= diff; i++) {
+                        range.push(moment(dateRange[0]).add(i, 'day'));
+                    }
+                    range.forEach((ran)=>{
+                        labels.push(ran.toDate().toLocaleDateString());
+                        datas.push(0);
+                    })
+                    resData.forEach((datare)=>{                
+                        const temp = (moment(datare.ngaydat).toDate().toLocaleDateString());
+                        let i = labels.indexOf(temp)
+                        datas[i]+=datare.tongtien;
+                    });
+                    setgraph(
+                        {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "Doanh thu",
+                                    data: datas,
+                                    fill: true,
+                                    backgroundColor: "rgba(75,192,192,0.2)",
+                                    borderColor: "rgba(75,192,192,1)"
+                                }
+                            ]
+                        }
+                    );
+
                 }
             )
             .catch(err=>{
-                let labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                let labels = [];
                 let datas = [];
+                let start = moment(dateRange[0],"mm dd yyyy");
+                let end = moment(dateRange[1],"mm dd yyyy");
+                let diff = end.diff(start, 'day')
+                let range = []
+                for (let i = 0; i <= diff; i++) {
+                    range.push(moment(dateRange[0]).add(i, 'day'));
+                }
+                range.forEach((ran)=>{
+                    labels.push(ran.toDate().toLocaleDateString());
+                });
                 labels.forEach((la)=>{
                     datas.push(0);
                 })
@@ -251,7 +291,6 @@ export default function Statict ({ }){
                 <div className="statict-main-page">
                     <div className="statict-top-button">
                         <select name="statict type" className="statict-select" defaultValue="month" onChange={(e)=>setSelect(e.target.value)}>
-                            <option value="day" >Ngày</option>
                             <option value="month">Tháng</option>
                             <option value="year">Năm</option>
                             <option value="fromto">Khoản ngày</option>
@@ -260,7 +299,13 @@ export default function Statict ({ }){
                         <button onClick={()=>handleClick()}>Chọn</button>
                     </div>
                     <div className="statict-chart-panel">
-                        {graph.length!==0?<Line data={graph} className="statict-chart"/>:<div></div>}
+                        {graph.length!==0?
+                        <div className="statict-show-panel">
+                            <Line data={graph} className="statict-chart"/>
+                        </div>
+                        
+
+                        :<div>Vui lòng chọn điều kiện lọc</div>}
                     </div>
                 </div>
             </div>
