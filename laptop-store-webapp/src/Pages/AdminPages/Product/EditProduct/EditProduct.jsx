@@ -36,7 +36,7 @@ export default function EditProduct({ product }) {
     });
     const showFormInfo = () => {
         if (isReadonly === true) return (
-            <div className="product-input-form">
+            <div className={flag===false?"product-input-form":"page-hide"}>
                 <div className="product-input-subtitle"> Đây là thông tin chung của sản phẩm</div>
                 <div className="input-form">
                     <div className="input-form-item">
@@ -113,11 +113,12 @@ export default function EditProduct({ product }) {
                 </div>
                 <div className="product-button">
                     <button className=" product-button-page1" onClick={() => setisReadonly(!isReadonly)}>Chỉnh sửa</button>
+                    <button className="product-button-page1" >Trang sau</button>
                 </div>
             </div>
         );
         else return (
-            <div className="product-input-form">
+            <div className={flag===false?"product-input-form":"page-hide"}>
                 <div className="product-input-subtitle"> Chỉnh sửa thông tin chung của sản phẩm</div>
                 <div className="input-form">
                     <div className="input-form-item">
@@ -149,7 +150,7 @@ export default function EditProduct({ product }) {
                             Loại:
                         </div>
                         <div className="input-form-input">
-                            <select name="product type" className="input-input" defaultValue={product.idloai} onChange={(e) => setPro({ ...pro, idloai: e.target.value })}>
+                            <select name="product type" className="input-input" readOnly={true} defaultValue={product.idloai} onChange={(e) => setPro({ ...pro, idloai: e.target.value })}>
                                 <option value="mouse" >Chuột</option>
                                 <option value="laptop">Laptop</option>
                                 <option value="screen" >Màn hình</option>
