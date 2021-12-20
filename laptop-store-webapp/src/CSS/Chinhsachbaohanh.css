@@ -1,0 +1,198 @@
+.body-policy-insurance-wrapper {
+    color      : #222;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size  : 12px;
+    margin     : 0;
+    padding    : 0;
+}
+
+.lappe-static-container {
+    max-width       : 1630px;
+    margin          : 30px auto;
+    padding         : 30px;
+    background-color: #fff;
+}
+
+.lappe-static-heading1 {
+    text-transform     : uppercase;
+    position           : relative;
+    text-align         : center;
+    font-size          : 36px;
+    font-weight        : 700;
+    margin-block-start : 0.67em;
+    margin-block-end   : 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+    display            : block;
+    color              : #0624c9;
+}
+
+.lappe-static-image-container {
+    display: block;
+    width  : 50%;
+    margin : 20px auto;
+}
+
+.lappe-content-box-container {
+    position  : relative;
+    margin-top: 56px;
+}
+
+.lappe-content-box-title {
+    position           : absolute;
+    background         : #243a76;
+    color              : #fff;
+    font-size          : 20px;
+    font-weight        : 600;
+    padding            : 10px 20px;
+    border-radius      : 9999px;
+    margin             : auto;
+    display            : inline-block;
+    text-align         : center;
+    top                : -26px;
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+    left               : calc(50% - 135px);
+}
+
+.lappe-content-box {
+    border       : 1px solid #e8e8e8;
+    padding      : 25px 30px 10px;
+    border-radius: 5px;
+    font-size    : 16px;
+}
+
+.lappe-static-text {
+    font-size          : inherit;
+    display            : block;
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+    font-weight        : 500;
+
+}
+
+.strong-text {
+    color: #0624c9;
+}
+
+.strong-text-important {
+    color: #ff0000;
+}
+
+.span-style {
+    color: #ff0000;
+}
+
+.lappe-ul-text {
+    display             : block;
+    list-style-type     : disc;
+    margin-block-start  : 1em;
+    margin-block-end    : 1em;
+    margin-inline-start : 0px;
+    margin-inline-end   : 0px;
+    padding-inline-start: 40px;
+    font-size           : 16px;
+    font-weight         : 600;
+}
+
+.li-ul-text {
+    font-weight: 400;
+}
+
+.lappe-static-text-luuy {
+    color: #ff0000;
+}
+
+.lappe-notice-text {
+    font-style      : italic;
+    font-size       : 16px;
+    font-weight     : 700;
+    padding         : 10px;
+    background-color: #ec1f27;
+    color           : #ff0000;
+    width           : fit-content;
+    border-radius   : 999px;
+    color           : #fff;
+}
+
+.lappe-static-table {
+    width          : 100%;
+    height         : 243px;
+    border         : none;
+    margin         : 16px 0;
+    table-layout   : fixed;
+    display        : table;
+    border-collapse: separate;
+    text-indent    : initial;
+    border-spacing : 2px;
+}
+
+.lappe-static-table tr {
+    border     : 1px solid #777;
+    line-height: 24px;
+}
+
+.body-table-policy {
+    display       : table-row-group;
+    vertical-align: middle;
+    border-color  : inherit;
+}
+
+.first-child-tr {
+    background-color: #243a76;
+    color           : #fff;
+    border          : 1px solid #777;
+    line-height     : 24px;
+}
+
+.policy-td-1 {
+    width: 50px;
+}
+
+.policy-td-1 strong {
+    padding-bottom: 10px;
+    line-height   : 1.2;
+    font-size     : 13px;
+    font-weight   : revert;
+    font-family   : Arial, Helvetica, sans-serif;
+}
+
+.policy-td-2 strong {
+    padding-bottom: 10px;
+    line-height   : 1.2;
+    font-size     : 13px;
+    font-weight   : revert;
+    font-family   : Arial, Helvetica, sans-serif;
+}
+
+.policy-td-3 strong {
+    padding-bottom: 10px;
+    line-height   : 1.2;
+    font-size     : 13px;
+    font-weight   : revert;
+    font-family   : Arial, Helvetica, sans-serif;
+
+}
+
+.strong-policy-stt {
+    font-weight: 700;
+}
+
+.policy-td-3 {
+    width: 200px;
+}
+
+
+.lappe-static-container td {
+    border-right: 1px solid #ffffff00;
+    border-left : 1px solid #ffffff00;
+    padding     : 15px;
+}
+
+.nth-child {
+    background-color: #c1c1c1;
+}

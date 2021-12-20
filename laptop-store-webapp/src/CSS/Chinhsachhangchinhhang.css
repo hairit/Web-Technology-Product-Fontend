@@ -1,0 +1,54 @@
+.genuine-static-container {
+    max-width       : 1630px;
+    margin          : 30px auto;
+    padding         : 30px;
+    background-color: #fff;
+}
+
+.genuine-static-heading1 {
+    position   : relative;
+    text-align : center;
+    font-size  : 36px;
+    font-weight: 700;
+    color      : #ff0000;
+}
+
+.genuine-static-image {
+    max-width: 900px;
+    height   : auto;
+    margin   : 0 auto;
+    display  : block;
+}
+
+.genuine-static-text-nav-bar {
+    width   : 80%;
+    margin  : auto;
+    overflow: auto;
+}
+
+.genuine-static-inline {
+    float         : left;
+    width         : calc(33.333333% - 6px);
+    margin-right  : 9px;
+    text-align    : center;
+    background    : #ec1f27;
+    color         : #fff;
+    font-size     : 24px;
+    text-transform: uppercase;
+    font-weight   : 700;
+    padding       : 30px;
+}
+
+.genuine-static-inline:last-child {
+    margin-right: 0;
+}
+
+.genuine-wrapper-text {
+    padding-top: 30px;
+}
+
+.genuine-static-text {
+    padding-top: 15px;
+    font-size  : 15px;
+    font-weight: 550;
+}

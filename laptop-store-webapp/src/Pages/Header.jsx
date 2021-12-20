@@ -14,61 +14,45 @@ import { CgSearch } from "react-icons/cg";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BiMenuAltLeft } from "react-icons/bi"
 import { IoIosNotificationsOutline } from "react-icons/io";
-import {MdAdminPanelSettings} from 'react-icons/md';
+import { MdAdminPanelSettings } from 'react-icons/md';
 import ship from '../Images/ship.png'
 import daxem from '../Images/daxem.png'
 import chinhhang from '../Images/chinhhang.png'
 import tuvan from '../Images/tuvan.png'
-import {NavLink,Link} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import UserPanel from "./UserPanel";
 import axios from "axios";
 
-export default function Header({ user , adminMode, logout , updateData ,setUser}) {
+export default function Header({ user, adminMode, logout, updateData, setUser }) {
   const [statusHeader, setStatusHeader] = useState(false);
   const [userPanel, setUserPanel] = useState(false);
-  const [space, setSpace] = useState(100);
-  const [transition, setTransition] = useState('5s');
   const [namepro, setNamePro] = useState([]);
   const history = useHistory();
   useEffect(() => {
-    console.log("Header : rerender");
     window.addEventListener('scroll', changeStatusHeader);
-    setSpace(-50);
-    // setInterval(()=>{
-    //     console.log(space);
-    //     console.log(transition);
-    //     if(space === 100) {
-    //       setTransition('0s');
-    //       setSpace(-50);
-    //     }
-    //     if(space === -50){
-    //       setTransition('5s');
-    //       setSpace(100);
-    //     }
-    //     },5000);
   }, [])
   const changeStatusHeader = () => {
     if (window.scrollY >= 42) setStatusHeader(true);
     else setStatusHeader(false);
   }
   const changeStatusUserPanel = () => {
-    if(userPanel === false) setUserPanel(true);
+    if (userPanel === false) setUserPanel(true);
     else setUserPanel(false);
   }
   function btnSearch() {
-      history.push(`/products/${namepro}`)
-      updateData()
+    history.push(`/products/${namepro}`)
+    updateData()
   }
   function handleSearch(e) {
     setNamePro(e.target.value)
-    console.log("aq",namepro)
+    console.log("aq", namepro)
   }
     return (
       <div className={adminMode === false ? "header" : "header-hide"}>
         <div className="header-top">
           <div className="header-top-scroll">
-             <div className="scroll-content" style={{marginLeft : `${space}%`,transition : transition}}>
-               ádasdasdddddddddddddddddddddddddd
+             <div className="scroll-content" >
+              
              </div>
           </div>
           <div className="header-top-right-menu">
@@ -99,86 +83,86 @@ export default function Header({ user , adminMode, logout , updateData ,setUser}
                 <input
                 onChange={(e) => handleSearch(e)}
                 id="namepro" value={namepro}
-                  className="input-search-product"
-                  placeholder="Nhập sản phẩm bạn muốn tìm !"
-                />
-                <button onClick={() => btnSearch()} className="button-search-product">
-                  <CgSearch id="button-search-product-icon" />
-                  <p>Tìm kiếm</p>
-                </button>
-              </div>
-            </div>
-            <div className="header-center-right">
-              {user === null ? (
-                <NavLink className="header-center-right-menu-item" to="/login">
-                  <HiOutlineUserCircle className="header-center-right-menu-item-icon" />
-                  <p className="login-text">Đăng nhập</p>
-                </NavLink>
-              ) : (
-                <div className="header-center-right-menu-item user-drop-down">
-                 <UserPanel user={user} changeStatusPanelUser={changeStatusUserPanel} userPanel={userPanel} updateData={updateData} setUser={setUser} logout={logout}/>
-                  {user.nameimage !== null ? (
-                    <img
-                      src={URL + `/Images/UserAvatar/${user.nameimage}`}
-                      className="avatar"
-                      alt="avatar"
-                    />
-                  ) : (
-                    <img
-                      src={URL + `/Images/UserAvatar/NullAvatar.png`}
-                      className="avatar"
-                      alt="avatar"
-                    />
-                  )}
-                  <p className="login-text">
-                    {user.firstname + " " + user.lastname}
-                  </p>
-                  <AiOutlineCaretDown id="drop-user" onClick={()=>changeStatusUserPanel()} />
-                  
-                </div>
-              )}
-              {user === null ? (<div></div>) : (
-                <NavLink className="header-center-right-menu-item" to="/bill">
-                  <RiBillLine className="header-center-right-menu-item-icon" />
-                  {user.bills.length === 0 ? (
-                    <div></div>
-                  ) : (
-                    <div id="quantity-bill-user">{user.bills.length}</div>
-                  )}
-                  <p>Đơn hàng</p>
-                </NavLink>
-              )}
-              <NavLink className="header-center-right-menu-item" to={user === null ? "/cart" : "/cart"} onClick={() => updateData}>
-                <AiOutlineShoppingCart className="header-center-right-menu-item-icon" />
-                {user === null ? (<div></div>) : (
-                  <div id="quantity-cartdetails-user" style={{ display: user.cartDetails.length === 0 ? 'none' : 'block' }}>
-                    <p>{user.cartDetails.length}</p>
-                  </div>
-                )}
-                <p>Giỏ hàng</p>
-              </NavLink>
-              <NavLink to="/">
-                <div className="header-center-right-menu-item" >
-                  <IoIosNotificationsOutline className="header-center-right-menu-item-icon" />
-                  <p>Thông báo</p>
-                </div>
-              </NavLink>
+                className="input-search-product"
+                placeholder="Nhập sản phẩm bạn muốn tìm !"
+              />
+              <button onClick={() => btnSearch()} className="button-search-product">
+                <CgSearch id="button-search-product-icon" />
+                <p>Tìm kiếm</p>
+              </button>
             </div>
           </div>
-        </div>
-        <div className="header-bottom">
-          <div className="container12Col wide">
-            <div className="row-12-no-margin">
-              <div className="col c-2 header-bottom-item header-bottom-item-menu"><BiMenuAltLeft className="header-bottom-item-img" /> Danh mục sản phẩm</div>
-              <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={daxem} />Sản phẩm bạn đã xem</div>
-              <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={tuvan} />Hướng dẫn mua hàng</div>
-              <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={ship} />Chính sách vận chuyển</div>
-              <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={tuvan} />Tư vấn bán hàng</div>
-              <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={chinhhang} />Chính sách bảo hành</div>
-            </div>
+          <div className="header-center-right">
+            {user === null ? (
+              <NavLink className="header-center-right-menu-item" to="/login">
+                <HiOutlineUserCircle className="header-center-right-menu-item-icon" />
+                <p className="login-text">Đăng nhập</p>
+              </NavLink>
+            ) : (
+              <div className="header-center-right-menu-item user-drop-down">
+                <UserPanel user={user} changeStatusPanelUser={changeStatusUserPanel} userPanel={userPanel} updateData={updateData} setUser={setUser} logout={logout} />
+                {user.nameimage !== null ? (
+                  <img
+                    src={URL + `/Images/UserAvatar/${user.nameimage}`}
+                    className="avatar"
+                    alt="avatar"
+                  />
+                ) : (
+                  <img
+                    src={URL + `/Images/UserAvatar/NullAvatar.png`}
+                    className="avatar"
+                    alt="avatar"
+                  />
+                )}
+                <p className="login-text">
+                  {user.firstname + " " + user.lastname}
+                </p>
+                <AiOutlineCaretDown id="drop-user" onClick={() => changeStatusUserPanel()} />
+
+              </div>
+            )}
+            {user === null ? (<div></div>) : (
+              <NavLink className="header-center-right-menu-item" to="/bill">
+                <RiBillLine className="header-center-right-menu-item-icon" />
+                {user.bills.length === 0 ? (
+                  <div></div>
+                ) : (
+                  <div id="quantity-bill-user">{user.bills.length}</div>
+                )}
+                <p>Đơn hàng</p>
+              </NavLink>
+            )}
+            <NavLink className="header-center-right-menu-item" to={user === null ? "/cart" : "/cart"} onClick={() => updateData}>
+              <AiOutlineShoppingCart className="header-center-right-menu-item-icon" />
+              {user === null ? (<div></div>) : (
+                <div id="quantity-cartdetails-user" style={{ display: user.cartDetails.length === 0 ? 'none' : 'block' }}>
+                  <p>{user.cartDetails.length}</p>
+                </div>
+              )}
+              <p>Giỏ hàng</p>
+            </NavLink>
+            <NavLink to="/">
+              <div className="header-center-right-menu-item" >
+                <IoIosNotificationsOutline className="header-center-right-menu-item-icon" />
+                <p>Thông báo</p>
+              </div>
+            </NavLink>
           </div>
         </div>
       </div>
-    );
-} 
+      <div className="header-bottom">
+        <div className="container12Col wide">
+          <div className="row-12-no-margin">
+            <div className="col c-2 header-bottom-item header-bottom-item-menu"><BiMenuAltLeft className="header-bottom-item-img" /> Danh mục sản phẩm</div>
+            <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={daxem} />Sản phẩm bạn đã xem</div>
+            <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={tuvan} />Hướng dẫn mua hàng</div>
+            <div className="col c-2 header-bottom-item"><NavLink to='/chinhsachvanchuyen' className='header-bottom-link-item'><img className="header-bottom-item-img" src={ship} />Chính sách vận chuyển</NavLink></div>
+            <div className="col c-2 header-bottom-item"><img className="header-bottom-item-img" src={tuvan} />Tư vấn bán hàng</div>
+            <div className="col c-2 header-bottom-item"><NavLink to='/chinhsachbaohanh' className='header-bottom-link-item'><img className="header-bottom-item-img" src={chinhhang} />Chính sách bảo hành</NavLink></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 

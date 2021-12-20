@@ -109,6 +109,10 @@
 }
 .product-img-preview
 {
-    width: 800px;
-    height: 600px;
+    width: 300px;
+    height: 400px;
+    float: right;
+}
+.product-img-pre-panel{
+    display: flex;
 }

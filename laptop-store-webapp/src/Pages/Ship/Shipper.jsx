@@ -65,7 +65,7 @@ export default function Shipper({changeAdminMode}) {
                             </div>
                             <div className='shipper-inFor-bill-item'>
                                 <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Ngày đặt</div>
-                                <div>{bill.ngaydat}</div>
+                                <div>{solver.getDateFormat(bill.ngaydat)}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>
                                 <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Số điện thoại người nhận</div>
@@ -77,7 +77,7 @@ export default function Shipper({changeAdminMode}) {
                             </div>
                             <div className='shipper-inFor-bill-item'>
                                 <div style={{color: 'rgb(67, 67, 216)',padding : '7px 0'}}>Tổng tiền</div>
-                                <div style={{color : 'red',fontSize :'20px',fontWeight : '500'}}>{bill.tongtien}</div>
+                                <div style={{color : 'red',fontSize :'20px',fontWeight : '500'}}>{solver.formatCurrency("vi-VN", "currency", "VND", bill.tongtien)}</div>
                             </div>
                         </>  : <div>Chưa có hóa đơn</div>
                 }
