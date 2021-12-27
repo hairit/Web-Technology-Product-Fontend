@@ -287,17 +287,19 @@
     background-color: #eeeaea;
 }
 .staff-customer-search{
-    height:  80px;
+    height:  auto;
     border-radius: 5px;
     padding: 0 30px;
     margin : 20px 30px 10px 30px;
     background-color: #FFFFFF;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 .staff-customer-search-item{
     display: flex;
     position: relative;
+    margin: 10px 0;
     height: auto;
     width: max-content;
     align-items: center;
