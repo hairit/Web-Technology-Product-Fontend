@@ -5,7 +5,7 @@ import { BsFillMouse2Fill, BsHeadphones } from "react-icons/bs";
 import { FcSalesPerformance } from "react-icons/fc";
 import { AiFillGift } from "react-icons/ai";
 import { FcShipped } from "react-icons/fc";
-import { FaMedal } from "react-icons/fa";
+import { FaMedal ,FaMemory } from "react-icons/fa";
 const PRODUCT_OPTIONS = [
   {
     optionName: "Laptop",
@@ -912,6 +912,38 @@ const PRODUCT_OPTIONS = [
     path: "/headphone",
     icon: () => {
       return <BsHeadphones className="pro-list-item-icon" />;
+    },
+    attributes : null
+  },
+  {
+    optionName : "Ram (Bộ nhớ)",
+    path : "/ram",
+    icon : () => {
+      return <FaMemory className="pro-list-item-icon"/>
+    },
+    attributes : null
+  },
+  {
+    optionName : "VGA (Card Màn hình)",
+    path : "/vga",
+    icon : () => {
+      return <FaMemory className="pro-list-item-icon"/>
+    },
+    attributes : null
+  },
+  {
+    optionName : "Mainboard (Bo mạch chủ)",
+    path : "/mainboard",
+    icon : () => {
+      return <FaMemory className="pro-list-item-icon"/>
+    },
+    attributes : null
+  },
+  {
+    optionName : "TV & Màn hình TV",
+    path : "/tv",
+    icon : () => {
+      return <FaMemory className="pro-list-item-icon"/>
     },
     attributes : null
   },

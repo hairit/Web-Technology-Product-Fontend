@@ -1,5 +1,5 @@
 import React from 'react'
-import html2pdf from 'html2pdf.js'
+// import html2pdf from 'html2pdf.js'
 import LogoFT from "../../Images/LogoFT.png"
 export default function PrintBills() {
 

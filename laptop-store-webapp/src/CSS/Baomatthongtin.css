@@ -1,0 +1,91 @@
+.security-infor-static-container {
+    max-width       : 1630px;
+    margin          : 30px auto;
+    padding         : 30px;
+    background-color: #fff;
+
+}
+
+.security-infor-static-heading1 {
+    color      : #ff0000;
+    position   : relative;
+    text-align : center;
+    font-size  : 36px;
+    font-weight: 700;
+}
+
+.security-infor-static-text {
+    font-size  : inherit;
+    font-size  : 16px;
+    font-weight: 500;
+}
+
+.security-infor-static-text p {
+    display            : block;
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+}
+
+.security-infor-content-box-container {
+    position  : relative;
+    margin-top: 56px;
+}
+
+.security-infor-static-heading3 {
+    font-size: 20px;
+}
+
+.security-infor-content-box-ribbon {
+    border-left: 4px solid #ec1f27;
+    position   : absolute;
+    background : #243a76;
+    color      : #fff;
+    font-size  : 18px;
+    font-weight: 600;
+    padding    : 10px 20px;
+    margin     : auto;
+    display    : inline-block;
+    text-align : center;
+    top        : -23px;
+    left       : -10px;
+}
+
+.security-infor-content-box-ribbon::after {
+    position     : absolute;
+    right        : -30px;
+    top          : 0;
+    content      : '';
+    width        : 26px;
+    height       : 32px;
+    border-left  : 14px solid #243a76;
+    border-right : 16px solid #00000000;
+    border-top   : 23.5px solid #243a76;
+    border-bottom: 16.2px solid #243a76;
+}
+
+
+.security-infor-content-box-ribbon h3 {
+    margin-block-start : 1em;
+    margin-block-end   : 1em;
+    margin-inline-start: 0px;
+    margin-inline-end  : 0px;
+}
+
+.security-infor-content-box {
+    border       : 1px solid #e8e8e8;
+    padding      : 25px 30px 10px;
+    border-radius: 5px;
+}
+
+.security-infor-text-ul {
+    display             : block;
+    list-style-type     : disc;
+    margin-block-start  : 1em;
+    margin-block-end    : 1em;
+    margin-inline-start : 0px;
+    margin-inline-end   : 0px;
+    padding-inline-start: 40px;
+    font-size           : 15px;
+}

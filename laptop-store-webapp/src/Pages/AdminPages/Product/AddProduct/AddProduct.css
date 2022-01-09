@@ -9,7 +9,6 @@
     background-color: #dfe6e9;
     display: grid;
     margin: 32px 45px;
-    overflow: auto;
 }
 .produt-add-title{
     font-size: 30px;
@@ -18,7 +17,7 @@
 }
 .product-add-item{
     width: 100%;
-    height: 2vw;
+    height: 15px;
     display: inline;
     padding-bottom: 2px;
     background-color: #74b9ff;
@@ -45,6 +44,7 @@
 .product-input-form{
     display: block;
     overflow: auto;
+    height: 80%;
 }
 .product-input-subtitle{
     margin-bottom: 30px;
@@ -53,7 +53,6 @@
 .input-form{
     display:block;
     height: 100%;
-    overflow: auto;
 }
 .input-form-item{
     display: flex;
@@ -94,7 +93,6 @@
 .product-edit-page{
     height: 100%;
     width: 100%;
-    overflow: auto;
 }
 .product-button-page1{
     margin-right: 11%;
@@ -109,4 +107,12 @@
 .page-hide{
     display: none;
 }
-
+.product-img-preview
+{
+    width: 300px;
+    height: 400px;
+    float: right;
+}
+.product-img-pre-panel{
+    display: flex;
+}

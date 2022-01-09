@@ -9,7 +9,7 @@ export default function Customer({idUser}) {
     const history = useHistory();
     const [updateData, setUpdateData] = useState(false);
     const [modeSearch, setModeSearch] = useState('name');
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState(null);
     const [active, setActive] = useState(false);
     const [customer, setCustomer] = useState({id : null,firstname : null,lastname : null,email : null,pass :null,sdt : null,diachi : null,nameimage : null});
     useEffect(() => {

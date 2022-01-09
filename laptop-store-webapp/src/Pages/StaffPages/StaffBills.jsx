@@ -30,13 +30,16 @@ export default function StaffBills() {
     useEffect(() => {
         axios.get(`https://localhost:44343/data/bill/status=${statusBill}`,null)
                 .then(res => {   
+                    // res.data.forEach(element => {
+                    //     if(element.idBill === saveBill.current.id)  setBill(element);
+                    // });
                     setBills(res.data);
             })
                 .catch(() => setBills([]));
     }, [statusBill,reload])
     useEffect(() => {
         if(saveBill.current !== null) {
-            axios.get(`https://localhost:44343/data/bill/getbill/${saveBill.current.id}`,null)
+            axios.get(`https://localhost:44343/data/bill/getbill/update/${saveBill.current.id}`,null)
                 .then(res => {
                     console.log(res.data);
                     setBill(res.data);
@@ -176,63 +179,20 @@ export default function StaffBills() {
             </div>
         )
     }
-    function generateBill(idbill) {
+    // function inbill() {
+    //     setTimeout(() => {
+    //         const hoadon = document.getElementById(id);
+    //         console.log("vv",hoadon);    
+    //         html2pdf().from(hoadon).save();
+    //     },800);
+    //     var id = generateBill().props.id
+       
+    // }
+    function generateBill() {
             // console.log("111", tlHoadon())
-            setTimeout(() => {
                 const hoadon = document.getElementById("invoice");
                 console.log("vv",hoadon);    
                 html2pdf().from(hoadon).save();
-            },1000);
-            return (
-                <div className='invoice-bill'>
-                    <div className="col-md-12 wt">
-                        <div className="card" id="invoice">
-                            <div className="top-invoice">
-                                <div className="left-top-invoice">
-                                    <img src={LogoFT} />
-                                    <p>LAPPEE</p>
-                                </div>
-                                <div className="right-top-invoice">
-                                    <p>Chi nhánh TP Hồ Chí Minh</p>
-                                    <p>Địa chỉ: 273 An Dương Vương, phường 6 quận 5</p>
-                                </div>
-                            </div>
-                            <div className="center-invoice">
-                                <div className="center-invoice-top">
-                                    HÓA ĐƠN 
-                                </div>
-                            </div>
-                            <div className="centerTitle-bill">
-                                <table className="table table-hover table-bill">
-                                <thead>
-                                    <tr className="">
-                                        <th className="col cols row-idOrder">ID</th>
-                                        <th className="col cols row-pro">Sản phẩm</th>
-                                        <th className="col cols row-sltt">Tổng tiền</th>
-                                        <th className="col cols row-date">Ngày đặt</th>
-                                        <th className="col cols row-address">Địa chỉ</th>
-                                    </tr>
-                                </thead>
-                                    <tbody>
-                                        <tr className="info-bill">
-                                            <td className="id-bill"></td> 
-                                                <ProductInBills idbill={idbill}/>
-                                            <td className="info-productInBill bill-price" ></td>
-                                            <td className="info-productInBill"></td>
-                                            <td className="info-productInBill"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="price-printbill"><p>Tổng tiền:</p> </div>
-                            <div className="bottom-invoice">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )
-            
-            
     }
 
     const updateData = () => {
@@ -315,9 +275,9 @@ export default function StaffBills() {
                                 item.tinhtrang === 'Chờ xác nhận' ? 
                                 
                                     <button className='staff-bill-button accept-bill-button' 
-                                    onClick={()=> { setTimeout(() => {
-                                        generateBill(item.id)
-                                    },800)
+                                    onClick={()=> { 
+                                        generateBill()
+                                  
                                         // tlHoadon(item.id)
                                         actionBill(item.id,'accept')}}
                                         
@@ -409,7 +369,54 @@ export default function StaffBills() {
                 </table>
                </div>
             </div>
-            
+            <div className='invoice-bill' id="print-bill">
+                    <div className="col-md-12 wt">
+                        <div className="card" id="invoice">
+                            <div className="top-invoice">
+                                <div className="left-top-invoice">
+                                    <img src={LogoFT} />
+                                    <p>LAPPEE</p>
+                                </div>
+                                <div className="right-top-invoice">
+                                    <p>Chi nhánh TP Hồ Chí Minh</p>
+                                    <p>Địa chỉ: 273 An Dương Vương, phường 6 quận 5</p>
+                                </div>
+                            </div>
+                            <div className="center-invoice">
+                                <div className="center-invoice-top">
+                                    HÓA ĐƠN 
+                                </div>
+                            </div>
+                            <div className="centerTitle-bill">
+                                <table className="table table-hover table-bill">
+                                <thead>
+                                    <tr className="">
+                                        <th className="col cols row-idOrder">ID</th>
+                                        <th className="col cols row-pro">Sản phẩm</th>
+                                        <th className="col cols row-sltt">Tổng tiền</th>
+                                        <th className="col cols row-date">Ngày đặt</th>
+                                        <th className="col cols row-address">Địa chỉ</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr className="info-bill">
+                                            <td className="id-bill"></td> 
+                                            {bills.map((item,index) => {
+                                                <ProductInBills key={index} idbill={item.id}/>
+                                            })}
+                                            <td className="info-productInBill bill-price" ></td>
+                                            <td className="info-productInBill"></td>
+                                            <td className="info-productInBill"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="price-printbill"><p>Tổng tiền:</p> </div>
+                            <div className="bottom-invoice">
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     )
 }

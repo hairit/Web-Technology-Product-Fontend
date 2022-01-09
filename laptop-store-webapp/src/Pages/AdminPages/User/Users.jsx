@@ -189,7 +189,7 @@ export default function Users() {
                                     }
                                         : { borderBottom: '0.1px solid rgb(228, 224, 224)' }}>
                                     <td className="userncd-table-cell">{item.id}</td>
-                                    <td className="userncd-table-cell">{item.firstname + " " + item.lastname}</td>
+                                    <td className="userncd-table-cell">{item.lastname + " " + item.firstname}</td>
                                     <td className="userncd-table-cell">{item.email}</td>
                                     <td className="userncd-table-cell">{item.pass}</td>
                                     <td className="userncd-table-cell">{item.diachi}</td>
@@ -210,12 +210,10 @@ export default function Users() {
                                 <p className="inFor-item-text" style={{ paddingLeft: '20px' }}>Tên</p>
                                 <input className="userncd-input input-name" placeholder="" defaultValue={userncd.lastname} onChange={(e) => setUserncd({ ...userncd, lastname: e.target.value.toString() })} />
                             </div>
-                        </div>
-                        <div className="userncd-inFor-item">
-                            <p className="inFor-item-text">Email</p>
-                            <input className="userncd-input input-email" placeholder="" defaultValue={userncd.email} onChange={(e) => setUserncd({ ...userncd, email: e.target.value.toString() })} />
-                        </div>
-                        <div className="userncd-inFor-item inFor-name">
+                            <div className="userncd-inFor-item">
+                                <p className="inFor-item-text">Email</p>
+                                <input className="userncd-input input-email" placeholder="" defaultValue={userncd.email} onChange={(e) => setUserncd({ ...userncd, email: e.target.value.toString() })} />
+                            </div>
                             <div className="inFor-name-item">
                                 <p className="inFor-item-text">Pass</p>
                                 <input className="userncd-input input-name" placeholder="" defaultValue={userncd.pass} onChange={(e) => setUserncd({ ...userncd, pass: e.target.value.toString() })} />
@@ -224,37 +222,40 @@ export default function Users() {
                                 <p className="inFor-item-text">Địa chỉ</p>
                                 <input className="userncd-input input-address" placeholder="" defaultValue={userncd.diachi} onChange={(e) => setUserncd({ ...userncd, diachi: e.target.value.toString() })} />
                             </div>
-                            <div className="inFor-name-item">
-                                <p className="inFor-item-text" >SĐT</p>
-                                <input className="userncd-input input-sdt" placeholder="" defaultValue={userncd.sdt} onChange={(e) => setUserncd({ ...userncd, sdt: e.target.value.toString() })} />
-                            </div>
                         </div>
-                        <div className="userncd-inFor-item inFor-mode">
-                            <p className="inFor-item-text">Chức vụ</p>
-                            <select className="select-mode-userncd" value={userncd.mode} onChange={(e) => setUserncd({ ...userncd, mode: e.target.value.toString() })}>
-                                <option value="ADMIN">Admin</option>
-                                <option value="STAFF">Staff</option>
-                                <option value="CUSTOMER">Customer</option>
-                            </select>
+                        <div className="inFor-name-item">
+                            <p className="inFor-item-text" >SĐT</p>
+                            <input className="userncd-input input-sdt" placeholder="" defaultValue={userncd.sdt} onChange={(e) => setUserncd({ ...userncd, sdt: e.target.value.toString() })} />
                         </div>
                         <div className="customer-inFor-item customer-image-upload">
+                            <div className="userncd-inFor-item inFor-mode">
+                                <p className="inFor-item-text">Chức vụ</p>
+                                <select className="select-mode-userncd" value={userncd.mode} onChange={(e) => setUserncd({ ...userncd, mode: e.target.value.toString() })}>
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="STAFF">Staff</option>
+                                    <option value="CUSTOMER">Customer</option>
+                                    <option value="SHIPPER">Shipper</option>
+                                </select>
+                            </div>
                             <div className="userncd-button-group">
                                 <div className="userncd-inFor-item userncd-search">
-                                    <select defaultValue={modeSearch} className="select-mode-search" onChange={(e) => {
-                                        if (e.target.value.toString() === 'ADMIN' || 'CUSTOMER' || 'STAFF') {
+                                    <select defaultValue={''} className="select-mode-search-permission" onChange={(e) => {
                                             searchUserWithMode(e.target.value.toString());
-                                        } else {
-                                            setModeSearch(e.target.value.toString());
-                                        }
+                                    }}>
+                                        <option value="ADMIN">Admin</option>
+                                        <option value="CUSTOMER">Customer</option>
+                                        <option value="STAFF">Staff</option>
+                                    </select>
+                                
+                                    <select defaultValue={modeSearch} className="select-mode-search" onChange={(e) => {
+                                        setModeSearch(e.target.value.toString());
                                     }}>
                                         <option value="email">Email</option>
                                         <option value="sdt">SĐT</option>
                                         <option value="name">Tên</option>
                                         <option value="id">ID</option>
-                                        <option value="ADMIN">Admin</option>
-                                        <option value="CUSTOMER">Customer</option>
-                                        <option value="STAFF">Staff</option>
                                     </select>
+
                                     <input className="userncd-input-search" type="text" placeholder="value" defaultValue={value} onChange={(e) => setValue(e.target.value.toString())} />
                                     <button className="userncd-btn-search" onClick={() => searchUser(modeSearch, value)}>Search</button>
                                 </div>

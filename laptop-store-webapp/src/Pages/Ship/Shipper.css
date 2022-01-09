@@ -1,0 +1,113 @@
+.shipper-page{
+    background-color: rgb(219, 221, 223);
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+}
+.shipper-form-bill{
+    background-color: #FFFFFF;
+    width: 800px;
+    padding: 30px 30px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+.shipper-search-bill{
+    width: max-content;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    align-items: center;
+}
+.shipper-search-label{
+    padding: 6px 10px;
+    font-weight: 600;
+}
+.shipper-search-input{
+    box-sizing: border-box;
+    padding: 10px 10px;
+    width: 400px ;
+    border-radius: 3px;
+    border: 2px solid rgba(38, 38, 206, 0.527);
+    box-sizing: border-box;
+    outline: none;
+}
+.shipper-search-button{
+    width: 120px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    background-color: rgb(67, 67, 216);
+    color:  #FFFFFF;
+    font-weight: 500;
+    border-radius: 3px;
+    border: 2px solid rgb(67, 67, 216);
+    margin-left: -5px;
+    z-index: 5;
+}
+.shipper-inFor-bill{
+    width: 800px;
+    padding: 20px 30px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    text-align: center;
+    height: 100%;
+}
+.shipper-inFor-bill-item{
+    text-align: left;
+    font-size: 14px;
+    padding: 10px 0;
+}
+.shipper-button-group{
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 800px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color:rgb(62, 62, 219) ;
+}
+.shipper-button{
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    width: 50%;
+    height: 100%;
+    color: #FFFFFF;
+}
+.button-hoanThanh{
+    border-top: rgb(62, 62, 219) 0.1px solid;
+    color: rgb(62, 62, 219);
+    background-color: #FFFFFF;
+    border-right: rgb(62, 62, 219) 0.1px solid;
+}
+.button-traHang{
+    border-top: rgb(62, 62, 219) 0.1px solid;
+    color: rgb(62, 62, 219);
+    background-color: #FFFFFF;
+    border-left: rgb(62, 62, 219) 0.1px solid;
+}
+
+@media screen and (max-width : 800px) {
+    .shipper-form-bill{
+      width: 100%;
+    }
+    .shipper-search-bill{
+        width: 100%;
+        display: flex;
+    }   
+    .shipper-inFor-bill{
+        width: 100%;
+    }
+    .shipper-search-input{
+        width: 80%;
+    }
+    .shipper-search-button{
+        width: 20%;
+    }
+    .shipper-button-group{
+        width: 100%;
+    }
+}

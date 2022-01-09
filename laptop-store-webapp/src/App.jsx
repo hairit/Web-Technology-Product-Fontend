@@ -33,6 +33,14 @@ import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailPr
 import Products from "./Pages/Products/SearchProducts/Products";
 import PostFile from "./Pages/PostFile";
 import Staff from "./Pages/StaffPages/Staff";
+import Shipper from "./Pages/Ship/Shipper";
+import { IoMdReturnLeft } from "react-icons/io";
+import Chinhsachbaohanh from "./Pages/Chinhsach/Chinhsachbaohanh";
+import Chinhsachvanchuyen from "./Pages/Chinhsach/Chinhsachvanchuyen";
+import LienHe from "./Pages/Lienhe";
+import Chinhsachchung from "./Pages/Chinhsach/Chinhsachchung";
+import Baomatthongtin from "./Pages/Chinhsach/Baomatthongtin";
+import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -47,21 +55,26 @@ function App() {
       axios
         .get(`https://localhost:44343/data/user/${userCookie.id}`)
         .then((res) => {
-          cartDetails.current = res.data.cartDetails;
-          setUser(res.data);
+          if(res.data.mode === 'SHIPPER') {
+              setUser(null);
+          }else
+          {
+            cartDetails.current = res.data.cartDetails;
+            setUser(res.data);
+          }
         })
         .catch((err) => console.log("Đăng nhập fail" + err));
     }
   }, []);
   useEffect(() => {
-    if(user !== null) {
+    if (user !== null) {
       console.log("use Effect 2");
       call('GET', `data/user/${user.id}`, null)
         .then((res) => {
           cartDetails.current = res.data.cartDetails;
-          if(user.cartDetails.length===0) {
+          if (user.cartDetails.length === 0) {
             document.getElementById("quantity-cartdetails-user").style.display = 'none';
-          }else{
+          } else {
             document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
             document.getElementById("quantity-cartdetails-user").style.display = 'block';
           }
@@ -83,7 +96,7 @@ function App() {
     else setAdminMode(true);
   }
   const logout = (history) => {
-    if(history !== null) history.push("/login");
+    if (history !== null) history.push("/login");
     removeCookie('id');
     changeAdminMode('off');
     setUser(null);
@@ -112,13 +125,13 @@ function App() {
   const createBillDetails = (SelectedCartDetails) => {
     var BillDetails = [];
     SelectedCartDetails.forEach(element => {
-        if(element.selected === 1){
-          BillDetails.push({
-            idProduct: element.idProduct,
-            soluong: element.soluong,
-            tongtien: element.tongtien
-          });
-        }
+      if (element.selected === 1) {
+        BillDetails.push({
+          idProduct: element.idProduct,
+          soluong: element.soluong,
+          tongtien: element.tongtien
+        });
+      }
     });
     return BillDetails;
   }
@@ -132,7 +145,7 @@ function App() {
       billDetails: createBillDetails(SelectedCartDetails)
     })
   }
-  const order = () =>{
+  const order = () => {
     axios.post('https://localhost:44343/data/bill/', bill)
       .then(res => {
         console.log(res.status);
@@ -140,21 +153,21 @@ function App() {
         showLoadOrder();
       })
       .catch((err) => {
-        alert("Đặt hàng thất bại"+err);
+        alert("Đặt hàng thất bại" + err);
       })
   }
   function loadQuantity() {
-    if(loading === true){
+    if (loading === true) {
       return (
         <div className="loading">
           <img src={loadEffect} />
         </div>
       )
-    }else {
+    } else {
       <div></div>
     }
   }
-  const addQuantityProduct = (idProduct, price ) => {
+  const addQuantityProduct = (idProduct, price) => {
     setTimeout(() => {
       setLoading(false);
     }, 900)
@@ -170,17 +183,15 @@ function App() {
     setLoading(true);
   }
   const addProductToCart = useCallback(
-    (idUser,idProduct,price)=>{
-      if(idUser === null)
-      {
+    (idUser, idProduct, price) => {
+      if (idUser === null) {
         Swal.fire('Bạn cần đăng nhập để mua hàng')
       }
       else {
         axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
           .then(res => {
             if (res.status === 201) {
-              if(!checkExistCartDetail(res.data.idProduct))
-              {
+              if (!checkExistCartDetail(res.data.idProduct)) {
                 cartDetails.current.push(res.data);
                 document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
                 document.getElementById("quantity-cartdetails-user").style.display = 'block';
@@ -208,7 +219,7 @@ function App() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Okay'
-    }).then((result)=>{
+    }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`https://localhost:44343/data/cartdetail/iduser=${iduser}/idproduct=${idpro}`, null)
           .then(() => {
@@ -242,15 +253,15 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className={adminMode === false ? "App" : "App-no-scroll"}>
-      {loadQuantity()}
-        <Header user={user} adminMode={adminMode} logout={logout}  setUser={setUser} />
-      
-        <Route path="/admin" exact    component={() => <Login login={login}  />} ></Route>
-        <Route path="/admin/:idUser"  component={(match) => <Admin changeAdminMode={changeAdminMode}  match={match} logout={logout} setUser={setUser}/>}></Route>
-        <Route path="/staff" exact    component={() => <Login login={login}   />} ></Route>
-        <Route path="/staff/:idUser"  component={(match) => <Staff changeAdminMode={changeAdminMode}  match={match} logout={logout} />}></Route>
+        {loadQuantity()}
+        <Header user={user} adminMode={adminMode} logout={logout} setUser={setUser} />
 
-        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode}/>}></Route> 
+        <Route path="/admin" exact component={() => <Login login={login} />} ></Route>
+        <Route path="/admin/:idUser" component={(match) => <Admin changeAdminMode={changeAdminMode} match={match} logout={logout} setUser={setUser} />}></Route>
+        <Route path="/staff" exact component={() => <Login login={login} />} ></Route>
+        <Route path="/staff/:idUser" component={(match) => <Staff changeAdminMode={changeAdminMode} match={match} logout={logout} showLoadOrder ={showLoadOrder}/>}></Route>
+
+        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
         <Route path="/laptop/:attribute/:value" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
         <Route path="/laptop/:attribute/:from/:to" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
@@ -278,8 +289,9 @@ function App() {
         <Route path="/screen/:id" exact component={(match) => <DetailProductsScreen idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/headphone/:id" exact component={(match) => <DetailProductsHeadphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/mouse/:id" exact component={(match) => <DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
-        <Route path="/post/file" exact component={() => <PostFile  />}></Route>
-
+        <Route path="/post/file" exact component={() => <PostFile />}></Route>
+        <Route path="/post/file" exact component={() => <PostFile />}></Route>
+        <Route path="/shipper" exact component={()=><Shipper changeAdminMode={changeAdminMode} showLoadOrder={showLoadOrder}/>}></Route>
         <Route path="/cart" exact component={() => <GioHang
           user={user}
           deleteProductFromCart={deleteProductFromCart}
@@ -289,10 +301,15 @@ function App() {
           idUser={user !== null ? user.id : null}
           createBill={createBill}
         />}></Route>
-        <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode}/>} ></Route>
+        <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />} ></Route>
         <Route path="/bill" component={() => <DonHang idUser={user !== null ? user.id : null} />}></Route>
         <Route path="/products/:namepro" exact component={(match) => <Products match={match} />}></Route>
-        {/* <Route path="/lienhe" component={() => <Lienhe />}></Route> */}
+        <Route path="/lienhe" component={() => <LienHe />}></Route>
+        <Route path="/chinhsachbaohanh" component={() => <Chinhsachbaohanh />}></Route>
+        <Route path="/chinhsachvanchuyen" component={() => <Chinhsachvanchuyen />}></Route>
+        <Route path="/chinhsachhangchinhhang" component={() => <Chinhsachhangchinhhang />}></Route>
+        <Route path="/chinhsachchung" component={() => <Chinhsachchung />}></Route>
+        <Route path="/baomatthongtin" component={() => <Baomatthongtin />}></Route>
         <Route path="/tincongnghe" component={() => <Tintuc changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/showroom" component={() => <Showroom />}></Route>
         <Footer adminMode={adminMode} />
