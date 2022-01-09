@@ -61,7 +61,7 @@ export default function Login({login,userCookie,changeAdminMode}) {
                                         else if(res.data.mode === 'CUSTOMER'){
                                             login(res.data);
                                             history.push('/');
-                                        }else {
+                                        }else{
                                             if(res.data.mode === "ADMIN"){
                                                 history.push(`/admin/${res.data.id}`);
                                                 return;
@@ -70,7 +70,7 @@ export default function Login({login,userCookie,changeAdminMode}) {
                                                 history.push(`/staff/${res.data.id}/bills`);
                                                 return;
                                             }
-                                        }       
+                                        }
                                 }
                            )
                            .catch(err => 

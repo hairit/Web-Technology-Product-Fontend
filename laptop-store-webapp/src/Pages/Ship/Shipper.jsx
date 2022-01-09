@@ -72,7 +72,7 @@ export default function Shipper({changeAdminMode}) {
                             </div>
                             <div className='shipper-inFor-bill-item'>
                                 <div style={{color: 'black',padding : '7px 0'}}>Người nhận</div>
-                                <div>{bill.iduserNavigation.lastname +' '+bill.iduserNavigation.firstname}</div>
+                                <div>{bill.iduserNavigation.firstname +' '+bill.iduserNavigation.lastname}</div>
                             </div>
                             <div className='shipper-inFor-bill-item'>
                                 <div style={{color: 'black',padding : '7px 0'}}>Số điện thoại người nhận</div>

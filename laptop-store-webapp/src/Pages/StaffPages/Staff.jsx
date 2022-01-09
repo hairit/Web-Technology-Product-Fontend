@@ -38,7 +38,7 @@ export default function Staff({changeAdminMode,match,logout,showLoadOrder}) {
                 </div>
             </div>
             <div className="staff-main">
-                <Route path="/staff/:idUser/bills" component={() => <StaffBills showLoadOrder={showLoadOrder} /> }></Route>
+                <Route path="/staff/:idUser/bills"     component={() => <StaffBills showLoadOrder={showLoadOrder} /> }></Route>
                 <Route path="/staff/:idUser/Customers" component={() => <StaffCustomers showLoadOrder={showLoadOrder}  /> }></Route>
             </div>
         </div>

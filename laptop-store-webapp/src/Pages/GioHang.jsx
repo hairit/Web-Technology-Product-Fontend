@@ -26,7 +26,7 @@ useEffect(() => {
     axios
       .get(`https://localhost:44343/data/cartdetail/iduser=${idUser}`, null)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200){
           setCartDetails(res.data);
         }
       })
