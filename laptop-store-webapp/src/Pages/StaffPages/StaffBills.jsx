@@ -4,12 +4,17 @@ import axios from 'axios';
 import BillDetailItem from './BillDetailItem';
 import Solver from '../../Classes/Solver';
 import LogoFT from "../../Images/LogoFT.png"
-import jsPDF from 'jspdf'
-import html2pdf from 'html2pdf.js'
 import PrintBills from './PrintBills';
 import ProductInBills from './ProductInBills';
+import { useReactToPrint } from 'react-to-print';
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
+import invoice from "../../CSS/invoice.css"
+import Invoice from './Invoice';
 const solver = new Solver();
-export default function StaffBills() {
+export default function StaffBills({match}) {
+  const history = useHistory();
+
     const [statusBill, setStatusBill] = useState('Chờ xác nhận');
     const [reload, setReload] = useState(false);
     const [idBill, setIdBill] = useState('');
@@ -19,6 +24,8 @@ export default function StaffBills() {
     const saveBill = useRef(null);
     const [active  , setActive] = useState(false);
     const [invoice  , setInvoice] = useState([]);
+    
+    
     useEffect(() => {
         axios.get(`https://localhost:44343/data/bill/status=Đã xác nhận`,null)
                 .then(res => {   
@@ -52,16 +59,31 @@ export default function StaffBills() {
         }
     }, [reload])
     console.log(saveBill.current);
-    console.log(bill);
+    console.log("ádas",bill);
     const actionBill = (idBill,action) => {
         axios.get(`https://localhost:44343/data/bill/action=${action}/${idBill}`,null)
                 .then(res => {
                     updateData();
-                    alert("Xác nhận thành công");
+                    showLoadOrder()
                 })
                 .catch(()=> alert("Không thể xác nhận đơn hàng"))
                 console.log("idbill",idBill);
+
     }
+    function showLoadOrder() {
+        Swal.fire({
+            title: 'Xác nhận thành công',
+            text: "In hóa đơn",
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Yes'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                history.push(`/staff/${match.match.params.idUser}/bills/${saveBill.current.id}`);
+            }
+          })
+      }
     const searchBillByID = () => {
        if(idBill) {
         axios.get(`https://localhost:44343/data/bill/${idBill}`,null)
@@ -179,21 +201,6 @@ export default function StaffBills() {
             </div>
         )
     }
-    // function inbill() {
-    //     setTimeout(() => {
-    //         const hoadon = document.getElementById(id);
-    //         console.log("vv",hoadon);    
-    //         html2pdf().from(hoadon).save();
-    //     },800);
-    //     var id = generateBill().props.id
-       
-    // }
-    function generateBill() {
-            // console.log("111", tlHoadon())
-                const hoadon = document.getElementById("invoice");
-                console.log("vv",hoadon);    
-                html2pdf().from(hoadon).save();
-    }
 
     const updateData = () => {
         if(reload === true) setReload(false);
@@ -239,7 +246,6 @@ export default function StaffBills() {
                 </thead>
                
                 <tbody>
-                    <button onClick={() =>generateBill()}>Download PDF</button>
                     {bills.map((item,index) => {
                         return <tr style={{backgroundColor : bill !== null ? item.id === bill.id ? 'rgb(230, 227, 227)' : '#FFFFFF' : ''}} key={index} className='staff-bills-table-row' onClick={()=>{
                             if(bill !== null){
@@ -274,16 +280,8 @@ export default function StaffBills() {
                             {
                                 item.tinhtrang === 'Chờ xác nhận' ? 
                                 
-                                    <button className='staff-bill-button accept-bill-button' 
-                                    onClick={()=> { 
-                                        generateBill()
-                                  
-                                        // tlHoadon(item.id)
-                                        actionBill(item.id,'accept')}}
-                                        
-                                        >Accept
-                                    </button>
-                                                                  : <div></div>
+                                    <button className='staff-bill-button accept-bill-button'onClick={()=> { actionBill(item.id,'accept')}}>Accept
+                                    </button>: <div></div>
                             }
                             </td>
                         </tr>
@@ -369,54 +367,9 @@ export default function StaffBills() {
                 </table>
                </div>
             </div>
-            <div className='invoice-bill' id="print-bill">
-                    <div className="col-md-12 wt">
-                        <div className="card" id="invoice">
-                            <div className="top-invoice">
-                                <div className="left-top-invoice">
-                                    <img src={LogoFT} />
-                                    <p>LAPPEE</p>
-                                </div>
-                                <div className="right-top-invoice">
-                                    <p>Chi nhánh TP Hồ Chí Minh</p>
-                                    <p>Địa chỉ: 273 An Dương Vương, phường 6 quận 5</p>
-                                </div>
-                            </div>
-                            <div className="center-invoice">
-                                <div className="center-invoice-top">
-                                    HÓA ĐƠN 
-                                </div>
-                            </div>
-                            <div className="centerTitle-bill">
-                                <table className="table table-hover table-bill">
-                                <thead>
-                                    <tr className="">
-                                        <th className="col cols row-idOrder">ID</th>
-                                        <th className="col cols row-pro">Sản phẩm</th>
-                                        <th className="col cols row-sltt">Tổng tiền</th>
-                                        <th className="col cols row-date">Ngày đặt</th>
-                                        <th className="col cols row-address">Địa chỉ</th>
-                                    </tr>
-                                </thead>
-                                    <tbody>
-                                        <tr className="info-bill">
-                                            <td className="id-bill"></td> 
-                                            {bills.map((item,index) => {
-                                                <ProductInBills key={index} idbill={item.id}/>
-                                            })}
-                                            <td className="info-productInBill bill-price" ></td>
-                                            <td className="info-productInBill"></td>
-                                            <td className="info-productInBill"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="price-printbill"><p>Tổng tiền:</p> </div>
-                            <div className="bottom-invoice">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            
         </div>
+      
     )
 }

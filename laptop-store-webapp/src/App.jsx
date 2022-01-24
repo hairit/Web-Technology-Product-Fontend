@@ -41,6 +41,7 @@ import LienHe from "./Pages/Lienhe";
 import Chinhsachchung from "./Pages/Chinhsach/Chinhsachchung";
 import Baomatthongtin from "./Pages/Chinhsach/Baomatthongtin";
 import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
+import Invoice from "./Pages/StaffPages/Invoice";
 function App() {
   const history = useHistory();
   const [adminMode, setAdminMode] = useState(false);
@@ -282,6 +283,7 @@ function App() {
         <Route path="/pc/:attribute/:value" exact component={(match) => <PC addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/pc/:attribute/:from/:to" exact component={(match) => <PC addProductToCart={addProductToCart} match={match} />}></Route>
         <Route path="/pc/:id" exact component={(match) => <DetailProductsPC idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>
+
 
         <Route path="/checkout" exact component={() => <ThanhToan updateData={updateData} createBill={createBill} idUser={user !== null ? user.id : null} order={order} />}></Route>
         <Route path="/laptop/:id" exact component={(match) => <DetailProductsLaptop idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />}></Route>

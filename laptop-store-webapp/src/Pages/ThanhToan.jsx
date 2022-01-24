@@ -227,7 +227,7 @@ console.log("qqq",typeof(userOrder.diachi) )
                 </div>
               </div>
               <div className="btn-form">
-                <button className="btn btn-primary" >Lưu thông tin</button>
+                <button  className="btn btn-primary">Lưu thông tin</button>
                 <button className="btn btn-primary" onClick={() => btnSaveEditInfo()} >Thoát</button>
                 </div>
             </form>

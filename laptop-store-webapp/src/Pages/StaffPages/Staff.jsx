@@ -8,6 +8,7 @@ import { BiLogOut } from 'react-icons/bi';
 import {FaUserTie , FaUserFriends} from 'react-icons/fa';
 import { BrowserRouter as Router , Route, NavLink, useHistory } from 'react-router-dom'
 import '../../CSS/Staff.css'
+import Invoice from './Invoice'
 export default function Staff({changeAdminMode,match,logout,showLoadOrder}) {
     const history = useHistory();
     useEffect(() => {
@@ -38,8 +39,10 @@ export default function Staff({changeAdminMode,match,logout,showLoadOrder}) {
                 </div>
             </div>
             <div className="staff-main">
-                <Route path="/staff/:idUser/bills"     component={() => <StaffBills showLoadOrder={showLoadOrder} /> }></Route>
-                <Route path="/staff/:idUser/Customers" component={() => <StaffCustomers showLoadOrder={showLoadOrder}  /> }></Route>
+                <Route path="/staff/:idUser/bills/:id" exact component={(match) => <Invoice match={match}/>}></Route>
+
+                <Route path="/staff/:idUser/bills"   exact  component={() => <StaffBills match={match} showLoadOrder={showLoadOrder} /> }></Route>
+                <Route path="/staff/:idUser/Customers" exact component={() => <StaffCustomers showLoadOrder={showLoadOrder}  /> }></Route>
             </div>
         </div>
         </Router>

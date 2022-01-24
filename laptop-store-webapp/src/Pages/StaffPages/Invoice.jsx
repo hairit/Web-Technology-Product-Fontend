@@ -1,16 +1,31 @@
 import React from 'react'
-import '../CSS/Showroom.css'
-import { useRef, useState} from "react";
+import {useState , useEffect ,useRef} from 'react';
+import axios from 'axios';
+import Solver from '../../Classes/Solver';
 import { useReactToPrint } from 'react-to-print';
-export default function Showroom() {
+import BillDetailItem from './BillDetailItem';
+import DetailBill from '../DetailBill';
+export default function Invoice({match}) {
+    const solver = new Solver();
+    const [bills, setBills] = useState(null)
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         copyStyles: true
       });
+      useEffect(() => {
+            axios.get(`https://localhost:44343/data/bill/getbill/update/${match.match.params.id}`,null)
+            .then(res => {   
+                setBills(res.data);
+        })
+            .catch((err) => console.log("Errol",err));
+}, [])
+console.log("123",bills)
+
     return (
-        <div ref={componentRef} className="container bootdey">
-            <div className="row invoice row-printable">
+        
+        <div  className="container bootdey">
+            <div ref={componentRef} className="row invoice row-printable">
                 <div className="col-md-10">
                 <div className="panel panel-default plain" id="dash_0">
                     <div className="panel-body p30">
@@ -59,46 +74,36 @@ export default function Showroom() {
                                     <th className="per25 text-center">Total</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1024MB Cloud 2.0 Server - elisium.dynamic.com (12/04/2014 - 01/03/2015)</td>
-                                    <td className="text-center">1</td>
-                                    <td className="text-center">$25.00 USD</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo design</td>
-                                    <td className="text-center">1</td>
-                                    <td className="text-center">$200.00 USD</td>
-                                </tr>
-                                <tr>
-                                    <td>Backup - 1024MB Cloud 2.0 Server - elisium.dynamic.com</td>
-                                    <td className="text-center">12</td>
-                                    <td className="text-center">$12.00 USD</td>
-                                </tr>
-                                </tbody>
+                                
+                                {
+                                    bills !== null ? bills.billDetails.map((detail,index)=>(
+                                        <tr>
+                                            <td>{detail.idProductNavigation.ten}</td>
+                                            <td class="text-center">{detail.soluong}</td>
+                                            <td class="text-center">{solver.formatCurrency("vi-VN", "currency", "VND", detail.tongtien)}</td>
+                                        </tr>
+                                    )) : <div></div>
+                                }
+                               
                                 <tfoot>
                                 <tr>
-                                    <th colSpan={2} className="text-right">Sub Total:</th>
-                                    <th className="text-center">$237.00 USD</th>
-                                </tr>
-                                <tr>
                                     <th colSpan={2} className="text-right">20% VAT:</th>
-                                    <th className="text-center">$47.40 USD</th>
+                                    <th className="text-center">0</th>
                                 </tr>
                                 <tr>
                                     <th colSpan={2} className="text-right">Credit:</th>
-                                    <th className="text-center">$00.00 USD</th>
+                                    <th className="text-center">0</th>
                                 </tr>
                                 <tr>
                                     <th colSpan={2} className="text-right">Total:</th>
-                                    <th className="text-center">$284.4.40 USD</th>
+                                    <th className="text-center">{solver.formatCurrency("vi-VN", "currency", "VND",  bills !== null ? bills.tongtien : <div></div>)}</th>
                                 </tr>
                                 </tfoot>
                             </table>
                             </div>
                         </div>
                         <div className="invoice-footer mt25">
-                            <p className="text-center">Generated on Monday, October 08th, 2015 <a href="#" className="btn btn-default ml15"><i className="fa fa-print mr5" /> Print</a></p>
+                            <p className="text-center">Generated on Monday, October 08th, 2015 </p>
                         </div>
                         </div>
                     </div>
@@ -106,7 +111,7 @@ export default function Showroom() {
                 </div>
                 </div>
             </div>
-            <button onClick={handlePrint }>Print</button>
+            <button className="btn btn-primary"onClick={handlePrint }>Print</button>
         </div>
     )
 }
