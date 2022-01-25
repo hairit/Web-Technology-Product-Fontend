@@ -75,11 +75,16 @@ const reLoad = () =>{
       cartDetails: [ ]
     }).then(res => {
       createBill(checkout,totalPrice(checkout), res.data.diachi)
-      setEditinfo(false)
       updateData()
+      setEditinfo(false)
+
+      
     }).catch(err => {
       console.log("Lỗi", err)
     })
+    updateData()
+    setEditinfo(false)
+
   }
   function savePhoneAddress(e) {
     e.preventDefault();

@@ -65,6 +65,10 @@ export default function StaffBills({match}) {
                 .then(res => {
                     updateData();
                     showLoadOrder()
+                    setTimeout(() => {
+                        history.push(`/staff/${match.match.params.idUser}/bills/${saveBill.current.id}`);
+                    }, 1500);
+
                 })
                 .catch(()=> alert("Không thể xác nhận đơn hàng"))
                 console.log("idbill",idBill);
@@ -72,16 +76,11 @@ export default function StaffBills({match}) {
     }
     function showLoadOrder() {
         Swal.fire({
-            title: 'Xác nhận thành công',
-            text: "In hóa đơn",
+            position: 'top-end',
             icon: 'success',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Yes'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                history.push(`/staff/${match.match.params.idUser}/bills/${saveBill.current.id}`);
-            }
+            title: 'Xác nhận thành công! In hóa đơn',
+            showConfirmButton: false,
+            timer: 1500
           })
       }
     const searchBillByID = () => {

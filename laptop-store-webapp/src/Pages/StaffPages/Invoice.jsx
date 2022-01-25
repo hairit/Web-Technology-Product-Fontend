@@ -2,6 +2,7 @@ import React from 'react'
 import {useState , useEffect ,useRef} from 'react';
 import axios from 'axios';
 import Solver from '../../Classes/Solver';
+import LogoFT from "../../Images/LogoFT.png"
 import { useReactToPrint } from 'react-to-print';
 import BillDetailItem from './BillDetailItem';
 import DetailBill from '../DetailBill';
@@ -21,7 +22,12 @@ export default function Invoice({match}) {
             .catch((err) => console.log("Errol",err));
 }, [])
 console.log("123",bills)
-
+function getTimeStamp() {
+    var now = new Date();
+    return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':'
+                  + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now
+                  .getSeconds()) : (now.getSeconds())));
+}
     return (
         
         <div  className="container bootdey">
@@ -32,13 +38,13 @@ console.log("123",bills)
                     <div className="row">
                         <div className="col-lg-6">
                         <div className="invoice-logo">
-                            <img width={100} src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Invoice logo" /></div>
+                            <img width={200} src={LogoFT} alt="Invoice logo" /></div>
                         </div>
                         <div className="col-lg-6">
                         <div className="invoice-from">
                             <ul className="list-unstyled text-right">
-                            <li>Dash LLC</li>
-                            <li>2500 Ridgepoint Dr, Suite 105-C</li>
+                            <li>LAPPEE</li>
+                            <li>273 An Dương Vương, phường 3, quận 5</li>
                             <li>Austin TX 78754</li>
                             <li>VAT Number EU826113958</li>
                             </ul>
@@ -48,20 +54,19 @@ console.log("123",bills)
                         <div className="invoice-details mt25">
                             <div className="well">
                             <ul className="list-unstyled mb0">
-                                <li><strong>Invoice</strong> #936988</li>
-                                <li><strong>Invoice Date:</strong> Monday, October 10th, 2015</li>
-                                <li><strong>Due Date:</strong> Thursday, December 1th, 2015</li>
-                                <li><strong>Status:</strong> <span className="label label-danger">UNPAID</span></li>
+                                <li><strong>Mã hóa đơn: </strong> {bills !== null ? bills.id : <div></div>}</li>
+                                <li><strong>Ngày đặt:</strong> {bills !== null ? solver.getDateFormat(bills.ngaydat) : ''}</li>
+                                <li><strong>Trạng thái:</strong> <span className="label label-danger">{bills !== null ? bills.tinhtrang : <div></div>}</span></li>
                             </ul>
                             </div>
                         </div>
                         <div className="invoice-to mt25">
                             <ul className="list-unstyled">
                             <li><strong>Invoiced To</strong></li>
-                            <li>Jakob Smith</li>
-                            <li>Roupark 37</li>
-                            <li>New York, NY, 2014</li>
-                            <li>USA</li>
+                            <li>{bills !== null ? bills.iduserNavigation.firstname + ' ' +bills.iduserNavigation.lastname : ''}</li>
+                            <li>Địa chỉ: {bills !== null ? bills.iduserNavigation.diachi : ''}</li>
+                            <li>Số điện thoại: {bills !== null ? bills.iduserNavigation.sdt : ''}</li>
+                            <li>VN</li>
                             </ul>
                         </div>
                         <div className="invoice-items">
@@ -69,9 +74,9 @@ console.log("123",bills)
                             <table className="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th className="per70 text-center">Description</th>
-                                    <th className="per5 text-center">Qty</th>
-                                    <th className="per25 text-center">Total</th>
+                                    <th className="per70 text-center">Sản phẩm</th>
+                                    <th className="per5 text-center">Số lượng</th>
+                                    <th className="per25 text-center">Tổng tiền</th>
                                 </tr>
                                 </thead>
                                 
@@ -103,7 +108,7 @@ console.log("123",bills)
                             </div>
                         </div>
                         <div className="invoice-footer mt25">
-                            <p className="text-center">Generated on Monday, October 08th, 2015 </p>
+                            <p className="text-center">Hóa đơn được tạo vào {getTimeStamp()} </p>
                         </div>
                         </div>
                     </div>
