@@ -37,7 +37,7 @@ const renderLaptopItem = (pro, index ,addCart,history) => {
               if(addCart(pro.id,pro.gia,history)){
               }else alert("Có lỗi xảy ra , vui lòng thử lại")
             }}>Mua ngay</button>
-            <button className="laptop-btn laptop-addCart" onClick={()=>addCart(pro.id,pro.gia)}>Thêm vào giỏ</button>
+            <button className="laptop-btn laptop-addCart" onClick={()=>addCart(pro.id,pro.gia,null)}>Thêm vào giỏ</button>
           </div>
       </div>
     </div>
