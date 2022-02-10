@@ -51,6 +51,7 @@
   margin: 57px auto;
   overflow: hidden;
   width: 83%;
+  max-width: 1320px;
   height: 136px;
   border-radius: 10px;
 }

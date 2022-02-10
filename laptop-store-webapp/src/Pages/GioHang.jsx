@@ -27,12 +27,12 @@ useEffect(() => {
       .get(`https://localhost:44343/data/cartdetail/iduser=${idUser}`, null)
       .then((res) => {
         if (res.status === 200){
+          console.log(res.data);
           setCartDetails(res.data);
         }
       })
       .catch((err) => setCartDetails([]) );
 }, [reload]);
-  
   useEffect(() => {
     if(cartDetails.count > 0) setLoading(false);
   }, [cartDetails])
