@@ -102,7 +102,7 @@ function App() {
       removeCookie('id');
       changeAdminMode('off');
       setUser(null);
-      history.push("/");
+      //history.push("/");
       window.scrollTo(0, 0);
     }
   }
@@ -188,10 +188,11 @@ function App() {
     setLoading(true);
   }
   const addProductToCart = useCallback(
-  (idUser, idProduct, price) => {
+  (idUser, idProduct, price, his) => {
       try{
-        if (idUser === null) {
-          Swal.fire('Bạn cần đăng nhập để mua hàng')
+        if(idUser === null) {
+          Swal.fire('Bạn cần đăng nhập để mua hàng');
+          return;
         }
         else{
           axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
@@ -203,6 +204,11 @@ function App() {
                   document.getElementById("quantity-cartdetails-user").style.display = 'block';
                 }
                 showLoadAddCart();
+                if(his !== null){
+                  setTimeout(()=>{
+                    his.push('/cart');
+                  },300)
+                }
               }
               else alert("không thể thêm vào giỏ hàng");
             }).catch((err) => console.log("Add cart failed" + err));

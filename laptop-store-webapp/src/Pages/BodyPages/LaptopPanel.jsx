@@ -34,10 +34,7 @@ const renderLaptopItem = (pro, index ,addCart,history) => {
           <div className="laptop-gift"><p>{pro.uudai}</p></div>
           <div className="laptop-btn-group">
           <button className="laptop-btn laptop-buy" onClick={()=>{
-              if(addCart(pro.id,pro.gia)){
-                setTimeout(()=>{
-                  history.push('/cart');
-                },300)
+              if(addCart(pro.id,pro.gia,history)){
               }else alert("Có lỗi xảy ra , vui lòng thử lại")
             }}>Mua ngay</button>
             <button className="laptop-btn laptop-addCart" onClick={()=>addCart(pro.id,pro.gia)}>Thêm vào giỏ</button>

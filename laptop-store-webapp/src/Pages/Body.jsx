@@ -31,10 +31,8 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
         if(window.scrollY >= 400) setDisplay(true);
         else setDisplay(false);
     }
-    const addCart = async (idProduct,priceProduct) =>{
-        var result = await addProductToCart(idUser,idProduct,priceProduct);
-        if(result) return true;
-        else return false;
+    const addCart = async (idProduct,priceProduct,his) =>{
+        return await addProductToCart(idUser,idProduct,priceProduct,his);
     }
     return(
         <div className="body">

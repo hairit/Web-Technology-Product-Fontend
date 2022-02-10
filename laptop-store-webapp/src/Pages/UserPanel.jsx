@@ -4,7 +4,9 @@ import {MdPublishedWithChanges} from 'react-icons/md';
 import {GiAutoRepair} from 'react-icons/gi';
 import call from '../API/API';
 import {RiLogoutBoxFill} from 'react-icons/ri';
+import { useHistory } from 'react-router-dom';
 export default function UserPanel({user , changeStatusPanelUser , userPanel ,setUser ,logout}) {  
+    const history = useHistory();
     const saveUser = useRef(user);
     const [statusEdit, setStatusEdit] = useState(true);
     const [passWordPanel, setPassWordPanel] = useState(false);
@@ -121,7 +123,6 @@ export default function UserPanel({user , changeStatusPanelUser , userPanel ,set
                     <button className="user-button" onClick={() => {
                         changeStatusPanelUser();
                         logout(null);
-                       
                     }}><RiLogoutBoxFill className="user-button-icon" /><p>Đăng xuất</p></button>
                 </div>
             </div>
