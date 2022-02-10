@@ -22,7 +22,6 @@ import URL from '../DATA/URL'
 import HeadphonePanel from './BodyPages/HeadphonePanel'
 function Body({idUser,addProductToCart,changeAdminMode}) {
     useEffect(() => {
-        console.log("body rểnder");
         window.addEventListener('scroll',changeStatusRightItem);
         changeAdminMode('off');
     }, [])
@@ -34,12 +33,12 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
     }
     const addCart = async (idProduct,priceProduct) =>{
         var result = await addProductToCart(idUser,idProduct,priceProduct);
-        console.log(result);
         if(result) return true;
         else return false;
     }
     return(
         <div className="body">
+
                 <div className={display === true ? "right-scroll-panel" : "right-scroll-panel-hide"}>
                     <img className="right-scroll-panel-item" src={facebookicon} />
                     <img className="right-scroll-panel-item" src={phoneicon} />

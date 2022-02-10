@@ -96,11 +96,15 @@ function App() {
     if (mode === 'off') setAdminMode(false);
     else setAdminMode(true);
   }
-  const logout = (history) => {
-    if (history !== null) history.push("/login");
-    removeCookie('id');
-    changeAdminMode('off');
-    setUser(null);
+  const logout = (his) => {
+    if (his !== null) his.push("/login");
+    else{
+      removeCookie('id');
+      changeAdminMode('off');
+      setUser(null);
+      history.push("/");
+      window.scrollTo(0, 0);
+    }
   }
   var ID = function () {
     return Math.random().toString(36).substr(2, 9);
@@ -189,11 +193,11 @@ function App() {
         if (idUser === null) {
           Swal.fire('Bạn cần đăng nhập để mua hàng')
         }
-        else {
+        else{
           axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
             .then(res => {
               if (res.status === 201) {
-                if (!checkExistCartDetail(res.data.idProduct)) {
+                if (!checkExistCartDetail(res.data.idProduct)){
                   cartDetails.current.push(res.data);
                   document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
                   document.getElementById("quantity-cartdetails-user").style.display = 'block';
