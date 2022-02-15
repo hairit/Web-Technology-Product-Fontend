@@ -52,7 +52,8 @@ function App() {
   const cartDetails = useRef([]);
   const [bill, setBill] = useState({ id: '', iduser: '', tongtien: 0, ngaydat: '', diachinhan: '', billDetails: [] });
   useEffect(() => {
-    if (userCookie.id !== undefined) {
+    console.log("use Effect 1");
+    if (userCookie.id !== undefined){
       axios
         .get(`https://localhost:44343/data/user/${userCookie.id}`)
         .then((res) => {
@@ -68,8 +69,8 @@ function App() {
     }
   }, []);
   useEffect(() => {
+    console.log("use Effect 2");
     if (user !== null) {
-      console.log("use Effect 2");
       call('GET', `data/user/${user.id}`, null)
         .then((res) => {
           cartDetails.current = res.data.cartDetails;
@@ -99,9 +100,9 @@ function App() {
   const logout = (his) => {
     if (his !== null) his.push("/login");
     else{
+      //setUser(null);
       removeCookie('id');
       changeAdminMode('off');
-      setUser(null);
       //history.push("/");
       window.scrollTo(0, 0);
     }

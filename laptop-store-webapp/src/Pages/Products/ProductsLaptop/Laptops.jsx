@@ -94,6 +94,8 @@ export default function Laptops({idUser,match,addProductToCart}) {
   const firstPage = lastPage - itemsPage
   const page = pros.slice(firstPage, lastPage)
 
+  console.log(firstPage);
+  console.log(lastPage);
   function handleClick(e) {
     setCurrentPage(Number(e.target.id))
   }
