@@ -100,7 +100,7 @@ function App() {
   const logout = (his) => {
     if (his !== null) his.push("/login");
     else{
-      //setUser(null);
+      setUser(null);
       removeCookie('id');
       changeAdminMode('off');
       //history.push("/");
@@ -196,19 +196,24 @@ function App() {
         }
         else{
           axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
-            .then(res => {
-              if (res.status === 201) {
+            .then(res =>{
+              if (res.status === 201){
                 // if (!checkExistCartDetail(res.data.idProduct)){
                 //   cartDetails.current.push(res.data);
                 //   // document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
                 //   // document.getElementById("quantity-cartdetails-user").style.display = 'block';
                 // }
-                updateData();
-                //showLoadAddCart();
+                showLoadAddCart();
+                call('GET', `data/user/${user.id}`, null)
+                  .then((res) => {
+                    setUser(res.data)
+                  })
+                  .catch((err) => console.log("Reload User" + err));
                 if(his !== null){
-                  setTimeout(()=>{
-                    his.push('/cart');
-                  },300)
+                  // setTimeout(()=>{
+                  //   his.push('/cart');
+                  // },300)
+                  his.push('/cart');
                 }
               }
               else alert("không thể thêm vào giỏ hàng");
@@ -235,7 +240,7 @@ function App() {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Okay'
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed){
         axios.delete(`https://localhost:44343/data/cartdetail/iduser=${iduser}/idproduct=${idpro}`, null)
           .then(() => {
             updateData();
