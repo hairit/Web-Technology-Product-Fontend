@@ -44,6 +44,7 @@ import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
 import Invoice from "./Pages/StaffPages/Invoice";
 function App() {
   const history = useHistory();
+  const [products, setProducts] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
@@ -52,7 +53,12 @@ function App() {
   const cartDetails = useRef([]);
   const [bill, setBill] = useState({ id: '', iduser: '', tongtien: 0, ngaydat: '', diachinhan: '', billDetails: [] });
   useEffect(() => {
-    console.log("use Effect 1");
+    console.log("use E 1");
+    axios.get('https://localhost:44343/data/product/all')
+          .then(res => {
+               setProducts(res.data);
+          })
+          .catch( () => console.log("Get Products failed"))
     if (userCookie.id !== undefined){
       axios
         .get(`https://localhost:44343/data/user/${userCookie.id}`)
@@ -67,19 +73,13 @@ function App() {
         })
         .catch((err) => console.log("Đăng nhập fail" + err));
     }
+
   }, []);
   useEffect(() => {
     console.log("use Effect 2");
     if (user !== null) {
       call('GET', `data/user/${user.id}`, null)
         .then((res) => {
-          cartDetails.current = res.data.cartDetails;
-          if (user.cartDetails.length === 0) {
-            document.getElementById("quantity-cartdetails-user").style.display = 'none';
-          } else {
-            document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
-            document.getElementById("quantity-cartdetails-user").style.display = 'block';
-          }
           setUser(res.data)
         })
         .catch((err) => console.log("Reload User" + err));
@@ -188,8 +188,7 @@ function App() {
       }).catch(() => console.log("Add cart failed"));
     setLoading(true);
   }
-  const addProductToCart = useCallback(
-  (idUser, idProduct, price, his) => {
+  const addProductToCart = (idUser, idProduct, price, his) => {
       try{
         if(idUser === null) {
           Swal.fire('Bạn cần đăng nhập để mua hàng');
@@ -199,12 +198,13 @@ function App() {
           axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
             .then(res => {
               if (res.status === 201) {
-                if (!checkExistCartDetail(res.data.idProduct)){
-                  cartDetails.current.push(res.data);
-                  document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
-                  document.getElementById("quantity-cartdetails-user").style.display = 'block';
-                }
-                showLoadAddCart();
+                // if (!checkExistCartDetail(res.data.idProduct)){
+                //   cartDetails.current.push(res.data);
+                //   // document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
+                //   // document.getElementById("quantity-cartdetails-user").style.display = 'block';
+                // }
+                updateData();
+                //showLoadAddCart();
                 if(his !== null){
                   setTimeout(()=>{
                     his.push('/cart');
@@ -218,9 +218,7 @@ function App() {
       }catch{
         return false;
       }
-    },
-    [],
-  )
+    }
   const checkExistCartDetail = (idProduct) => {
     var exist = false;
     cartDetails.current.forEach(element => {
@@ -278,7 +276,7 @@ function App() {
         <Route path="/staff" exact component={() => <Login login={login} />} ></Route>
         <Route path="/staff/:idUser" component={(match) => <Staff changeAdminMode={changeAdminMode} match={match} logout={logout} showLoadOrder ={showLoadOrder}/>}></Route>
 
-        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
+        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} products={products} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
         <Route path="/laptop/:attribute/:value" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
         <Route path="/laptop/:attribute/:from/:to" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>

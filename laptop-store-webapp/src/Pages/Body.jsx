@@ -20,7 +20,7 @@ import phoneicon from '../Images/phone-icon.png'
 import addressicon from '../Images/address.png'
 import URL from '../DATA/URL'
 import HeadphonePanel from './BodyPages/HeadphonePanel'
-function Body({idUser,addProductToCart,changeAdminMode}) {
+function Body({idUser,addProductToCart,changeAdminMode,products}) {
     useEffect(() => {
         window.addEventListener('scroll',changeStatusRightItem);
         changeAdminMode('off');
@@ -33,6 +33,13 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
     }
     const addCart = async (idProduct,priceProduct,his) =>{
         return await addProductToCart(idUser,idProduct,priceProduct,his);
+    }
+    const selectProductByType = (type) => {
+        var pros = [];
+        products.forEach(element => {
+            if(element.idloai === type) pros.push(element);
+        });
+        return pros;
     }
     return(
         <div className="body">
@@ -48,14 +55,14 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
                 <img className="event-scroll-right" src={`${URL}/Images/Panels/black-friday.png`} /> */}
                 {/* <img  className={display === true ? "scroll-to-top" : "scroll-to-top-hide"} src={up} onClick={()=>window.scrollTo(0, 0)} /> */}
                 <MainPanel />
-                <LaptopPanel addCart={addCart}/>
+                <LaptopPanel addCart={addCart} products={selectProductByType('laptop')}/>
                 <div className="event-laptop">
                     <div className="event-laptop-item"><img className="event-laptop-item-img" src={`${URL}/Images/Panels/event-laptop1.png`}/></div>
                     <div className="event-laptop-item"><img className="event-laptop-item-img" src={`${URL}/Images/Panels/event-laptop2.png`}/></div>
                 </div>
-                <ScreenPanel addCart={addCart}/>
+                <ScreenPanel addCart={addCart} products={selectProductByType('screen')}/>
                 <div className="event"><img className="event-img" src={`${URL}/Images/Panels/event-22-12-2021.png`}/></div>
-                <PCPanel addCart={addCart} />
+                <PCPanel addCart={addCart} products={selectProductByType('pc')}/>
                 <div className="event-2">
                     <div className="event-2-item">
                         <div className="event-2-item-image">
@@ -73,11 +80,11 @@ function Body({idUser,addProductToCart,changeAdminMode}) {
                         </div>
                     </div>
                 </div>
-                <KeyboardPanel addCart={addCart}/>
-                <MousePanel addCart={addCart}/>
-                <HeadphonePanel addCart={addCart}/> 
+                <KeyboardPanel addCart={addCart} products={selectProductByType('keyboard')}/>
+                <MousePanel addCart={addCart} products={selectProductByType('mouse')}/>
+                <HeadphonePanel addCart={addCart} products={selectProductByType('headphone')}/> 
         </div>
     )
 }
-export default React.memo(Body);
-
+// export default React.memo(Body);
+export default Body;

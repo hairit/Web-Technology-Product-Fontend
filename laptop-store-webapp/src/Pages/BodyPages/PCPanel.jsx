@@ -28,18 +28,18 @@ const renderComputerItem = (pc ,index , addCart) => {
     )
 }
 
-export default function PCPanel({addCart}) {
-    const [pcs, setPcs] = useState([]);
-    useEffect(() => {
-        call('GET','data/product/type=pc/enable',null)
-        .then(res => setPcs(res.data))
-        .catch(() => console.log("Errol try to call pc (product) API"));
-    }, [])
+export default function PCPanel({addCart,products}) {
+    // const [pcs, setPcs] = useState([]);
+    // useEffect(() => {
+    //     call('GET','data/product/type=pc/enable',null)
+    //     .then(res => setPcs(res.data))
+    //     .catch(() => console.log("Errol try to call pc (product) API"));
+    // }, [])
     return(
         <div className="panel-pc">
             <div className="container10Col pc-container wide">
                 <div className="row-10 pc-row">
-                    {pcs.map((pc,index) => renderComputerItem(pc,index,addCart))}
+                    {products.map((pc,index) => renderComputerItem(pc,index,addCart))}
                 </div>
             </div>
         </div>

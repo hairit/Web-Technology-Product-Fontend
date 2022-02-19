@@ -33,15 +33,15 @@ const Headphone = (headphone,index,history,addCart,solver) =>{
         </div>
     )
 }
-export default function HeadphonePanel({addCart}) {
-    const [headphones, setHeadphones] = useState([]);
+export default function HeadphonePanel({addCart,products}) {
+    // const [headphones, setHeadphones] = useState([]);
     const history = useHistory();
     const solver = new Solver();
-    useEffect(() => {
-        call('GET','data/product/type=headphone/enable')
-            .then(res => setHeadphones(res.data))
-            .catch(() => setHeadphones([]))
-    }, [])
+    // useEffect(() => {
+    //     call('GET','data/product/type=headphone/enable')
+    //         .then(res => setHeadphones(res.data))
+    //         .catch(() => setHeadphones([]))
+    // }, [])
     return(
         <div className="headphone-panel">
             <div className="headphone-panel-header">
@@ -49,7 +49,7 @@ export default function HeadphonePanel({addCart}) {
             </div>
             <div className="headphone-panel-pro-list container10Col wide">
                 <div className="row-10-no-margin headphone-row">
-                    {headphones.map((headphone,index)=> Headphone(headphone,index,history,addCart,solver))}
+                    {products.map((headphone,index)=> Headphone(headphone,index,history,addCart,solver))}
                 </div>
             </div>
         </div>

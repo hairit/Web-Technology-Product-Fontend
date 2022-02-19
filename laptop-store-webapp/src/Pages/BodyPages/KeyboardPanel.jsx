@@ -39,13 +39,13 @@ const renderKeyboardItem = (pro,index,addCart,history) => {
         </div>
     )
 }
-export default function KeyboardPanel({addCart}) {
+export default function KeyboardPanel({addCart,products}) {
     const history = useHistory();
-    const [pros, setPros] = useState([]);
-    useEffect(() => {
-        call('GET','data/product/type=keyboard/enable',null)
-            .then(res => setPros(res.data)).catch(err => console.log("Errol when try to get keyboard"));
-    }, [])
+    // const [pros, setPros] = useState([]);
+    // useEffect(() => {
+    //     call('GET','data/product/type=keyboard/enable',null)
+    //         .then(res => setPros(res.data)).catch(err => console.log("Errol when try to get keyboard"));
+    // }, [])
     return(
         <div className="keyboard-panel">
             <div className="keyboard-panel-header">
@@ -55,7 +55,7 @@ export default function KeyboardPanel({addCart}) {
             </div>
             <div className="container10Col wide keyboard-container wide">
                 <div className="row-10-no-margin keyboard-row">
-                    {pros.map((pro,index) => renderKeyboardItem(pro,index,addCart,history))}
+                    {products.map((pro,index) => renderKeyboardItem(pro,index,addCart,history))}
                 </div>
             </div>
         </div>

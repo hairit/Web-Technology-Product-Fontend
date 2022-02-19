@@ -43,18 +43,18 @@ const renderLaptopItem = (pro, index ,addCart,history) => {
     </div>
   );
 };
-export default function Laptop({addCart}) {
+export default function Laptop({addCart,products}) {
   const history = useHistory();
   const [pros, setPros] = useState([]);
   const [laptopQuantity, setLaptopQuantity] = useState(0);
-  useEffect(() => {
-    call("GET", "data/product/type=laptop/enable", null)
-      .then((res) => setPros(res.data))
-      .catch((err) =>{
-             console.log("Errol!! when try to get laptop product" + err);
-             setPros([]);
-      });
-  }, []);
+  // useEffect(() => {
+  //   call("GET", "data/product/type=laptop/enable", null)
+  //     .then((res) => setPros(res.data))
+  //     .catch((err) =>{
+  //            console.log("Errol!! when try to get laptop product" + err);
+  //            setPros([]);
+  //     });
+  // }, []);
   useEffect(() => {
     call("GET", "data/product/type=laptop/", null)
       .then((res) => setLaptopQuantity(res.data.length))
@@ -78,7 +78,7 @@ export default function Laptop({addCart}) {
       </div>
       <div className="container10Col wide">
         <div className="row-10-no-margin">
-          {pros.map((pro, index) => renderLaptopItem(pro,index,addCart,history))}
+          {products.map((pro, index) => renderLaptopItem(pro,index,addCart,history))}
         </div>
       </div>
     </div>

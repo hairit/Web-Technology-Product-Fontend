@@ -31,16 +31,16 @@ const renderMouseItem = (mouse,index,solver,history,addCart)=> {
         </div>
     )
  }
-export default function MousePanel({addCart}) {
+export default function MousePanel({addCart,products}) {
     const history = useHistory();
-    const [mouses  , setMouses] = useState([]);
+    // const [mouses  , setMouses] = useState([]);
     const solver = new Solver();
-    useEffect(() => {
-        call('GET','data/product/type=mouse/enable',null).then(res => setMouses(res.data))
-                                                         .catch(() => {
-                                                             setMouses([]);
-                                                         })
-    }, [])
+    // useEffect(() => {
+    //     call('GET','data/product/type=mouse/enable',null).then(res => setMouses(res.data))
+    //                                                      .catch(() => {
+    //                                                          setMouses([]);
+    //                                                      })
+    // }, [])
     return (
         <div className="mouse-panel">
             <div className="mouse-panel-header">
@@ -50,7 +50,7 @@ export default function MousePanel({addCart}) {
             </div>
             <div className="mouse-panel-list-pro container10Col">
                 <div className="row-10-no-margin">
-                    {mouses.map((mouse,index)=>renderMouseItem(mouse,index,solver,history,addCart))}
+                    {products.map((mouse,index)=>renderMouseItem(mouse,index,solver,history,addCart))}
                 </div>
             </div>
         </div>

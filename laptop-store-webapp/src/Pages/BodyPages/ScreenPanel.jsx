@@ -44,16 +44,16 @@ const RenderScreenItem= (pro, index ,addCart, history) => {
 const getCountPage = (pros) => {
     return pros.length/5 ;
 }
-export default function ScreenPanel({addCart}) {
+export default function ScreenPanel({addCart,products}) {
     const history = useHistory();
     const [scaleX, setScaleX] = useState(0);
     const index = useRef(0);
-    const [screens, setScreens] = useState([]);
-    useEffect(() => {
-       CALLER('GET','data/product/type=screen/enable',null)
-        .then(res => setScreens(res.data))
-        .catch(err => setScreens([]))
-    }, [])
+    // const [screens, setScreens] = useState([]);
+    // useEffect(() => {
+    //    CALLER('GET','data/product/type=screen/enable',null)
+    //     .then(res => setScreens(res.data))
+    //     .catch(err => setScreens([]))
+    // }, [])
     const handleSwipe = (direction,countSwipe) => {
         if(index.current === 0 && direction ==='previous'){
             return;
@@ -79,16 +79,16 @@ export default function ScreenPanel({addCart}) {
                 <div className="btn-all-screen" onClick={() => history.push('/screen')}>Xem tất cả{" >>"}</div>
             </div>
             <div className="screen-panel-list">
-                    <div className="swiper-screen-button screen-previous" onClick={()=>handleSwipe('previous',getCountPage(screens)-1)}>
+                    <div className="swiper-screen-button screen-previous" onClick={()=>handleSwipe('previous',getCountPage(products)-1)}>
                         <BsFillCaretLeftFill className="swiper-screen-button-icon"/>
                     </div>
-                    <div className="swiper-screen-button screen-next" onClick={()=>handleSwipe('next',getCountPage(screens)-1)}>
+                    <div className="swiper-screen-button screen-next" onClick={()=>handleSwipe('next',getCountPage(products)-1)}>
                         <BsFillCaretRightFill className="swiper-screen-button-icon"/>
                     </div>
             <div className="container10Col wide screen-container">
                     <div className="row-10--NoWrap screen-row" style={{transform : `translate(${scaleX}%)` ,transition : '0.5s'}} >
                         {
-                            screens.map((pro,index) => RenderScreenItem(pro,index,addCart,history))
+                            products.map((pro,index) => RenderScreenItem(pro,index,addCart,history))
                         }
                 </div>
             </div>
