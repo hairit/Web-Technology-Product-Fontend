@@ -11,10 +11,10 @@ import tk_shopping_img from "../Images/tk_shopping_img.png";
 import { useEffect, useState } from "react";
 import ThanhToan from "./ThanhToan";
 import CartDetail from "./CartDetail";
-export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,deleteProductFromCart , createBill}) {
+export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,deleteProductFromCart , createBill,cartDetails}) {
   const solver = new Solver();
   const history = useHistory();
-  const [cartDetails, setCartDetails] = useState([]);
+  //const [cartDetails, setCartDetails] = useState([]);
   const [loading , setLoading] = useState(true);
   const [reload, setReload] = useState(0);
   const [checked, setChecked] = useState(true);
@@ -22,17 +22,17 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
     if(reload === 0) setReload(1);
     else setReload(0);
   }
-useEffect(() => {
-    axios
-      .get(`https://localhost:44343/data/cartdetail/iduser=${idUser}`, null)
-      .then((res) => {
-        if (res.status === 200){
-          console.log(res.data);
-          setCartDetails(res.data);
-        }
-      })
-      .catch((err) => setCartDetails([]) );
-}, [reload]);
+// useEffect(() => {
+//     axios
+//       .get(`https://localhost:44343/data/cartdetail/iduser=${idUser}`, null)
+//       .then((res) => {
+//         if (res.status === 200){
+//           console.log(res.data);
+//           setCartDetails(res.data);
+//         }
+//       })
+//       .catch((err) => setCartDetails([]) );
+// }, [reload]);
   useEffect(() => {
     if(cartDetails.count > 0) setLoading(false);
   }, [cartDetails])
@@ -46,6 +46,7 @@ useEffect(() => {
     });
     return tongtienSelect;
   }
+  console.log(cartDetails);
   function checktien (e,gia,quantity,idpro,iduser,select) {
     if ( e.target.checked ) {
       axios.get(`https://localhost:44343/data/cartdetail/select=selected/iduser=${iduser}/idproduct=${idpro}`, null)
@@ -84,7 +85,6 @@ useEffect(() => {
       
       <div className="page">
         <div className="container width">
-        
           <div className="home-icon">
             <NavLink to="/" className="img-backhome">
             <img className="icon-home"  src={home}/>
@@ -99,7 +99,7 @@ useEffect(() => {
           </div>
           <div className="center-card">
             <div className="carts">
-              {cartDetails.map((item, index) => <CartDetail item={item} index={index} checktien={checktien}  checked={checked} idUser={idUser} addQuantityProduct={addQuantityProduct} deleteCartItem={deleteCartItem} deleteProductFromCart={deleteProductFromCart} solver={solver}/>
+              {cartDetails.map((item, index) => <CartDetail item={item} key={index} index={index} checktien={checktien}  checked={checked} idUser={idUser} addQuantityProduct={addQuantityProduct} deleteCartItem={deleteCartItem} deleteProductFromCart={deleteProductFromCart} solver={solver}/>
             )}
             </div>
             <div className="payment">

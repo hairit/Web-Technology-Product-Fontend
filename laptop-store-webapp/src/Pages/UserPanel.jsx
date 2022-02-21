@@ -122,7 +122,7 @@ export default function UserPanel({user , changeStatusPanelUser , userPanel ,set
                     <button className="user-button" onClick={()=>setStatusEdit(true)}><GiAutoRepair className="user-button-icon"/> <p>Sửa thông tin</p></button>
                     <button className="user-button" onClick={() => {
                         changeStatusPanelUser();
-                        logout(null);
+                        logout(history,'user');
                     }}><RiLogoutBoxFill className="user-button-icon" /><p>Đăng xuất</p></button>
                 </div>
             </div>

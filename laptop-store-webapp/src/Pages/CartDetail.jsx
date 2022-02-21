@@ -3,14 +3,13 @@ import React from 'react'
 import { NavLink, useHistory } from "react-router-dom";
 import { useState , useEffect } from 'react';
 export default function CartDetail({item,checktien,index,handleViewDetails,checked,idUser,addQuantityProduct,deleteCartItem,deleteProductFromCart,solver}) {
-    const [product, setProduct] = useState(null);
+    //const [product, setProduct] = useState(null);
     const history = useHistory();
-
-    useEffect(() => {
-        axios.get(`https://localhost:44343/data/product/${item.idProduct}`,null)
-                .then(res => setProduct(res.data))
-                .catch(()=>setProduct(null));
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`https://localhost:44343/data/product/${item.idProduct}`,null)
+    //             .then(res => setProduct(res.data))
+    //             .catch(()=>setProduct(null));
+    // }, [])
     function handleViewDetails(type) {
      
         if(type === "laptop"){
@@ -34,33 +33,33 @@ export default function CartDetail({item,checktien,index,handleViewDetails,check
                       <div className="info-chitiet">
                       <div className="info-check">
                         <input class="check-item" type="checkbox"   name="hobby"  id="check-item" defaultChecked={item.selected === 1 ? checked : ""}
-                        onChange={(e)=> { checktien(e, product.gia,item.soluong,item.idProduct,idUser, item.selected); }}   /> 
+                        onChange={(e)=> { checktien(e, item.idProductNavigation.gia,item.soluong,item.idProduct,idUser, item.selected); }}   /> 
                         </div>
                         <div className="info-image">
                           <div className="img-name">
                             <a>
-                              <div className="imag" onClick={() => handleViewDetails(product.idloaiNavigation.id)}>
+                              <div className="imag" onClick={() => handleViewDetails(item.idProductNavigation.id)}>
                                 <img
-                                  src={product !== null ? `https://localhost:44343/Images/Products/${product.nameimage}` 
+                                  src={item.idProductNavigation !== null ? `https://localhost:44343/Images/Products/${item.idProductNavigation.nameimage}` 
                                                         : ""}
                                 alt="img laptop"/>
                               </div>
                             </a>
                             <div className="name" >
-                              <a onClick={() => handleViewDetails(product.idloaiNavigation.id)}>{product !== null ? product.ten : ""}</a>
+                              <a onClick={() => handleViewDetails(item.idProductNavigation.ten)}>{item.idProductNavigation.ten}</a>
                               <div className="">ID: {item.idProduct}</div>
-                              <div className="">Loại: {product !== null ? product.idloaiNavigation.ten : ""}</div>
+                              <div className="">Loại: {item.idProductNavigation.idloaiNavigation.ten}</div>
                             </div>
                           </div>
                         </div>
                         <div className="info-editquantity">
                           <div className="btn-quantity">
-                          <button type="button"class="btn-tru" name="btn-giam" onClick={() => deleteProductFromCart(idUser,item.idProduct,product.gia,item.soluong)}>
+                          <button type="button"class="btn-tru" name="btn-giam" onClick={() => deleteProductFromCart(idUser,item.idProduct,item.idProductNavigation.gia,item.soluong)}>
                              -
                           </button>
                           <input type="text" class="finput-edit" placeholder={item.soluong} disabled />
                           <button type="button" name="btn-tang" className="btn-cong"
-                          onClick={() => addQuantityProduct(item.idProduct,product.gia)}> + </button>
+                              onClick={() => addQuantityProduct(item.idProduct,item.idProductNavigation.gia)}> + </button>
                           </div>
                           <div className="delet">
                             <button type="button" className="btn-del" onClick={() => deleteCartItem(idUser,item.idProduct)}>Xóa</button>
@@ -71,7 +70,7 @@ export default function CartDetail({item,checktien,index,handleViewDetails,check
                             {solver.formatCurrency("vi-VN","currency","VND",item.tongtien)}
                           </strong>
                           <strong className="giagoc">
-                            {product !== null ? solver.formatCurrency("vi-VN","currency","VND", product.gia) : ""}
+                            {item.idProductNavigation !== null ? solver.formatCurrency("vi-VN","currency","VND", item.idProductNavigation.gia) : ""}
                           </strong>
                         </div>
                       </div>

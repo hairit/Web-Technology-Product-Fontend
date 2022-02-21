@@ -41,7 +41,7 @@ const LoadingProductOptions = (item , index) =>{
         }
     </div>)
 }
-const renderCenterImage = (image,index,X) =>{
+const renderCenterImage = (image,index) =>{
     if(image.position === 'center') return (
         <div className="center-image-item">
             <img key={index} className="center-image-item-img" src={`https://localhost:44343/Images/Panels/${image.nameImage}`} alt={image.nameImage} />
@@ -76,14 +76,10 @@ const countImage = (images,position) =>{
     })
     return count;
 }
-export default function MainPanel() {
+export default function MainPanel({images}) {
     const solver = new Solver();
-    const [images, setImages] = useState([]);
     const [X, setX] = useState(0);
     const index = useRef(0);
-    useEffect(() => {
-        call('GET','data/image',null).then(res => setImages(res.data)).catch(err => console.log("Errol when try to get Image API"));
-    }, [])
     const changeSlide = (dir,countImage) =>{
         if(index.current === 0 && dir === 'previous' ) {
             index.current = countImage -1;

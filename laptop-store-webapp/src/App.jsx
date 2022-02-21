@@ -41,49 +41,59 @@ import LienHe from "./Pages/Lienhe";
 import Chinhsachchung from "./Pages/Chinhsach/Chinhsachchung";
 import Baomatthongtin from "./Pages/Chinhsach/Baomatthongtin";
 import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
+import repairServer from './Images/repair-server.png';
 import Invoice from "./Pages/StaffPages/Invoice";
 function App() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
+  const [images, setImages] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [online, setOnline] = useState(true);
   const [userCookie, setUserCookie, removeCookie] = useCookies(["user"]);
   const [updateDataUser, setUpdateDataUser] = useState(0);
   const cartDetails = useRef([]);
   const [bill, setBill] = useState({ id: '', iduser: '', tongtien: 0, ngaydat: '', diachinhan: '', billDetails: [] });
   useEffect(() => {
-    console.log("use E 1");
-    axios.get('https://localhost:44343/data/product/all')
-          .then(res => {
-               setProducts(res.data);
-          })
-          .catch( () => console.log("Get Products failed"))
-    if (userCookie.id !== undefined){
-      axios
-        .get(`https://localhost:44343/data/user/${userCookie.id}`)
+      call('GET', `server/run`, null)
         .then((res) => {
-          if(res.data.mode === 'SHIPPER') {
-              setUser(null);
-          }else
-          {
-            cartDetails.current = res.data.cartDetails;
-            setUser(res.data);
-          }
+          setOnline(true);
         })
-        .catch((err) => console.log("Đăng nhập fail" + err));
-    }
-
+        .catch((err) => setOnline(false));
   }, []);
   useEffect(() => {
-    console.log("use Effect 2");
-    if (user !== null) {
-      call('GET', `data/user/${user.id}`, null)
-        .then((res) => {
-          setUser(res.data)
-        })
-        .catch((err) => console.log("Reload User" + err));
+    if(online === true){
+        call('GET','data/image',null).then(res => setImages(res.data)).catch(err => console.log("Errol when try to get Image API"));
+        axios.get('https://localhost:44343/data/product/all')
+            .then(res => {
+                setProducts(res.data);
+            })
+            .catch( () => console.log("Get Products failed"))
+        if (userCookie.id !== undefined)
+        {
+          axios.get(`https://localhost:44343/data/user/${userCookie.id}`)
+               .then((res) => {
+                    if(res.data.mode === 'SHIPPER') {
+                        setUser(null);
+                    }else
+                    {
+                      cartDetails.current = res.data.cartDetails;
+                      setUser(res.data);
+                    }
+                })
+                .catch((err) => console.log("Đăng nhập fail" + err));
+        }
     }
+  }, [online]);
+  useEffect(() => {
+      if (user !== null) {
+        call('GET', `data/user/${user.id}`, null)
+          .then((res) => {
+            setUser(res.data)
+          })
+          .catch((err) => console.log("Reload User" + err));
+      }
   }, [updateDataUser]);
   const updateData = () => {
     if (updateDataUser === 0) setUpdateDataUser(1);
@@ -97,14 +107,15 @@ function App() {
     if (mode === 'off') setAdminMode(false);
     else setAdminMode(true);
   }
-  const logout = (his) => {
-    if (his !== null) his.push("/login");
-    else{
+  const logout = (his,modeLogout) => {
+    if(modeLogout === 'user'){
       setUser(null);
       removeCookie('id');
       changeAdminMode('off');
-      //history.push("/");
+      his.push("/");
       window.scrollTo(0, 0);
+    }else{
+      his.push("/login");
     }
   }
   var ID = function () {
@@ -190,7 +201,7 @@ function App() {
   }
   const addProductToCart = (idUser, idProduct, price, his) => {
       try{
-        if(idUser === null) {
+        if(idUser === null){
           Swal.fire('Bạn cần đăng nhập để mua hàng');
           return;
         }
@@ -198,23 +209,9 @@ function App() {
           axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`, null)
             .then(res =>{
               if (res.status === 201){
-                // if (!checkExistCartDetail(res.data.idProduct)){
-                //   cartDetails.current.push(res.data);
-                //   // document.getElementById("quantity-cartdetails-user").textContent = cartDetails.current.length;
-                //   // document.getElementById("quantity-cartdetails-user").style.display = 'block';
-                // }
                 showLoadAddCart();
-                call('GET', `data/user/${user.id}`, null)
-                  .then((res) => {
-                    setUser(res.data)
-                  })
-                  .catch((err) => console.log("Reload User" + err));
-                if(his !== null){
-                  // setTimeout(()=>{
-                  //   his.push('/cart');
-                  // },300)
-                  his.push('/cart');
-                }
+                updateData();
+                if(his !== null)   his.push('/cart');
               }
               else alert("không thể thêm vào giỏ hàng");
             }).catch((err) => console.log("Add cart failed" + err));
@@ -224,14 +221,7 @@ function App() {
         return false;
       }
     }
-  const checkExistCartDetail = (idProduct) => {
-    var exist = false;
-    cartDetails.current.forEach(element => {
-      if (element.idProduct === idProduct) exist = true;
-    });
-    return exist;
-  }
-  const deleteCartItem = (iduser, idpro) => {
+  const deleteCartItem =(iduser, idpro)=>{
     Swal.fire({
       title: 'Bạn muốn xóa sản phẩm khỏi giỏ hàng ?',
       icon: 'warning',
@@ -269,7 +259,8 @@ function App() {
         .catch((err) => console.log("Dell xoa duoc", err))
     }
   }
-  return (
+  if(online) {
+    return (
     <Router>
       <ScrollToTop />
       <div className={adminMode === false ? "App" : "App-no-scroll"}>
@@ -281,7 +272,7 @@ function App() {
         <Route path="/staff" exact component={() => <Login login={login} />} ></Route>
         <Route path="/staff/:idUser" component={(match) => <Staff changeAdminMode={changeAdminMode} match={match} logout={logout} showLoadOrder ={showLoadOrder}/>}></Route>
 
-        <Route path="/" exact component={() => <Body idUser={user !== null ? user.id : null} products={products} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
+        <Route path="/" exact component={() => <Body images={images} idUser={user !== null ? user.id : null} products={products} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/laptop" exact component={() => <Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />}></Route>
         <Route path="/laptop/:attribute/:value" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
         <Route path="/laptop/:attribute/:from/:to" exact component={(match) => <Laptops match={match} addProductToCart={addProductToCart} />} ></Route>
@@ -321,6 +312,7 @@ function App() {
           addProductToCart={addProductToCart}
           idUser={user !== null ? user.id : null}
           createBill={createBill}
+          cartDetails={user !== null ? user.cartDetails : []}
         />}></Route>
         <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />} ></Route>
         <Route path="/bill" component={() => <DonHang idUser={user !== null ? user.id : null} />}></Route>
@@ -335,7 +327,7 @@ function App() {
         <Route path="/showroom" component={() => <Showroom />}></Route>
         <Footer adminMode={adminMode} />
       </div>
-    </Router>
-  );
+    </Router>)
+  }else return  (<div className="server-off"><img className="repair-server" src={repairServer} /><p>Hệ thống đang bảo trì , vui lòng quay lại sau !!</p></div>)
 }
 export default App;

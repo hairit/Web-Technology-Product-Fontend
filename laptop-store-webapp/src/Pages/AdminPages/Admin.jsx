@@ -54,8 +54,7 @@ export default function Admin({ changeAdminMode, match, logout, setUser }) {
                 <div className="admin-pages">
                     <div className='admin-pages-header'>
                         <div className="admin-logout" onClick={() => {
-                            logout(history);
-                            history.push('/login');
+                            logout(history,'admin');
                         }} ><CgLogOut className="admin-logout-icon" />Thoát</div>
                     </div>
                     <div className="admin-pages-main">

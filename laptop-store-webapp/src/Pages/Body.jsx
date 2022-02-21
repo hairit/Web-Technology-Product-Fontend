@@ -20,7 +20,7 @@ import phoneicon from '../Images/phone-icon.png'
 import addressicon from '../Images/address.png'
 import URL from '../DATA/URL'
 import HeadphonePanel from './BodyPages/HeadphonePanel'
-function Body({idUser,addProductToCart,changeAdminMode,products}) {
+function Body({idUser,addProductToCart,changeAdminMode,products,images}) {
     useEffect(() => {
         window.addEventListener('scroll',changeStatusRightItem);
         changeAdminMode('off');
@@ -54,7 +54,7 @@ function Body({idUser,addProductToCart,changeAdminMode,products}) {
                 {/* <img className="event-scroll-left" src={`${URL}/Images/Panels/black-friday.png`} />
                 <img className="event-scroll-right" src={`${URL}/Images/Panels/black-friday.png`} /> */}
                 {/* <img  className={display === true ? "scroll-to-top" : "scroll-to-top-hide"} src={up} onClick={()=>window.scrollTo(0, 0)} /> */}
-                <MainPanel />
+                <MainPanel images={images} />
                 <LaptopPanel addCart={addCart} products={selectProductByType('laptop')}/>
                 <div className="event-laptop">
                     <div className="event-laptop-item"><img className="event-laptop-item-img" src={`${URL}/Images/Panels/event-laptop1.png`}/></div>

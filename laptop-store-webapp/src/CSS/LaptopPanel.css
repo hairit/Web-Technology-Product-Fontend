@@ -217,10 +217,10 @@
   width: 100%;
   text-align: center;
 }
-.giamgia-panel{
+.giamgia-panel {
   position: absolute;
   left: 0;
-  top : 30px;
+  top: 30px;
   width: 70px;
   display: flex;
   justify-content: center;
@@ -228,36 +228,77 @@
   height: 28px;
   background-color: #d12115;
   border-top-left-radius: 3px;
-  color: #FFFFFF;
-  z-index:5;
+  color: #ffffff;
+  z-index: 5;
 }
-.giamgia-panel::after{
-  content: '';
+.giamgia-panel::after {
+  content: "";
   position: absolute;
-  top : 0 ;
+  top: 0;
   width: 15px;
   height: 14px;
   left: 100%;
   background-color: #d12115;
-  border-right: 15px #FFFFFF solid;
+  border-right: 15px #ffffff solid;
   border-top: 14px #d12115 solid;
 }
-.small-area{
-  position: absolute ;
-  top : 100% ;
+.small-area {
+  position: absolute;
+  top: 100%;
   left: 0;
   height: 5px;
-  width: 7px ;
+  width: 7px;
   background-color: #971209;
   border-bottom-left-radius: 3px;
 }
-.giamgia-panel::before{
-  content: '';
+.giamgia-panel::before {
+  content: "";
   position: absolute;
   width: 15px;
   left: 100%;
   bottom: 0;
   background-color: #d12115;
-  border-right: 15px #FFFFFF solid;
+  border-right: 15px #ffffff solid;
   border-bottom: 14px #d12115 solid;
+}
+.pavigation {
+  width: 100%;
+  padding: 42px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pavigation-button {
+  padding: 5px 5px;
+  background-color: #ffffff;
+  border: 2px solid #3f4fc3;
+  color: #3f4fc3;
+  font-size: 12px;
+  margin: 0 7px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.pavigation-button-active {
+  padding: 5px 5px;
+  background-color: #3f4fc3;
+  border: 2px solid #3f4fc3;
+  color: #ffffff;
+  font-size: 12px;
+  margin: 0 7px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.change-page-btn {
+  padding: 5px 0;
+  width: 50px;
+  border: 2px solid #3f4fc3;
+  color: #3f4fc3;
+  background-color: #ffffff;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.change-page-btn:hover {
+  background-color: #3f4fc3;
+  color: #ffffff;
 }

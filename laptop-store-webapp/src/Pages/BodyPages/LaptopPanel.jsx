@@ -47,14 +47,7 @@ export default function Laptop({addCart,products}) {
   const history = useHistory();
   const [pros, setPros] = useState([]);
   const [laptopQuantity, setLaptopQuantity] = useState(0);
-  // useEffect(() => {
-  //   call("GET", "data/product/type=laptop/enable", null)
-  //     .then((res) => setPros(res.data))
-  //     .catch((err) =>{
-  //            console.log("Errol!! when try to get laptop product" + err);
-  //            setPros([]);
-  //     });
-  // }, []);
+  const [pageNumber, setPageNumber] = useState(1)
   useEffect(() => {
     call("GET", "data/product/type=laptop/", null)
       .then((res) => setLaptopQuantity(res.data.length))
@@ -63,6 +56,14 @@ export default function Laptop({addCart,products}) {
              setLaptopQuantity(0);
       });
   }, []);
+  
+  const pages = () => {
+     var pages = [];
+     for(let i = 1 ; i <= products.length / 10 ; i++){
+         pages.push(i);
+     }
+     return pages; 
+  }
   return(
     <div className="laptop-panel">
       <div className="laptop-panel-header">
@@ -78,8 +79,19 @@ export default function Laptop({addCart,products}) {
       </div>
       <div className="container10Col wide">
         <div className="row-10-no-margin">
-          {products.map((pro, index) => renderLaptopItem(pro,index,addCart,history))}
+          {products.map((pro, index) =>
+            ( index >= pageNumber*10 -10 && index <=pageNumber*10-1 ) ? renderLaptopItem(pro,index,addCart,history) : <></>
+          )}
         </div>
+      </div>
+      <div className="pavigation">
+        <button className="change-page-btn" disabled={pageNumber===1 ? true : false} onClick={()=>setPageNumber(pageNumber-1)}>Trước</button>
+          {pages().map((item) => <button
+                                         key={item} name={item} onClick={(e) =>setPageNumber(e.target.name)} 
+                                         className={pageNumber === item ? "pavigation-button-active" : "pavigation-button"}>
+                                    {item}
+            </button> )}
+        <button className="change-page-btn" disabled={pageNumber===pages().length ? true : false} onClick={()=>setPageNumber(pageNumber+1)}>Sau</button>
       </div>
     </div>
   );
