@@ -190,7 +190,6 @@ function App() {
     }, 900)
     axios.get(`https://localhost:44343/data/cartdetail/action=add/iduser=${user.id}/idproduct=${idProduct}/tongtien=${price}`, null)
       .then(res => {
-        console.log(res);
         if (res.status === 201) {
           updateData();
           setLoading(true);
@@ -216,9 +215,8 @@ function App() {
               else alert("không thể thêm vào giỏ hàng");
             }).catch((err) => console.log("Add cart failed" + err));
         }
-        return true;
       }catch{
-        return false;
+        alert("Them san pham that bai");
       }
     }
   const deleteCartItem =(iduser, idpro)=>{

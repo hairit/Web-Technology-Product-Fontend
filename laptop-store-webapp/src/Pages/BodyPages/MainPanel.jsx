@@ -43,7 +43,7 @@ const LoadingProductOptions = (item , index) =>{
 }
 const renderCenterImage = (image,index) =>{
     if(image.position === 'center') return (
-        <div className="center-image-item">
+        <div className="center-image-item" key={index}>
             <img key={index} className="center-image-item-img" src={`https://localhost:44343/Images/Panels/${image.nameImage}`} alt={image.nameImage} />
         </div>
     )
@@ -71,7 +71,7 @@ const renderBottom4Image = (image,index) => {
 }
 const countImage = (images,position) =>{
     var count = 0 ;
-    images.map((image)=>{
+    images.map((image) => {
         if(image.position === position ) count = count +1;
     })
     return count;

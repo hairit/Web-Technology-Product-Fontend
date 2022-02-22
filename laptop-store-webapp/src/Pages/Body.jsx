@@ -32,7 +32,7 @@ function Body({idUser,addProductToCart,changeAdminMode,products,images}) {
         else setDisplay(false);
     }
     const addCart = async (idProduct,priceProduct,his) =>{
-        return await addProductToCart(idUser,idProduct,priceProduct,his);
+        await addProductToCart(idUser,idProduct,priceProduct,his);
     }
     const selectProductByType = (type) => {
         var pros = [];

@@ -46,7 +46,6 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
     });
     return tongtienSelect;
   }
-  console.log(cartDetails);
   function checktien (e,gia,quantity,idpro,iduser,select) {
     if ( e.target.checked ) {
       axios.get(`https://localhost:44343/data/cartdetail/select=selected/iduser=${iduser}/idproduct=${idpro}`, null)

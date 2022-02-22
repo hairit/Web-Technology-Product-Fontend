@@ -32,7 +32,7 @@ export default function CartDetail({item,checktien,index,handleViewDetails,check
                     <div className="info-donhang">
                       <div className="info-chitiet">
                       <div className="info-check">
-                        <input class="check-item" type="checkbox"   name="hobby"  id="check-item" defaultChecked={item.selected === 1 ? checked : ""}
+                        <input className="check-item" type="checkbox"   name="hobby"  id="check-item" defaultChecked={item.selected === 1 ? checked : ""}
                         onChange={(e)=> { checktien(e, item.idProductNavigation.gia,item.soluong,item.idProduct,idUser, item.selected); }}   /> 
                         </div>
                         <div className="info-image">
@@ -54,10 +54,10 @@ export default function CartDetail({item,checktien,index,handleViewDetails,check
                         </div>
                         <div className="info-editquantity">
                           <div className="btn-quantity">
-                          <button type="button"class="btn-tru" name="btn-giam" onClick={() => deleteProductFromCart(idUser,item.idProduct,item.idProductNavigation.gia,item.soluong)}>
+                          <button type="button" className="btn-tru" name="btn-giam" onClick={() => deleteProductFromCart(idUser,item.idProduct,item.idProductNavigation.gia,item.soluong)}>
                              -
                           </button>
-                          <input type="text" class="finput-edit" placeholder={item.soluong} disabled />
+                          <input type="text" className="finput-edit" placeholder={item.soluong} disabled />
                           <button type="button" name="btn-tang" className="btn-cong"
                               onClick={() => addQuantityProduct(item.idProduct,item.idProductNavigation.gia)}> + </button>
                           </div>
