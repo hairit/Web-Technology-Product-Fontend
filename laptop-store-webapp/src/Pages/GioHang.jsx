@@ -36,6 +36,7 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
   useEffect(() => {
     if(cartDetails.count > 0) setLoading(false);
   }, [cartDetails])
+  console.log(cartDetails);
   function thanhtien(prod){
     var tongtienSelect = 0;
     prod.forEach(prod => {
