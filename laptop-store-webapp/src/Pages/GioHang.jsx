@@ -82,7 +82,6 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
   }
     if(cartDetails.length > 0 ){
     return(
-      
       <div className="page">
         <div className="container width">
           <div className="home-icon">
