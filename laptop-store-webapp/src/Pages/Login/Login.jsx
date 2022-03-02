@@ -55,7 +55,6 @@ export default function Login({login,userCookie,changeAdminMode}) {
                            .then(res => {
                                console.log(res.data);
                                         if(res.data.mode === 'SHIPPER'){
-                                            login(res.data);
                                             history.push('/shipper');
                                         }
                                         else if(res.data.mode === 'CUSTOMER'){

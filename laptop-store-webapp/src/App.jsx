@@ -48,6 +48,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [images, setImages] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
+  const [waiting, setWaiting] = useState(true);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [online, setOnline] = useState(true);
@@ -64,26 +65,25 @@ function App() {
   }, []);
   useEffect(() => {
     if(online === true){
-        call('GET','data/image',null).then(res => setImages(res.data)).catch(err => console.log("Errol when try to get Image API"));
-        axios.get('https://localhost:44343/data/product/all')
-            .then(res => {
-                setProducts(res.data);
-            })
-            .catch( () => console.log("Get Products failed"))
         if (userCookie.id !== undefined)
         {
-          axios.get(`https://localhost:44343/data/user/${userCookie.id}`)
-               .then((res) => {
-                    if(res.data.mode === 'SHIPPER') {
-                        setUser(null);
-                    }else
-                    {
+          call('GET',`data/user${userCookie.id}`,null)
+            .then((res) => 
+                {
                       cartDetails.current = res.data.cartDetails;
                       setUser(res.data);
-                    }
                 })
-                .catch((err) => console.log("Đăng nhập fail" + err));
+            .catch((err) => console.log("Đăng nhập fail" + err));
         }
+        call('GET','data/image',null)
+            .then(res => setImages(res.data))
+            .catch(err => console.log("Errol when try to get Image API" + err));
+        call('GET','data/product/all',null)
+            .then(res => {
+                setProducts(res.data);
+                setWaiting(false);
+            })
+            .catch(err => console.log("Get Products failed" + err))
     }
   }, [online]);
   useEffect(() => {
@@ -184,6 +184,17 @@ function App() {
       <div></div>
     }
   }
+  function waitingStatus() {
+    if (waiting === true) {
+      return (
+        <div className="loading">
+          <img src={loadEffect} />
+        </div>
+      )
+    } else {
+      <div></div>
+    }
+  }
   const addQuantityProduct = (idProduct, price) => {
     setTimeout(() => {
       setLoading(false);
@@ -257,9 +268,15 @@ function App() {
         .catch((err) => console.log("Dell xoa duoc", err))
     }
   }
-  if(online) {
-    return (
-    <Router>
+  if(online){
+    if(waiting) return (
+      <div className="loading">
+          <img src={loadEffect} />
+        </div>
+    );
+    else
+    return(
+      <Router>
       <ScrollToTop />
       <div className={adminMode === false ? "App" : "App-no-scroll"}>
         {loadQuantity()}
@@ -325,7 +342,8 @@ function App() {
         <Route path="/showroom" component={() => <Showroom />}></Route>
         <Footer adminMode={adminMode} />
       </div>
-    </Router>)
+    </Router>
+    );
   }else return  (<div className="server-off"><img className="repair-server" src={repairServer} /><p>Hệ thống đang bảo trì , vui lòng quay lại sau !!</p></div>)
 }
 export default App;
