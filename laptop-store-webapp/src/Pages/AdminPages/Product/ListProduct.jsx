@@ -78,7 +78,7 @@ export default function Product({ idUser, clickEditProduct }) {
     }
 
     const setShowItem = (e, id) => {
-        if (e.targe.checked) setHienThi(id, 1);
+        if (e.target.checked) setHienThi(id, 1);
         else setHienThi(id, 0)
     }
 
@@ -86,7 +86,7 @@ export default function Product({ idUser, clickEditProduct }) {
     const renderTable = () => {
         return (
             pros.map((pro, index) => {
-                if (index <= 10 * page && index >= 10 * (page - 1))
+                if (index <= 11 * page && index >= 11 * (page - 1))
                     return (
                         <tr key={pro.id} className="product-list-item">
                             <td className="product-item-item">{index}</td>
@@ -94,7 +94,7 @@ export default function Product({ idUser, clickEditProduct }) {
                             <td className="product-item-item">{pro.ten}</td>
                             <td className="product-item-item">{pro.gia}</td>
                             <td className="product-item-item">{pro.idloai}</td>
-                            <td className="product-item-item">{pro.hienthi === 1 ? <input type="checkbox" checked onClick={(e) => setShowItem(e, pro.id)} /> : <input type="checkbox" onClick={(e) => setShowItem(e, pro.id)} />}</td>
+                            <td className="product-item-item">{pro.hienthi === 1 ? <input type="checkbox" defaultChecked onClick={(e) => setShowItem(e, pro.id)} /> : <input type="checkbox" onClick={(e) => setShowItem(e, pro.id)} />}</td>
                             <td className="product-item-item"><MdEdit className="product-item-icon" onClick={() => clickEdit(pro.id)} /></td>
                         </tr>
                     )

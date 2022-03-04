@@ -30,7 +30,7 @@ export default function Statict ({ }){
                     let datas = [];
                     let z =  moment(month).toDate().getFullYear().toString()+ "-" + moment(month).toDate().getMonth()+1;
                     if (labels.length!==(moment(z,"yyyy mm").daysInMonth()))
-                    for (let i=1; i<=moment(z,"yyyy mm").daysInMonth();i++)
+                    for (let i=0; i<=moment(z,"yyyy mm").daysInMonth();i++)
                     {
                         labels.push(i);
                         datas.push(0);
