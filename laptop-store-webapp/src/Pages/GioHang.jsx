@@ -11,13 +11,14 @@ import tk_shopping_img from "../Images/tk_shopping_img.png";
 import { useEffect, useState } from "react";
 import ThanhToan from "./ThanhToan";
 import CartDetail from "./CartDetail";
-export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,deleteProductFromCart , createBill,cartDetails}) {
+export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,deleteProductFromCart , createBill ,cartDetails , updateData}) {
   const solver = new Solver();
   const history = useHistory();
   //const [cartDetails, setCartDetails] = useState([]);
   const [loading , setLoading] = useState(true);
   const [reload, setReload] = useState(0);
   const [checked, setChecked] = useState(true);
+  // const [cartDetails, setCartDetails] = useState([])
   const reLoad = () =>{
     if(reload === 0) setReload(1);
     else setReload(0);
@@ -48,19 +49,21 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
     return tongtienSelect;
   }
   function checktien (e,gia,quantity,idpro,iduser,select) {
+    console.log("check chekc");
     if ( e.target.checked ) {
       axios.get(`https://localhost:44343/data/cartdetail/select=selected/iduser=${iduser}/idproduct=${idpro}`, null)
       .then(() => {
-        reLoad();
+        updateData();
       }).catch((err) => console.error("Không thể checker",err));
     } else {
       axios.get(`https://localhost:44343/data/cartdetail/select=unselected/iduser=${idUser}/idproduct=${idpro}`, null)
       .then(() => {
-        reLoad()
+        updateData();
       })
       .catch((err) => console.error("Không thể unchecker",err));
     }
   }
+  console.log(cartDetails);
   function btnThanhToan(){
     var tongprice = thanhtien(cartDetails)
     if(tongprice !== 0 ){
@@ -98,7 +101,7 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
           </div>
           <div className="center-card">
             <div className="carts">
-              {cartDetails.map((item, index) => <CartDetail item={item} key={index} index={index} checktien={checktien}  checked={checked} idUser={idUser} addQuantityProduct={addQuantityProduct} deleteCartItem={deleteCartItem} deleteProductFromCart={deleteProductFromCart} solver={solver}/>
+              {cartDetails.map((item, index) => <CartDetail item={item} index={index} checktien={checktien}  checked={checked} idUser={idUser} addQuantityProduct={addQuantityProduct} deleteCartItem={deleteCartItem} deleteProductFromCart={deleteProductFromCart} solver={solver}/>
             )}
             </div>
             <div className="payment">

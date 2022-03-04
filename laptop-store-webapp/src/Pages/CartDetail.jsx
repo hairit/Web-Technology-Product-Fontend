@@ -33,7 +33,7 @@ export default function CartDetail({item,checktien,index,handleViewDetails,check
                       <div className="info-chitiet">
                       <div className="info-check">
                         <input className="check-item" type="checkbox"   name="hobby"  id="check-item" defaultChecked={item.selected === 1 ? checked : ""}
-                        onChange={(e)=> { checktien(e, item.idProductNavigation.gia,item.soluong,item.idProduct,idUser, item.selected); }}   /> 
+                        onChange={(e)=> checktien(e, item.idProductNavigation.gia,item.soluong,item.idProduct,idUser, item.selected)}   /> 
                         </div>
                         <div className="info-image">
                           <div className="img-name">

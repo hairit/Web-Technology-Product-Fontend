@@ -8,6 +8,7 @@ import PCPanel from './BodyPages/PCPanel'
 import ScreenPanel from './BodyPages/ScreenPanel'
 import MainPanel from './BodyPages/MainPanel'
 import MousePanel from './BodyPages/MousePanel'
+import Keyboard from './BodyPages/Keyboard.jsx'
 import facebook from '../Images/facebook_48px.png'
 import messenger from '../Images/facebook_messenger_48px.png'
 import youtube from '../Images/YouTube_48px.png'
@@ -80,8 +81,9 @@ function Body({idUser,addProductToCart,changeAdminMode,products,images}) {
                         </div>
                     </div>
                 </div>
-                <KeyboardPanel addCart={addCart} products={selectProductByType('keyboard')}/>
-                <MousePanel addCart={addCart} products={selectProductByType('mouse')}/>
+                <Keyboard addCart={addCart} products={selectProductByType('keyboard')}  />
+                {/* <KeyboardPanel addCart={addCart} products={selectProductByType('keyboard')}/> */}
+                {/* <MousePanel addCart={addCart} products={selectProductByType('mouse')}/> */}
                 <HeadphonePanel addCart={addCart} products={selectProductByType('headphone')}/> 
         </div>
     )

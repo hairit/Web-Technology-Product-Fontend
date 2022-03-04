@@ -5,7 +5,8 @@
   height: auto;
   padding-bottom: 5px;
   margin-top: 30px;
-  background-color: #bd1b0f;
+  /* background-color: #bd1b0f; */
+  background-color: #FFFFFF;
   border-radius: 5px;
   padding-left: 4px;
   padding-right: 4px;
@@ -19,7 +20,7 @@
   padding: 0 7px;
 }
 .screen-panel-header-logo {
-  color: #ffffff;
+  color: rgb(122, 120, 120);
   font-size: 20px;
 }
 .btn-all-screen {

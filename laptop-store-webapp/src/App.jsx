@@ -65,9 +65,10 @@ function App() {
   }, []);
   useEffect(() => {
     if(online === true){
+      console.log("reloads");
         if (userCookie.id !== undefined)
         {
-          call('GET',`data/user${userCookie.id}`,null)
+          call('GET',`data/user/${userCookie.id}`,null)
             .then((res) => 
                 {
                       cartDetails.current = res.data.cartDetails;
@@ -175,17 +176,6 @@ function App() {
   }
   function loadQuantity() {
     if (loading === true) {
-      return (
-        <div className="loading">
-          <img src={loadEffect} />
-        </div>
-      )
-    } else {
-      <div></div>
-    }
-  }
-  function waitingStatus() {
-    if (waiting === true) {
       return (
         <div className="loading">
           <img src={loadEffect} />
@@ -321,6 +311,7 @@ function App() {
         <Route path="/shipper" exact component={()=><Shipper changeAdminMode={changeAdminMode} showLoadOrder={showLoadOrder}/>}></Route>
         <Route path="/cart" exact component={() => <GioHang
           user={user}
+          updateData={updateData}
           deleteProductFromCart={deleteProductFromCart}
           deleteCartItem={deleteCartItem}
           addQuantityProduct={addQuantityProduct}
