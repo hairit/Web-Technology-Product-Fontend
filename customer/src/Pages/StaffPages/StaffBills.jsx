@@ -270,8 +270,8 @@ export default function StaffBills({match}) {
                             }
                             }}>
                             <td className='staff-bill-table-cell'>{index}</td>
-                            <td className='staff-bill-table-cell'>{item.iduserNavigation.firstname+' '+item.iduserNavigation.lastname}</td>
-                            <td className='staff-bill-table-cell'>{item.iduserNavigation.sdt}</td>
+                            <td className='staff-bill-table-cell'>{item.idUserNavigation.firstname+' '+item.idUserNavigation.lastname}</td>
+                            <td className='staff-bill-table-cell'>{item.idUserNavigation.sdt}</td>
                             <td className='staff-bill-table-cell'>{item.diachinhan}</td>
                             <td className='staff-bill-table-cell' style={{color : 'rgb(212, 14, 14)',fontWeight : '500'}}>{solver.formatCurrency("vi-VN", "currency", "VND", item.tongtien)}</td>
                             <td className='staff-bill-table-cell'>
