@@ -37,19 +37,16 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
   useEffect(() => {
     if(cartDetails.count > 0) setLoading(false);
   }, [cartDetails])
-  console.log(cartDetails);
   function thanhtien(prod){
     var tongtienSelect = 0;
     prod.forEach(prod => {
       if(prod.selected === 1){
-        // btnPayment()
       tongtienSelect = prod.tongtien + tongtienSelect
       }
     });
     return tongtienSelect;
   }
   function checktien (e,gia,quantity,idpro,iduser,select) {
-    console.log("check chekc");
     if ( e.target.checked ) {
       axios.get(`https://localhost:44343/data/cartdetail/select=selected/iduser=${iduser}/idproduct=${idpro}`, null)
       .then(() => {
@@ -63,7 +60,6 @@ export default function GioHang({ idUser,addQuantityProduct, deleteCartItem ,del
       .catch((err) => console.error("Không thể unchecker",err));
     }
   }
-  console.log(cartDetails);
   function btnThanhToan(){
     var tongprice = thanhtien(cartDetails)
     if(tongprice !== 0 ){
