@@ -1,11 +1,12 @@
-import React from 'react'
-import {useState} from 'react'
-import '../../CSS/Login2.css'
+import React from 'react';
+import {useState} from 'react';
+import '../../CSS/Login2.css';
 const checkEmail =(email) => {
     if(!email.include('@')) return  false;
     return true;
 }
-export default function Login2() {
+
+export default function Login2({loginWithGoogle}) {
     const [account, setAccount] = useState({email :'',pass :''})
     const [status, setStatus] = useState(true);
     const handleSubmitLogin = (e) =>{
@@ -45,7 +46,7 @@ export default function Login2() {
                          <p>hoặc</p>
                     <div className="login-form-item button-group-login">
                         <button className="button-login button-login-google" type="submit">Google</button> 
-                        <button className="button-login button-login-facebook" type="submit">Facebook</button> 
+                        <button className="button-login button-login-facebook" type="submit" onClick={()=>loginWithGoogle()}>Facebook</button> 
                     </div>
                 </form>
             </div>
@@ -81,7 +82,7 @@ export default function Login2() {
                             <p>Bạn đẵ có tài khoản</p>
                         <div className="button-change-login" onClick={() => status === true ? setStatus(false) : setStatus(true)}>Đăng nhập</div> 
                     </div>
-                    </form>
+                    </form>``
                 </div>
             </div>
         </div>

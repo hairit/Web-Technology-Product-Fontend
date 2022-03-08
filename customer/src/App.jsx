@@ -4,6 +4,7 @@ import Header from "./Pages/Header.jsx";
 import Keyboard from "./Pages/Products/ProductsKeyboard/Keyboard";
 import { useState, useEffect, useCallback, useRef } from "react";
 import Login from "./Pages/Login/Login";
+import Login2 from "./Pages/Login/Login2";
 import Admin from "./Pages/AdminPages/Admin";
 import Body from "./Pages/Body";
 import Tintuc from "./Pages/Tintuc/Tintuc";
@@ -43,6 +44,8 @@ import Baomatthongtin from "./Pages/Chinhsach/Baomatthongtin";
 import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
 import repairServer from './Images/repair-server.png';
 import Invoice from "./Pages/StaffPages/Invoice";
+import {auth} from './firebase-config';
+import { signInWithPopup , GoogleAuthProvider } from 'firebase/auth';
 function App() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
@@ -58,14 +61,11 @@ function App() {
   const [bill, setBill] = useState({ id: '', iduser: '', tongtien: 0, ngaydat: '', diachinhan: '', billDetails: [] });
   useEffect(() => {
       call('GET', `server/run`, null)
-        .then((res) => {
-          setOnline(true);
-        })
+        .then((res) => {})
         .catch((err) => setOnline(false));
   }, []);
   useEffect(() => {
     if(online === true){
-      console.log("reloads");
         if (userCookie.id !== undefined)
         {
           call('GET',`data/user/${userCookie.id}`,null)
@@ -74,17 +74,17 @@ function App() {
                       cartDetails.current = res.data.cartDetails;
                       setUser(res.data);
                 })
-            .catch((err) => console.log("Đăng nhập fail" + err));
+            .catch((err) => console.log(err));
         }
         call('GET','data/image',null)
             .then(res => setImages(res.data))
-            .catch(err => console.log("Errol when try to get Image API" + err));
+            .catch(err => console.log(err));
         call('GET','data/product/all',null)
             .then(res => {
                 setProducts(res.data);
                 setWaiting(false);
             })
-            .catch(err => console.log("Get Products failed" + err))
+            .catch(err => console.log(err))
     }
   }, [online]);
   useEffect(() => {
@@ -104,6 +104,14 @@ function App() {
     setUserCookie("id", user.id);
     setUser(user);
   }
+  const loginWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+      //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+      //const auth = getAuth(app);
+      signInWithPopup(auth , provider)
+          .then ((result) => console.log(result))
+          .catch((err) => console.log(err));
+}
   const changeAdminMode = (mode) => {
     if (mode === 'off') setAdminMode(false);
     else setAdminMode(true);
@@ -270,8 +278,9 @@ function App() {
       <ScrollToTop />
       <div className={adminMode === false ? "App" : "App-no-scroll"}>
         {loadQuantity()}
+        <button onClick={()=> loginWithGoogle()}>Login</button>
         <Header user={user} adminMode={adminMode} logout={logout} setUser={setUser} />
-
+        <Switch>
         <Route path="/admin" exact component={() => <Login login={login} />} ></Route>
         <Route path="/admin/:idUser" component={(match) => <Admin changeAdminMode={changeAdminMode} match={match} logout={logout} setUser={setUser} />}></Route>
         <Route path="/staff" exact component={() => <Login login={login} />} ></Route>
@@ -320,7 +329,8 @@ function App() {
           createBill={createBill}
           cartDetails={user !== null ? user.cartDetails : []}
         />}></Route>
-        <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />} ></Route>
+        {/* <Route path="/login" exact component={(match) => <Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />} ></Route> */}
+        <Route path="/login" exact component={(match) => <Login2 loginWithGoogle={loginWithGoogle}></Login2>} ></Route>
         <Route path="/bill" component={() => <DonHang idUser={user !== null ? user.id : null} />}></Route>
         <Route path="/products/:namepro" exact component={(match) => <Products match={match} />}></Route>
         <Route path="/lienhe" component={() => <LienHe />}></Route>
@@ -331,6 +341,7 @@ function App() {
         <Route path="/baomatthongtin" component={() => <Baomatthongtin />}></Route>
         <Route path="/tincongnghe" component={() => <Tintuc changeAdminMode={changeAdminMode} />}></Route>
         <Route path="/showroom" component={() => <Showroom />}></Route>
+        </Switch>
         <Footer adminMode={adminMode} />
       </div>
     </Router>
