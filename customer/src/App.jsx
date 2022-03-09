@@ -2,7 +2,7 @@ import "./CSS/App.css";
 import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
 import Header from "./Pages/Header.jsx";
 import Keyboard from "./Pages/Products/ProductsKeyboard/Keyboard";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect , useRef } from "react";
 import Login from "./Pages/Login/Login";
 import Login2 from "./Pages/Login/Login2";
 import Admin from "./Pages/AdminPages/Admin";
@@ -28,14 +28,12 @@ import ThanhToan from "./Pages/ThanhToan";
 import DonHang from "./Pages/DonHang";
 import call from "./API/API";
 import loadEffect from "./Images/loadEffect.gif"
-import GioHangCss from "./CSS/GioHangCss.css"
 import Headphone from "./Pages/Products/ProductsHeadphone/Headphone";
 import DetailProductsHeadphone from "./Pages/Products/ProductsHeadphone/DetailProductsHeadphone";
 import Products from "./Pages/Products/SearchProducts/Products";
 import PostFile from "./Pages/PostFile";
 import Staff from "./Pages/StaffPages/Staff";
 import Shipper from "./Pages/Ship/Shipper";
-import { IoMdReturnLeft } from "react-icons/io";
 import Chinhsachbaohanh from "./Pages/Chinhsach/Chinhsachbaohanh";
 import Chinhsachvanchuyen from "./Pages/Chinhsach/Chinhsachvanchuyen";
 import LienHe from "./Pages/Lienhe";
@@ -44,8 +42,8 @@ import Baomatthongtin from "./Pages/Chinhsach/Baomatthongtin";
 import Chinhsachhangchinhhang from "./Pages/Chinhsach/Chinhsachhangchinhhang";
 import repairServer from './Images/repair-server.png';
 import Invoice from "./Pages/StaffPages/Invoice";
+import {signInWithPopup , GoogleAuthProvider} from 'firebase/auth';
 import {auth} from './firebase-config';
-import { signInWithPopup , GoogleAuthProvider } from 'firebase/auth';
 function App() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
@@ -106,11 +104,11 @@ function App() {
   }
   const loginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-      //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-      //const auth = getAuth(app);
-      signInWithPopup(auth , provider)
-          .then ((result) => console.log(result))
-          .catch((err) => console.log(err));
+    //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    //const auth = getAuth(app);
+    signInWithPopup(auth , provider)
+        .then ((result) => console.log(result))
+        .catch((err) => console.log(err));
 }
   const changeAdminMode = (mode) => {
     if (mode === 'off') setAdminMode(false);
