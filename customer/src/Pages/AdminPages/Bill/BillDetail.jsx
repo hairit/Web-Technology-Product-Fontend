@@ -5,12 +5,10 @@ import {TiDelete} from 'react-icons/ti'
 export default function BillDetail({item,index,reLoad,deleteBillDetail}) {
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        console.log("Rerender");
         axios.get(`https:localhost:44343/data/product/${item.idProduct}`)
         .then(res => setProduct(res.data))
         .catch((err)=>{
             setProduct(null);
-            console.log("Billdetail getProduct errol : "+err);
         });
     }, [reLoad]);
     const increaseBillDetail = () => {

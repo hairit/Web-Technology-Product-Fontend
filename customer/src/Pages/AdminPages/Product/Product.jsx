@@ -14,7 +14,6 @@ export default function Product({ idUser }) {
     useEffect(() => {
         axios.get(`https://localhost:44343/data/product/${pros}`)
             .then((res) => {
-                console.log(res);
                 setProduct(res.data);
             })
             .catch((err) => {
@@ -24,7 +23,6 @@ export default function Product({ idUser }) {
 
     const clickEditProduct = (id) => {
         setPros(id);
-        console.log(pros);
     }
     return (
         <Router>

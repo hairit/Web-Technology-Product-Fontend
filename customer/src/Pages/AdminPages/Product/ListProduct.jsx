@@ -16,15 +16,12 @@ export default function Product({ idUser, clickEditProduct }) {
         if (type === "")
             axios.get(`https://localhost:44343/data/product`)
                 .then((res) => {
-                    console.log(res);
                     setpros(res.data);
                 })
                 .catch((err) => console.log(err))
         else {
-            console.log(`https://localhost:44343/data/product/type=${type}`);
             axios.get(`https://localhost:44343/data/product/type=${type}`)
                 .then((res) => {
-                    console.log(res);
                     setpros(res.data);
                 })
                 .catch((err) => console.log(err))
@@ -41,7 +38,6 @@ export default function Product({ idUser, clickEditProduct }) {
                     })
                     .catch((err) => console.log(err))
             else {
-                console.log(`https://localhost:44343/data/product/type=${type}`);
                 axios.get(`https://localhost:44343/data/product/type=${type}`)
                     .then((res) => {
                         setSearch(res.data);
@@ -56,15 +52,12 @@ export default function Product({ idUser, clickEditProduct }) {
             if (type === "")
                 axios.get(`https://localhost:44343/data/product`)
                     .then((res) => {
-                        console.log(res);
                         setpros(res.data);
                     })
                     .catch((err) => console.log(err))
             else {
-                console.log(`https://localhost:44343/data/product/type=${type}`);
                 axios.get(`https://localhost:44343/data/product/type=${type}`)
                     .then((res) => {
-                        console.log(res);
                         setpros(res.data);
                     })
                     .catch((err) => console.log(err))

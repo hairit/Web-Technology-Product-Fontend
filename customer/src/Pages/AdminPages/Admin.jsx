@@ -26,7 +26,6 @@ export default function Admin({ changeAdminMode, match, logout, setUser }) {
     const history = useHistory();
     useEffect(() => {
         changeAdminMode('on');
-        console.log(match.match.params.idUser);
         call('GET', `data/user/${match.match.params.idUser}`, null)
             .then(res => {
                 if (res.data.mode === "ADMIN") {

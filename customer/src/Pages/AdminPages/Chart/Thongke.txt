@@ -47,20 +47,18 @@ function TKtheotien(){
   });
   return tien
 }
-console.log("111",TKtheotien());
 
 
 var today = new Date();
 var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
-console.log("ppp",date)
 
     function fromdate(e){
         var a = e.target.value 
-        console.log("ggg",Moment(a).format('MM-DD-YYYY') )
+        
     }
     function todate(e){
       var b = e.target.value 
-        console.log("ccc",Moment(b).format('MM-DD-YYYY') )
+    
     }
     return (
         <div>

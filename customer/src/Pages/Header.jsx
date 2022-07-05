@@ -45,7 +45,6 @@ export default function Header({ user, adminMode, logout, updateData, setUser })
   }
   function handleSearch(e) {
     setNamePro(e.target.value)
-    console.log("aq", namepro)
   }
     return (
       <div className={adminMode === false ? "header" : "header-hide"}>

@@ -46,7 +46,6 @@ const reLoad = () =>{
           .catch((err) => console.log(err));
     }
   }, [reload]);
-  console.log(checkout);
   function totalPrice(carts) {
     var tongtien = 0;
     carts.forEach(cart => {
@@ -166,7 +165,6 @@ function formAddPhone(){
         </div>
       </div>
 }
-console.log("qqq",typeof(userOrder.diachi) )
   function AddressAndPhone(){
     if(userOrder.diachi && userOrder.sdt !== null){
       return showEditInfo();
