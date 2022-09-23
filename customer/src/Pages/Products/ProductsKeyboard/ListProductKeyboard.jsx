@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import Solver from "../../../Classes/Solver";
 
-export default function ListProductKeyboard({ pros,addProductInCart }) {
+export default function ListProductKeyboard({ pros, addProductInCart }) {
   const history = useHistory();
   const solver = new Solver();
   function handleViewDetails(detail) {
@@ -20,21 +20,21 @@ export default function ListProductKeyboard({ pros,addProductInCart }) {
   }
   function handleViewPriceSave(pro) {
     var pricesave = pro.giacu - pro.gia
-    if(pro.giacu > pro.gia){
-    return (
+    if (pro.giacu > pro.gia) {
+      return (
         <div className="price-save">
-          <img src="https://mondaycareer.com/wp-content/uploads/2020/11/background-%C4%91%E1%BA%B9p-3-1024x682.jpg"/>
+          <img src="https://mondaycareer.com/wp-content/uploads/2020/11/background-%C4%91%E1%BA%B9p-3-1024x682.jpg" />
           <div className="title-price-save">
             <p className="pricesave-title">Tiết kiệm</p>
             <p className="pricesave">{solver.formatCurrency("vi-VN", "currency", "VND", pricesave)}
             </p>
           </div>
         </div>
-    )
+      )
     }
   }
   return (
-    <div className="row prolst">
+    <div className="row prolst row-pros">
       {pros.map((pro, index) => {
         return (
           <div className="col-md-4 col-sm-6 lstpro " key={index}>
@@ -59,8 +59,8 @@ export default function ListProductKeyboard({ pros,addProductInCart }) {
                 {solver.formatCurrency("vi-VN", "currency", "VND", pro.giacu)}
               </p>
               <div className="button_group">
-                <button className="button add-cart" type="button"  onClick={() => addProductInCart(pro.id,pro.gia)}>
-                  Thêm vào giỏ hàng                              
+                <button className="button add-cart" type="button" onClick={() => addProductInCart(pro.id, pro.gia)}>
+                  Thêm vào giỏ hàng
                 </button>
                 <button className="button wishlist" type="button">
                   <i className="fa">

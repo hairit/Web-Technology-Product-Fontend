@@ -12,7 +12,7 @@ import banner_pro_right from "../../../Images/banner_pro_right.png"
 import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductHeadphone from "./ListProductHeadphone";
-export default function Headphone({idUser,match,addProductToCart}) {
+export default function Headphone({ idUser, match, addProductToCart }) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -22,30 +22,30 @@ export default function Headphone({idUser,match,addProductToCart}) {
 
   useEffect(() => {
     var API;
-    if(match !== undefined){
-      if(match.match.params.attribute !== "kichthuoc" && match.match.params.attribute !== "gia") {
-            API = `${URL}/data/headphone/${match.match.params.attribute}=${match.match.params.value}`
-      }else if(match.match.params.attribute === "kichthuoc"){
-            API = `${URL}/data/headphone/kichthuoc/from=${match.match.params.from}to=${match.match.params.to}`;
-      }else if(match.match.params.attribute === "gia"){
-            API = `${URL}/data/product/type=headphone/from=${match.match.params.from}to=${match.match.params.to}`;
+    if (match !== undefined) {
+      if (match.match.params.attribute !== "kichthuoc" && match.match.params.attribute !== "gia") {
+        API = `${URL}/data/headphone/${match.match.params.attribute}=${match.match.params.value}`
+      } else if (match.match.params.attribute === "kichthuoc") {
+        API = `${URL}/data/headphone/kichthuoc/from=${match.match.params.from}to=${match.match.params.to}`;
+      } else if (match.match.params.attribute === "gia") {
+        API = `${URL}/data/product/type=headphone/from=${match.match.params.from}to=${match.match.params.to}`;
       }
-    }else API = "https://localhost:44343/data/Product/type=headphone"; 
+    } else API = "https://localhost:44343/data/Product/type=headphone";
     axios
       .get(API, null) //Default value "https://localhost:44343/data/Product/type=screen"
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    window.addEventListener('scroll',banner);
+    window.addEventListener('scroll', banner);
     // changeAdminMode('off');
-}, [])
+  }, [])
 
-  function addProductInCart(id,gia){
-    addProductToCart(idUser,id,gia)
+  function addProductInCart(id, gia) {
+    addProductToCart(idUser, id, gia)
   }
   const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -60,43 +60,43 @@ export default function Headphone({idUser,match,addProductToCart}) {
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
-    </button>
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
+      </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
-  }
-  function handleprice(e){
-    const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
     }
   }
-  function showProWithPrice(){
+  function handleprice(e) {
+    const value = e.target.id
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
+    }
+  }
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=headphone/from=${firstprice}to=${lastprice}`)
-    .then((res) => setPros(res.data))
-    .catch((err) =>console.error(err))
+      .then((res) => setPros(res.data))
+      .catch((err) => console.error(err))
   }
   const banner = () => {
-    if(window.scrollY > 1200) setDisplay(false);
+    if (window.scrollY > 1200) setDisplay(false);
     else setDisplay(true);
-}
+  }
   return (
     <div className="wrapper">
       <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left} />
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right} />
       </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
@@ -135,45 +135,45 @@ export default function Headphone({idUser,match,addProductToCart}) {
                   <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
                     <button type="button" className="btn-sort">
-                    SOUNDMAX
+                      SOUNDMAX
                     </button>
                     <button type="button" className="btn-sort">
-                    Audio-technica
+                      Audio-technica
                     </button>
                     <button type="button" className="btn-sort">
-                    Ovan
+                      Ovan
                     </button>
                     <button type="button" className="btn-sort">
-                    Logitech
+                      Logitech
                     </button>
                     <button type="button" className="btn-sort">
-                    Khác
+                      Khác
                     </button>
                   </div>
                 </div>
                 <div className="loc">
                   <div className="title-sort">Màu</div>
                   <div className="btn-right">
-                  <button type="button" className="btn-sort">
-                    Xanh
+                    <button type="button" className="btn-sort">
+                      Xanh
                     </button>
                     <button type="button" className="btn-sort">
-                    Xanh dương
+                      Xanh dương
                     </button>
                     <button type="button" className="btn-sort">
-                    Xanh, đen
+                      Xanh, đen
                     </button>
                     <button type="button" className="btn-sort">
-                    Vàng, đen
+                      Vàng, đen
                     </button>
                     <button type="button" className="btn-sort">
-                    Đen
+                      Đen
                     </button>
                     <button type="button" className="btn-sort">
-                    Trắng
+                      Trắng
                     </button>
                     <button type="button" className="btn-sort">
-                    Nâu
+                      Nâu
                     </button>
                   </div>
                 </div>
@@ -197,24 +197,24 @@ export default function Headphone({idUser,match,addProductToCart}) {
               <div className="price-filter leftbar">
                 <h3 className="title">Giá</h3>
                 <div className="pricing">
-                  <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
                   <span className="separate">-</span>
-                  <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
                   <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
                 <ListProductHeadphone addProductInCart={addProductInCart} pros={page} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
             </div>

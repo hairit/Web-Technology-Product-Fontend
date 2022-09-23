@@ -22,7 +22,7 @@ import Swal from "sweetalert2";
 import { NavLink, useHistory } from "react-router-dom";
 import PostsLaptop from "./PostsLaptop";
 const solver = new Solver();
-export default function Laptops({idUser,match,addProductToCart}) {
+export default function Laptops({ idUser, match, addProductToCart }) {
   const history = useHistory();
   const [load, setLoad] = useState(0);
   const [firstprice, setFirstprice] = useState();
@@ -35,57 +35,57 @@ export default function Laptops({idUser,match,addProductToCart}) {
   const [itemsPage, setItemsPage] = useState(10);
   // const [sort, setSort] = useState();
   // const currentPro = pros.slice(firstPage, lastPage)
-  
+
   useEffect(() => {
-    if(match !== undefined){
+    if (match !== undefined) {
       var API;
-      if(match.match.params.attribute === "gia") {
+      if (match.match.params.attribute === "gia") {
         API = `${URL}/data/product/type=laptop/from=${match.match.params.from}to=${match.match.params.to}`;
       }
-      else if(match.match.params.attribute !== "gia") {
-        API =  `${URL}/data/laptop/${match.match.params.attribute}=${match.match.params.value}`;
+      else if (match.match.params.attribute !== "gia") {
+        API = `${URL}/data/laptop/${match.match.params.attribute}=${match.match.params.value}`;
       }
     }
     else API = "https://localhost:44343/data/Product/type=laptop";
-   
+
     axios
       .get(API, null)
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    window.addEventListener('scroll',banner);
+    window.addEventListener('scroll', banner);
     // changeAdminMode('off');
-}, [])
-  function addProductInCart(id,gia){
-    addProductToCart(idUser,id,gia);
+  }, [])
+  function addProductInCart(id, gia) {
+    addProductToCart(idUser, id, gia);
   }
-  
+
   function reload() {
-    if(load === 0 ){
+    if (load === 0) {
       setLoad(1)
-    }else{
+    } else {
       setLoad(0)
     }
   }
-  
-  function sortLaptop(e){
+
+  function sortLaptop(e) {
     console.log("aa", active)
-    if(active % 2 !== 0){
+    if (active % 2 !== 0) {
       var sorts = e.target.value
-      axios.get("https://localhost:44343/data/laptop/" + sorts,null)
-      .then((res) => setPros(res.data))
-      .catch((err) => console.log(err))
-    }else{
+      axios.get("https://localhost:44343/data/laptop/" + sorts, null)
+        .then((res) => setPros(res.data))
+        .catch((err) => console.log(err))
+    } else {
       axios.get("https://localhost:44343/data/Product/type=laptop", null)
-      .then((res) => setPros(res.data))
-      .catch((err) => console.log(err))
+        .then((res) => setPros(res.data))
+        .catch((err) => console.log(err))
     }
-      
+
   }
 
   const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -102,53 +102,53 @@ export default function Laptops({idUser,match,addProductToCart}) {
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
       </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
+    }
   }
-  function handleprice(e){
+  function handleprice(e) {
     const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
     }
   }
 
 
-  function showProWithPrice(){
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=laptop/from=${firstprice}to=${lastprice}`)
-    .then((res) => {
-      console.log(res.title);
-      if(res.status === 200) {
-        setPros(res.data)
-      }else{
-        Swal.fire('Không có sản phẩm nào !')
-      }
-    })
-    .catch((err) =>console.error(err))
+      .then((res) => {
+        console.log(res.title);
+        if (res.status === 200) {
+          setPros(res.data)
+        } else {
+          Swal.fire('Không có sản phẩm nào !')
+        }
+      })
+      .catch((err) => console.error(err))
   }
-  
+
   const banner = () => {
-    if(window.scrollY > 4000) setDisplay(false);
+    if (window.scrollY > 4000) setDisplay(false);
     else setDisplay(true);
-}
+  }
   return (
     <div className="wrapper">
       <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left} />
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right} />
       </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
@@ -172,15 +172,15 @@ export default function Laptops({idUser,match,addProductToCart}) {
               </div>
               <div className="col-12 ">
                 <div className="loc">
-                  <div className="title-sort">Thương hiệu</div> 
+                  <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
-                    <input type="image" src={logo_asus} className=" btn-sort sort-brand" value="brand=asus" id="brand=asus" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    <input type="image" src={logo_asus} className=" btn-sort sort-brand" value="brand=asus" id="brand=asus" onClick={(e) => { setActive(active + 1); sortLaptop(e) }}>
                     </input>
-                    <input type="image" src={logo_dell} className="btn-sort sort-brand" value="brand=dell" id="brand=dell" onClick={(e) => {setActive(active + 1);sortLaptop(e)}} >
+                    <input type="image" src={logo_dell} className="btn-sort sort-brand" value="brand=dell" id="brand=dell" onClick={(e) => { setActive(active + 1); sortLaptop(e) }} >
                     </input>
-                    <input type="image" src={logo_hp} className="btn-sort sort-brand" value="brand=hp" id="brand=hp" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    <input type="image" src={logo_hp} className="btn-sort sort-brand" value="brand=hp" id="brand=hp" onClick={(e) => { setActive(active + 1); sortLaptop(e) }}>
                     </input>
-                    <input type="image" src={logo_acer} className="btn-sort sort-brand" value="brand=acer" id="brand=acer" onClick={(e) => {setActive(active + 1);sortLaptop(e)}}>
+                    <input type="image" src={logo_acer} className="btn-sort sort-brand" value="brand=acer" id="brand=acer" onClick={(e) => { setActive(active + 1); sortLaptop(e) }}>
                     </input>
                   </div>
                 </div>
@@ -251,24 +251,24 @@ export default function Laptops({idUser,match,addProductToCart}) {
               <div className="price-filter leftbar">
                 <h3 className="title">Giá</h3>
                 <div className="pricing">
-                  <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
                   <span className="separate">-</span>
-                  <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
                   <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
-                <ListProductLaptop pros={page}  addProductInCart={addProductInCart} />
+                <ListProductLaptop pros={page} addProductInCart={addProductInCart} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                 <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
               <div className="post">

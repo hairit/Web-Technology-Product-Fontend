@@ -13,7 +13,7 @@ import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductKeyboard from "./ListProductScreen";
 import PostsScreen from "./PostsScreen";
-export default function Screen({idUser,match,addProductToCart}) {
+export default function Screen({ idUser, match, addProductToCart }) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -23,39 +23,39 @@ export default function Screen({idUser,match,addProductToCart}) {
 
   useEffect(() => {
     var API;
-    if(match !== undefined){
-      if(match.match.params.attribute !== "kichthuoc" && match.match.params.attribute !== "gia") {
-            API = `${URL}/data/screen/${match.match.params.attribute}=${match.match.params.value}`
-      }else if(match.match.params.attribute === "kichthuoc"){
-            API = `${URL}/data/screen/kichthuoc/from=${match.match.params.from}to=${match.match.params.to}`;
-      }else if(match.match.params.attribute === "gia"){
-            API = `${URL}/data/product/type=screen/from=${match.match.params.from}to=${match.match.params.to}`;
+    if (match !== undefined) {
+      if (match.match.params.attribute !== "kichthuoc" && match.match.params.attribute !== "gia") {
+        API = `${URL}/data/screen/${match.match.params.attribute}=${match.match.params.value}`
+      } else if (match.match.params.attribute === "kichthuoc") {
+        API = `${URL}/data/screen/kichthuoc/from=${match.match.params.from}to=${match.match.params.to}`;
+      } else if (match.match.params.attribute === "gia") {
+        API = `${URL}/data/product/type=screen/from=${match.match.params.from}to=${match.match.params.to}`;
       }
-    }else API = "https://localhost:44343/data/Product/type=screen"; 
+    } else API = "https://localhost:44343/data/Product/type=screen";
     axios
       .get(API, null) //Default value "https://localhost:44343/data/Product/type=screen"
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    window.addEventListener('scroll',banner);
+    window.addEventListener('scroll', banner);
     // changeAdminMode('off');
-}, [])
+  }, [])
 
-  function addProductInCart(id,gia){
-    addProductToCart(idUser,id,gia)
+  function addProductInCart(id, gia) {
+    addProductToCart(idUser, id, gia)
   }
 
-  function sortLaptop(e){
+  function sortLaptop(e) {
     var sorts = e.target.value
-    axios.get("https://localhost:44343/data/screen/" + sorts,null)
-    .then((res) => setPros(res.data))
-    .catch((err) => console.log(err))
-}
-console.log("aa",pros)
+    axios.get("https://localhost:44343/data/screen/" + sorts, null)
+      .then((res) => setPros(res.data))
+      .catch((err) => console.log(err))
+  }
+  console.log("aa", pros)
 
-const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  const pages = []
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -70,43 +70,43 @@ const pages = []
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
-    </button>
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
+      </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
-  }
-  function handleprice(e){
-    const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
     }
   }
-  function showProWithPrice(){
+  function handleprice(e) {
+    const value = e.target.id
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
+    }
+  }
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=screen/from=${firstprice}to=${lastprice}`)
-    .then((res) => setPros(res.data))
-    .catch((err) =>console.error(err))
+      .then((res) => setPros(res.data))
+      .catch((err) => console.error(err))
   }
   const banner = () => {
-    if(window.scrollY > 5300) setDisplay(false);
+    if (window.scrollY > 5300) setDisplay(false);
     else setDisplay(true);
-}
+  }
   return (
     <div className="wrapper">
       <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left} />
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right} />
       </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
@@ -144,19 +144,19 @@ const pages = []
                 <div className="loc">
                   <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
-                    <button type="button" value="brand=lg"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="brand=lg" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       LG
                     </button>
-                    <button type="button" value="brand=dell"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="brand=dell" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       DELL
                     </button>
-                    <button type="button" value="brand=acer"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="brand=acer" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       ACER
                     </button>
-                    <button type="button" value="brand=lcd"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="brand=lcd" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       LCD
                     </button>
-                    <button type="button" value="brand=asus"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="brand=asus" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       ASUS
                     </button>
                   </div>
@@ -165,19 +165,19 @@ const pages = []
                 <div className="loc">
                   <div className="title-sort">Kích thước</div>
                   <div className="btn-right">
-                    <button type="button" value="kichthuoc/from=18to=19"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="kichthuoc/from=18to=19" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       18.5 inch
                     </button>
-                    <button type="button" value="kichthuoc/from=19to=20"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="kichthuoc/from=19to=20" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       19.5 inch
                     </button>
-                    <button type="button" value="kichthuoc/from=20to=22"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="kichthuoc/from=20to=22" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       21.5 inch
                     </button>
-                    <button type="button" value="kichthuoc/from=23to=25"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="kichthuoc/from=23to=25" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       23.8 inch
                     </button>
-                    <button type="button" value="kichthuoc/from=25to=28"  onClick={(e) => sortLaptop(e)} className="btn-sort">
+                    <button type="button" value="kichthuoc/from=25to=28" onClick={(e) => sortLaptop(e)} className="btn-sort">
                       27 inch
                     </button>
                   </div>
@@ -200,10 +200,10 @@ const pages = []
                   <div className="title-sort">Tần số</div>
                   <div className="btn-right">
                     <button type="button" className="btn-sort" value="tanso=60" onClick={(e) => sortLaptop(e)}>
-                    60 Hz
+                      60 Hz
                     </button>
                     <button type="button" className="btn-sort" value="tanso=75" onClick={(e) => sortLaptop(e)}>
-                    75 Hz
+                      75 Hz
                     </button>
                   </div>
                 </div>
@@ -213,24 +213,24 @@ const pages = []
               <div className="price-filter leftbar">
                 <h3 className="title">Giá</h3>
                 <div className="pricing">
-                  <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
                   <span className="separate">-</span>
-                  <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
                   <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
                 <ListProductKeyboard addProductInCart={addProductInCart} pros={page} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
               <div className="post">
@@ -240,7 +240,7 @@ const pages = []
           </div>
           <div className="product-tag tags">
             <h3 className="title">
-              Products 
+              Products
               <strong> Tags</strong>
             </h3>
             <ul>

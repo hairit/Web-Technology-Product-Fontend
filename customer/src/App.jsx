@@ -71,7 +71,7 @@ function App() {
   });
   useEffect(() => {
     call("GET", `server/run`, null)
-      .then((res) => {})
+      .then((res) => { })
       .catch((err) => setOnline(false));
   }, []);
   useEffect(() => {
@@ -299,313 +299,45 @@ function App() {
           <ScrollToTop />
           <div className={adminMode === false ? "App" : "App-no-scroll"}>
             {loadQuantity()}
-            <Header
-              user={user}
-              adminMode={adminMode}
-              logout={logout}
-              setUser={setUser}
-            />
+            <Header user={user} adminMode={adminMode} logout={logout} setUser={setUser} />
             <Switch>
-              <Route
-                path="/admin"
-                exact
-                component={() => <Login login={login} />}
+              <Route path="/admin" exact component={() => <Login login={login} />}  ></Route>
+              <Route path="/admin/:idUser" component={(match) => (<Admin changeAdminMode={changeAdminMode} match={match} logout={logout} setUser={setUser} />)} ></Route>
+              <Route path="/staff" exact component={() => <Login login={login} />}  ></Route>
+              <Route path="/staff/:idUser" component={(match) => (<Staff changeAdminMode={changeAdminMode} match={match} logout={logout} showLoadOrder={showLoadOrder} />)}  ></Route>
+              <Route path="/" exact component={() => (<Body images={images} idUser={user !== null ? user.id : null} products={products} addProductToCart={addProductToCart} changeAdminMode={changeAdminMode} />)}
               ></Route>
-              <Route
-                path="/admin/:idUser"
-                component={(match) => (
-                  <Admin
-                    changeAdminMode={changeAdminMode}
-                    match={match}
-                    logout={logout}
-                    setUser={setUser}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/staff"
-                exact
-                component={() => <Login login={login} />}
-              ></Route>
-              <Route
-                path="/staff/:idUser"
-                component={(match) => (
-                  <Staff
-                    changeAdminMode={changeAdminMode}
-                    match={match}
-                    logout={logout}
-                    showLoadOrder={showLoadOrder}
-                  />
-                )}
-              ></Route>
-
-              <Route
-                path="/"
-                exact
-                component={() => (
-                  <Body
-                    images={images}
-                    idUser={user !== null ? user.id : null}
-                    products={products}
-                    addProductToCart={addProductToCart}
-                    changeAdminMode={changeAdminMode}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/laptop"
-                exact
-                component={() => (
-                  <Laptops
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/laptop/:attribute/:value"
-                exact
-                component={(match) => (
-                  <Laptops match={match} addProductToCart={addProductToCart} />
-                )}
-              ></Route>
-              <Route
-                path="/laptop/:attribute/:from/:to"
-                exact
-                component={(match) => (
-                  <Laptops match={match} addProductToCart={addProductToCart} />
-                )}
-              ></Route>
-
-              <Route
-                path="/keyboard"
-                exact
-                component={() => (
-                  <Keyboard
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/mouse"
-                exact
-                component={() => (
-                  <Mouse
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-
-              <Route
-                path="/screen"
-                exact
-                component={() => (
-                  <Screen
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/screen/:attribute/:value"
-                exact
-                component={(match) => (
-                  <Screen match={match} addProductToCart={addProductToCart} />
-                )}
-              ></Route>
-              <Route
-                path="/screen/:attribute/:from/:to"
-                exact
-                component={(match) => (
-                  <Screen match={match} addProductToCart={addProductToCart} />
-                )}
-              ></Route>
-
-              <Route
-                path="/headphone"
-                exact
-                component={() => (
-                  <Headphone
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/headphone/:attribute/:value"
-                exact
-                component={(match) => (
-                  <Headphone
-                    match={match}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/headphone/:attribute/:from/:to"
-                exact
-                component={(match) => (
-                  <Headphone
-                    match={match}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-
-              <Route
-                path="/pc"
-                exact
-                component={() => (
-                  <PC
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/pc/:attribute/:value"
-                exact
-                component={(match) => (
-                  <PC addProductToCart={addProductToCart} match={match} />
-                )}
-              ></Route>
-              <Route
-                path="/pc/:attribute/:from/:to"
-                exact
-                component={(match) => (
-                  <PC addProductToCart={addProductToCart} match={match} />
-                )}
-              ></Route>
-              <Route
-                path="/pc/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsPC
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-
-              <Route
-                path="/checkout"
-                exact
-                component={() => (
-                  <ThanhToan
-                    updateData={updateData}
-                    createBill={createBill}
-                    idUser={user !== null ? user.id : null}
-                    order={order}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/laptop/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsLaptop
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/keyboard/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsKeyboard
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/screen/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsScreen
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/headphone/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsHeadphone
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/mouse/:id"
-                exact
-                component={(match) => (
-                  <DetailProductsMouse
-                    idUser={user !== null ? user.id : null}
-                    addProductToCart={addProductToCart}
-                    match={match}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/post/file"
-                exact
-                component={() => <PostFile />}
-              ></Route>
-              <Route
-                path="/post/file"
-                exact
-                component={() => <PostFile />}
-              ></Route>
-              <Route
-                path="/shipper"
-                exact
-                component={() => (
-                  <Shipper
-                    changeAdminMode={changeAdminMode}
-                    showLoadOrder={showLoadOrder}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/cart"
-                exact
-                component={() => (
-                  <GioHang
-                    user={user}
-                    updateData={updateData}
-                    deleteProductFromCart={deleteProductFromCart}
-                    deleteCartItem={deleteCartItem}
-                    addQuantityProduct={addQuantityProduct}
-                    addProductToCart={addProductToCart}
-                    idUser={user !== null ? user.id : null}
-                    createBill={createBill}
-                    cartDetails={user !== null ? user.cartDetails : []}
-                  />
-                )}
-              ></Route>
-              <Route
-                path="/login"
-                exact
-                component={(match) => (
-                  <Login
-                    login={login}
-                    match={match}
-                    changeAdminMode={changeAdminMode}
-                    setUser={setUser}
-                  />
-                )}
-              ></Route>
+              <Route path="/laptop" exact component={() => (<Laptops idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)} ></Route>
+              <Route path="/laptop/:attribute/:value" exact component={(match) => (<Laptops match={match} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/laptop/:attribute/:from/:to" exact component={(match) => (<Laptops match={match} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/keyboard" exact component={() => (<Keyboard idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/mouse" exact component={() => (<Mouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/screen" exact component={() => (<Screen idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/screen/:attribute/:value" exact component={(match) => (<Screen match={match} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/screen/:attribute/:from/:to" exact component={(match) => (<Screen match={match} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/headphone" exact component={() => (<Headphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/headphone/:attribute/:value" exact component={(match) => (<Headphone match={match} addProductToCart={addProductToCart} />)}></Route>
+              <Route path="/headphone/:attribute/:from/:to" exactcomponent={(match) => (<Headphone match={match} addProductToCart={addProductToCart} />)} ></Route>
+              <Route path="/pc" exact component={() => (<PC idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} />)} ></Route>
+              <Route path="/pc/:attribute/:value" exact component={(match) => (<PC addProductToCart={addProductToCart} match={match} />)}></Route>
+              <Route path="/pc/:attribute/:from/:to" exact component={(match) => (<PC addProductToCart={addProductToCart} match={match} />)} ></Route>
+              <Route path="/pc/:id" exact component={(match) => (<DetailProductsPC idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)} ></Route>
+              <Route path="/checkout" exact component={() => (<ThanhToan updateData={updateData} createBill={createBill} idUser={user !== null ? user.id : null} order={order} />)}></Route>
+              <Route path="/laptop/:id" exact component={(match) => (<DetailProductsLaptop idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)}></Route>
+              <Route path="/keyboard/:id" exact component={(match) => (<DetailProductsKeyboard idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)} ></Route>
+              <Route path="/screen/:id" exact component={(match) => (<DetailProductsScreen idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)}></Route>
+              <Route path="/headphone/:id" exact component={(match) => (<DetailProductsHeadphone idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)} ></Route>
+              <Route path="/mouse/:id" exact component={(match) => (<DetailProductsMouse idUser={user !== null ? user.id : null} addProductToCart={addProductToCart} match={match} />)}></Route>
+              <Route path="/post/file" exact component={() => <PostFile />} ></Route>
+              <Route path="/post/file" exact component={() => <PostFile />} ></Route>
+              <Route path="/shipper" exact component={() => (<Shipper changeAdminMode={changeAdminMode} showLoadOrder={showLoadOrder} />)}></Route>
+              <Route path="/cart" exact component={() => (<GioHang user={user} updateData={updateData} deleteProductFromCart={deleteProductFromCart} deleteCartItem={deleteCartItem} addQuantityProduct={addQuantityProduct}
+                addProductToCart={addProductToCart}
+                idUser={user !== null ? user.id : null}
+                createBill={createBill}
+                cartDetails={user !== null ? user.cartDetails : []} />)}>
+              </Route>
+              <Route path="/login" exact component={(match) => (<Login login={login} match={match} changeAdminMode={changeAdminMode} setUser={setUser} />)}></Route>
               {/* <Route
                 path="/login"
                 exact
@@ -613,42 +345,15 @@ function App() {
                   <Login loginWithGoogle={loginWithGoogle}></Login>
                 )}
               ></Route> */}
-              <Route
-                path="/bill"
-                component={() => (
-                  <DonHang idUser={user !== null ? user.id : null} />
-                )}
-              ></Route>
-              <Route
-                path="/products/:namepro"
-                exact
-                component={(match) => <Products match={match} />}
-              ></Route>
+              <Route path="/bill" component={() => (<DonHang idUser={user !== null ? user.id : null} />)} ></Route>
+              <Route path="/products/:namepro" exact component={(match) => <Products match={match} />} ></Route>
               <Route path="/lienhe" component={() => <LienHe />}></Route>
-              <Route
-                path="/chinhsachbaohanh"
-                component={() => <Chinhsachbaohanh />}
-              ></Route>
-              <Route
-                path="/chinhsachvanchuyen"
-                component={() => <Chinhsachvanchuyen />}
-              ></Route>
-              <Route
-                path="/chinhsachhangchinhhang"
-                component={() => <Chinhsachhangchinhhang />}
-              ></Route>
-              <Route
-                path="/chinhsachchung"
-                component={() => <Chinhsachchung />}
-              ></Route>
-              <Route
-                path="/baomatthongtin"
-                component={() => <Baomatthongtin />}
-              ></Route>
-              <Route
-                path="/tincongnghe"
-                component={() => <Tintuc changeAdminMode={changeAdminMode} />}
-              ></Route>
+              <Route path="/chinhsachbaohanh" component={() => <Chinhsachbaohanh />} ></Route>
+              <Route path="/chinhsachvanchuyen" component={() => <Chinhsachvanchuyen />} ></Route>
+              <Route path="/chinhsachhangchinhhang" component={() => <Chinhsachhangchinhhang />}></Route>
+              <Route path="/chinhsachchung" component={() => <Chinhsachchung />}></Route>
+              <Route path="/baomatthongtin" component={() => <Baomatthongtin />}></Route>
+              <Route path="/tincongnghe" component={() => <Tintuc changeAdminMode={changeAdminMode} />}></Route>
               <Route path="/showroom" component={() => <Showroom />}></Route>
             </Switch>
             <Footer adminMode={adminMode} />

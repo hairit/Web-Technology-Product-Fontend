@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { NavLink, useHistory } from "react-router-dom";
 import ListProducts from "./ListProducts";
 const solver = new Solver();
-export default function Products({match}) {
+export default function Products({ match }) {
   const history = useHistory();
   const [load, setLoad] = useState(0);
   const [firstprice, setFirstprice] = useState();
@@ -25,10 +25,10 @@ export default function Products({match}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
 
-  
+
   // const [sort, setSort] = useState();
   // const currentPro = pros.slice(firstPage, lastPage)
-  
+
   // useEffect(() => {
   //   if(match !== undefined){
   //     var API;
@@ -40,7 +40,7 @@ export default function Products({match}) {
   //     }
   //   }
   //   else API = "https://localhost:44343/data/Product/type=laptop";
-   
+
   //   axios
   //     .get(API, null)
   //     .then((res) => setPros(res.data))
@@ -50,29 +50,29 @@ export default function Products({match}) {
   //   addProductToCart(idUser,id,gia);
   // }
   useEffect(() => {
-    axios.get(`https://localhost:44343/data/product/name=${match.match.params.namepro}`,null)
-    .then((res) => setPros(res.data))
+    axios.get(`https://localhost:44343/data/product/name=${match.match.params.namepro}`, null)
+      .then((res) => setPros(res.data))
       .catch((err) => console.log(err))
-      }, []);
-      console.log("ttt", pros)
+  }, []);
+  console.log("ttt", pros)
 
   function reload() {
-    if(load === 0 ){
+    if (load === 0) {
       setLoad(1)
-    }else{
+    } else {
       setLoad(0)
     }
   }
-  console.log("pp",match.match.params.namepro)
-  function sortLaptop(e){
-      var sorts = e.target.value
-      axios.get("https://localhost:44343/data/laptop/" + sorts,null)
+  console.log("pp", match.match.params.namepro)
+  function sortLaptop(e) {
+    var sorts = e.target.value
+    axios.get("https://localhost:44343/data/laptop/" + sorts, null)
       .then((res) => setPros(res.data))
       .catch((err) => console.log(err))
   }
 
   const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -87,42 +87,42 @@ export default function Products({match}) {
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
-    </button>
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
+      </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
+    }
   }
-  function handleprice(e){
+  function handleprice(e) {
     const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
     }
   }
 
 
-  function showProWithPrice(){
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=laptop/from=${firstprice}to=${lastprice}`)
-    .then((res) => {
-      console.log(res.title);
-      if(res.status === 200) {
-        setPros(res.data)
-      }else{
-        Swal.fire('Không có sản phẩm nào !')
-      }
-    })
-    .catch((err) =>console.error(err))
+      .then((res) => {
+        console.log(res.title);
+        if (res.status === 200) {
+          setPros(res.data)
+        } else {
+          Swal.fire('Không có sản phẩm nào !')
+        }
+      })
+      .catch((err) => console.error(err))
   }
   return (
     <div className="wrapper">
@@ -150,7 +150,7 @@ export default function Products({match}) {
                 <div className="loc">
                   <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
-                    <button type="button"  className="btn-sort" value="brand=asus"  onClick={(e) => sortLaptop(e)}>
+                    <button type="button" className="btn-sort" value="brand=asus" onClick={(e) => sortLaptop(e)}>
                       Asus
                     </button>
                     <button type="button" className="btn-sort" value="brand=dell" onClick={(e) => sortLaptop(e)} >
@@ -187,24 +187,24 @@ export default function Products({match}) {
               <div className="price-filter leftbar">
                 <h3 className="title">Giá</h3>
                 <div className="pricing">
-                  <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
                   <span className="separate">-</span>
-                  <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
                   <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
-                <ListProducts  pros={page}  />
+                <ListProducts pros={page} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                 <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
             </div>

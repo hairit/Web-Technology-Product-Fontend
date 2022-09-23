@@ -13,7 +13,7 @@ import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductKeyboard from "./ListProductKeyboard";
 import PostsKeyboard from "./PostsKeyboard";
-export default function Keyboard({idUser,addProductToCart}) {
+export default function Keyboard({ idUser, addProductToCart }) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -28,22 +28,22 @@ export default function Keyboard({idUser,addProductToCart}) {
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    window.addEventListener('scroll',banner);
+    window.addEventListener('scroll', banner);
     // changeAdminMode('off');
-}, [])
-  function addProductInCart(id,gia){
-    addProductToCart(idUser,id,gia)
+  }, [])
+  function addProductInCart(id, gia) {
+    addProductToCart(idUser, id, gia)
   }
 
-  function sortKeyboard(e){
+  function sortKeyboard(e) {
     var sorts = e.target.value
-    axios.get("https://localhost:44343/data/keyboard/" + sorts,null)
-    .then((res) => setPros(res.data))
-    .catch((err) => console.log(err))
-}
+    axios.get("https://localhost:44343/data/keyboard/" + sorts, null)
+      .then((res) => setPros(res.data))
+      .catch((err) => console.log(err))
+  }
 
   const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -58,43 +58,43 @@ export default function Keyboard({idUser,addProductToCart}) {
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
-    </button>
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
+      </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
-  }
-  function handleprice(e){
-    const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
     }
   }
-  function showProWithPrice(){
+  function handleprice(e) {
+    const value = e.target.id
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
+    }
+  }
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=keyboard/from=${firstprice}to=${lastprice}`)
-    .then((res) => setPros(res.data))
-    .catch((err) =>console.error(err))
+      .then((res) => setPros(res.data))
+      .catch((err) => console.error(err))
   }
   const banner = () => {
-    if(window.scrollY > 5500) setDisplay(false);
+    if (window.scrollY > 5500) setDisplay(false);
     else setDisplay(true);
-}
+  }
   return (
     <div className="wrapper">
       <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left} />
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right} />
       </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
@@ -124,13 +124,13 @@ export default function Keyboard({idUser,addProductToCart}) {
                 <div className="loc">
                   <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
-                    <button type="button" className="btn-sort" value="brand=akko"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="brand=akko" onClick={(e) => sortKeyboard(e)}>
                       AKKO
                     </button>
-                    <button type="button" className="btn-sort" value="brand=dareu"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="brand=dareu" onClick={(e) => sortKeyboard(e)}>
                       DareU
                     </button>
-                    <button type="button" className="btn-sort" value="brand=royal-kludge"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="brand=royal-kludge" onClick={(e) => sortKeyboard(e)}>
                       Royal-Kludge
                     </button>
                   </div>
@@ -138,10 +138,10 @@ export default function Keyboard({idUser,addProductToCart}) {
                 <div className="loc">
                   <div className="title-sort">Led</div>
                   <div className="btn-right">
-                    <button type="button" className="btn-sort" value="led=rgb"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="led=rgb" onClick={(e) => sortKeyboard(e)}>
                       RGB
                     </button>
-                    <button type="button" className="btn-sort" value="led=don"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="led=don" onClick={(e) => sortKeyboard(e)}>
                       Đơn
                     </button>
                   </div>
@@ -150,14 +150,14 @@ export default function Keyboard({idUser,addProductToCart}) {
                 <div className="loc">
                   <div className="title-sort">Switch</div>
                   <div className="btn-right">
-                    <button type="button" className="btn-sort" value="brandswitch=dareu"  onClick={(e) => sortKeyboard(e)}>
+                    <button type="button" className="btn-sort" value="brandswitch=dareu" onClick={(e) => sortKeyboard(e)}>
                       Dareu
                     </button>
-                    <button type="button" className="btn-sort" value="brandswitch=cherry"  onClick={(e) => sortKeyboard(e)}>
-                    Cherry
+                    <button type="button" className="btn-sort" value="brandswitch=cherry" onClick={(e) => sortKeyboard(e)}>
+                      Cherry
                     </button>
-                    <button type="button" className="btn-sort" value="brandswitch=rk"  onClick={(e) => sortKeyboard(e)}>
-                    RK
+                    <button type="button" className="btn-sort" value="brandswitch=rk" onClick={(e) => sortKeyboard(e)}>
+                      RK
                     </button>
                   </div>
                 </div>
@@ -165,26 +165,26 @@ export default function Keyboard({idUser,addProductToCart}) {
             </div>
             <div className="col-md-3 sorfprice">
               <div className="price-filter leftbar">
-                  <h3 className="title">Giá</h3>
-                  <div className="pricing">
-                    <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
-                    <span className="separate">-</span>
-                    <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
-                    <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
-                  </div>
+                <h3 className="title">Giá</h3>
+                <div className="pricing">
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
+                  <span className="separate">-</span>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
+                  <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
                 <ListProductKeyboard addProductInCart={addProductInCart} pros={page} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
               <div className="post">

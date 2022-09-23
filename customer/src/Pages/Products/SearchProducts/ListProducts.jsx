@@ -18,7 +18,7 @@ import {
 import Solver from "../../../Classes/Solver";
 import axios from "axios";
 
-export default function ListProducts({pros,addProductInCart}) {
+export default function ListProducts({ pros, addProductInCart }) {
   const history = useHistory();
   const solver = new Solver();
   function handleViewDetails(detail) {
@@ -26,45 +26,45 @@ export default function ListProducts({pros,addProductInCart}) {
   }
   function handleViewPriceSave(pro) {
     var pricesave = pro.giacu - pro.gia
-    if(pro.giacu > pro.gia){
-    return (
+    if (pro.giacu > pro.gia) {
+      return (
         <div className="price-save">
-          <img src={nenprice}/>
+          <img src={nenprice} />
           <div className="title-price-save">
             <p className="pricesave-title">Tiết kiệm</p>
             <p className="pricesave">{solver.formatCurrency("vi-VN", "currency", "VND", pricesave)}
             </p>
           </div>
         </div>
-    )
+      )
     }
   }
-  function handleCorei7(pro){
+  function handleCorei7(pro) {
     var cpu = pro.ten
-    if(cpu.includes("Core i7") === true){
-    return (
-      <div className="view-cpu">
-        <img src={corei7}/>
-      </div>
-    )
-    }else if(cpu.includes("Core i9") === true){
+    if (cpu.includes("Core i7") === true) {
       return (
-      <div className="view-cpu">
-        <img src={corei9}/>
-      </div>
+        <div className="view-cpu">
+          <img src={corei7} />
+        </div>
       )
-    }else if(cpu.includes("Core i5") === true){
-      return(
-      <div className="view-cpu">
-        <img src={corei5}/>
-      </div>
+    } else if (cpu.includes("Core i9") === true) {
+      return (
+        <div className="view-cpu">
+          <img src={corei9} />
+        </div>
+      )
+    } else if (cpu.includes("Core i5") === true) {
+      return (
+        <div className="view-cpu">
+          <img src={corei5} />
+        </div>
       )
     }
   }
   return (
-    <div className="row prolst">
+    <div className="row prolst row-pros">
       {pros.map((pro, index) => {
-        
+
         return (
           <div className="col-md-4 col-sm-6 lstpro " key={index}>
             <div className="products">
@@ -79,7 +79,7 @@ export default function ListProducts({pros,addProductInCart}) {
                   />
                 </a>
               </div>
-             
+
               <div className="productname">
                 <p>{pro.ten}</p>
               </div>
@@ -91,7 +91,7 @@ export default function ListProducts({pros,addProductInCart}) {
               </p>
               <div className="button_group">
                 <button
-                  className="button add-cart" onClick={() =>addProductInCart(pro.id,pro.gia)}>
+                  className="button add-cart" onClick={() => addProductInCart(pro.id, pro.gia)}>
                   Thêm vào giỏ hàng
                 </button>
                 <button className="button wishlist" type="button">

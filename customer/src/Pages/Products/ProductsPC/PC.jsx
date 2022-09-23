@@ -12,7 +12,7 @@ import banner_pro_right from "../../../Images/banner_pro_right.png"
 import banner_pro_left from "../../../Images/banner_pro_left.png"
 import { useEffect, useState } from "react";
 import ListProductPC from "./ListProductPC";
-export default function PC({idUser,addProductToCart,match}) {
+export default function PC({ idUser, addProductToCart, match }) {
   const [pros, setPros] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage, setItemsPage] = useState(10);
@@ -21,11 +21,11 @@ export default function PC({idUser,addProductToCart,match}) {
   const [display, setDisplay] = useState(true);
   useEffect(() => {
     var API;
-    if(match !== undefined){
-      if(match.match.params.attribute !== "gia"){
-            API = `${URL}/data/pc/${match.match.params.attribute}=${match.match.params.value}`;
-      }else if(match.match.params.attribute === "gia"){
-            API = `${URL}/data/product/type=pc/from=${match.match.params.from}to=${match.match.params.to}`;
+    if (match !== undefined) {
+      if (match.match.params.attribute !== "gia") {
+        API = `${URL}/data/pc/${match.match.params.attribute}=${match.match.params.value}`;
+      } else if (match.match.params.attribute === "gia") {
+        API = `${URL}/data/product/type=pc/from=${match.match.params.from}to=${match.match.params.to}`;
       }
     }
     else API = "https://localhost:44343/data/Product/type=pc";
@@ -35,22 +35,22 @@ export default function PC({idUser,addProductToCart,match}) {
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    window.addEventListener('scroll',banner);
-}, [])
+    window.addEventListener('scroll', banner);
+  }, [])
 
-  function addProductInCart(id,gia){
-    addProductToCart(idUser,id,gia)
+  function addProductInCart(id, gia) {
+    addProductToCart(idUser, id, gia)
   }
 
-  function sortPC(e){
+  function sortPC(e) {
     var sorts = e.target.value
-    axios.get("https://localhost:44343/data/pc/" + sorts ,null)
-    .then((res) => setPros(res.data))
-    .catch((err) => console.log(err))   
+    axios.get("https://localhost:44343/data/pc/" + sorts, null)
+      .then((res) => setPros(res.data))
+      .catch((err) => console.log(err))
   }
 
   const pages = []
-  for(let i=1; i<= Math.ceil(pros.length / itemsPage); i++){
+  for (let i = 1; i <= Math.ceil(pros.length / itemsPage); i++) {
     pages.push(i)
   }
 
@@ -65,43 +65,43 @@ export default function PC({idUser,addProductToCart,match}) {
 
   const renderPageNumber = pages.map(number => {
     return (
-      <button key={number} id={number} onClick={(e) => handleClick(e)}  className={currentPage === number ? 'active' : null}>
-      {number}
-    </button>
+      <button key={number} id={number} onClick={(e) => handleClick(e)} className={currentPage === number ? 'active' : null}>
+        {number}
+      </button>
     )
   })
-  function handleNext(){
-    if(currentPage + 1 <= pages.length){
-    setCurrentPage(currentPage + 1)
+  function handleNext() {
+    if (currentPage + 1 <= pages.length) {
+      setCurrentPage(currentPage + 1)
     }
   }
-  function handlePrev(){
-    if(currentPage - 1 >= 1){
+  function handlePrev() {
+    if (currentPage - 1 >= 1) {
       setCurrentPage(currentPage - 1)
-      }
-  }
-  function handleprice(e){
-    const value = e.target.id
-    if(value === "firstPrice"){
-    setFirstprice(e.target.value)
-    }else{
-    setLastprice(e.target.value)
     }
   }
-  function showProWithPrice(){
+  function handleprice(e) {
+    const value = e.target.id
+    if (value === "firstPrice") {
+      setFirstprice(e.target.value)
+    } else {
+      setLastprice(e.target.value)
+    }
+  }
+  function showProWithPrice() {
     axios.get(`https://localhost:44343/data/product/type=pc/from=${firstprice}to=${lastprice}`)
-    .then((res) => setPros(res.data))
-    .catch((err) =>console.error(err))
+      .then((res) => setPros(res.data))
+      .catch((err) => console.error(err))
   }
   const banner = () => {
-    if(window.scrollY > 1900) setDisplay(false);
+    if (window.scrollY > 1900) setDisplay(false);
     else setDisplay(true);
-}
+  }
   return (
     <div className="wrapper">
       <div className="banner-pros">
-        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left}/>
-        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right}/>
+        <img className={display === true ? "bn-left" : "bn-hidden-left"} src={banner_pro_left} />
+        <img className={display === true ? "bn-right" : "bn-hidden-right"} src={banner_pro_right} />
       </div>
       <div className="container_fullwidth">
         <div className="col-md-12 leftp">
@@ -128,7 +128,7 @@ export default function PC({idUser,addProductToCart,match}) {
                 <p>Bộ lọc</p>
               </div>
               <div className="col-12 ">
-              <div className="loc">
+                <div className="loc">
                   <div className="title-sort">Thương hiệu</div>
                   <div className="btn-right">
                     <button type="button" value="brand=acer" onClick={(e) => sortPC(e)} className="btn-sort">
@@ -151,7 +151,7 @@ export default function PC({idUser,addProductToCart,match}) {
                   <div className="title-sort">CPU</div>
                   <div className="btn-right">
                     <button type="button" value="cpu=i3" onClick={(e) => sortPC(e)} className="btn-sort">
-                    Core i3
+                      Core i3
                     </button>
                     <button type="button" value="cpu=i5" onClick={(e) => sortPC(e)} className="btn-sort">
                       Core i5
@@ -162,13 +162,13 @@ export default function PC({idUser,addProductToCart,match}) {
                   <div className="title-sort">Mainboard</div>
                   <div className="btn-right">
                     <button type="button" value="mainboard=acer" onClick={(e) => sortPC(e)} className="btn-sort">
-                    Acer
+                      Acer
                     </button>
                     <button type="button" value="mainboard=asus" onClick={(e) => sortPC(e)} className="btn-sort">
                       Asus
                     </button>
                     <button type="button" value="mainboard=gigabyte" onClick={(e) => sortPC(e)} className="btn-sort">
-                    Gigabyte
+                      Gigabyte
                     </button>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export default function PC({idUser,addProductToCart,match}) {
                   <div className="title-sort">Vga</div>
                   <div className="btn-right">
                     <button type="button" value="vgatype=nvidia" onClick={(e) => sortPC(e)} className="btn-sort">
-                    NVIDIA
+                      NVIDIA
                     </button>
                     {/* <button type="button" value="vgatype=amd" onClick={(e) => sortPC(e)} className="btn-sort">
                       AMD
@@ -189,24 +189,24 @@ export default function PC({idUser,addProductToCart,match}) {
               <div className="price-filter leftbar">
                 <h3 className="title">Giá</h3>
                 <div className="pricing">
-                  <input  type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="firstPrice" value={firstprice} placeholder="Giá thấp nhất" />
                   <span className="separate">-</span>
-                  <input  type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất"/>
+                  <input type="text" onChange={(e) => handleprice(e)} id="lastPrice" value={lastprice} placeholder="Giá cao nhất" />
                   <button type="button" className="" onClick={() => showProWithPrice()}>Tìm</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-pros">
             <div className="col-md-9 prolst">
               <div className="products-grid lstlaptop">
                 <ListProductPC addProductInCart={addProductInCart} pros={page} />
               </div>
               <div className="toolbar">
                 <div className="pager">
-                <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
+                  <button className="btn-previ-next" onClick={() => handlePrev()}>Sau</button>
                   {renderPageNumber}
-                 <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
+                  <button className="btn-previ-next" onClick={() => handleNext()}>Trước</button>
                 </div>
               </div>
             </div>
