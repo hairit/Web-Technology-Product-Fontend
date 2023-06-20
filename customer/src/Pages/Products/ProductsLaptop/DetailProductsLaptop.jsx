@@ -20,23 +20,25 @@ import whatsapp_32px from "../../../Images/whatsapp_32px.png";
 import edit_property_32px from "../../../Images/edit_property_32px.png";
 import settings_32px from "../../../Images/settings_32px.png";
 import PostsLaptop from "./PostsLaptop";
+import URL from '../../../DATA/URL'
+
 import { NavLink } from "react-router-dom";
-export default function DetailProductsLaptop({idUser, match,addProductToCart }) {
+export default function DetailProductsLaptop({ idUser, match, addProductToCart }) {
   const solver = new Solver();
   const [detail, setDetail] = useState({});
   const [reload, setReload] = useState(0);
   useEffect(() => {
     axios
       .get(
-        `https://localhost:44343/data/product/type=laptop/${match.match.params.id}`
+        `${URL}/data/product/type=laptop/${match.match.params.id}`
       )
       .then((res) => {
         setDetail(res.data);
       })
       .catch((err) => console.log(err + "Khong goi san pham"));
   }, []);
-  const reLoad = () =>{
-    if(reload === 0) setReload(1);
+  const reLoad = () => {
+    if (reload === 0) setReload(1);
     else setReload(0);
   }
   const btnPrev = document.querySelector(".btn-prev");
@@ -82,49 +84,49 @@ export default function DetailProductsLaptop({idUser, match,addProductToCart }) 
       index--;
     }
   }
-function videoReview() {
-  var cpu = detail.ten
-  if(new RegExp("i5").test(cpu) === true || new RegExp("i7").test(cpu) === true){
-    return (
-      <>
-    <iframe  width="560" height="315" src="https://www.youtube.com/embed/gGqXfMDWPCE" title="YouTube video player" 
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-    <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/5Ma3DHFNTWs" title="YouTube video player" 
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-    </>
-  )
+  function videoReview() {
+    var cpu = detail.ten
+    if (new RegExp("i5").test(cpu) === true || new RegExp("i7").test(cpu) === true) {
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/gGqXfMDWPCE" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/5Ma3DHFNTWs" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </>
+      )
+    }
+    else if (new RegExp("i9").test(cpu) === true) {
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/zM2YRmn8LC8" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/P0zniWKVhfw" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/J1LgPnvTMhU" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/S1qsdK26Nx8" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+        </>
+      )
+    }
   }
-  else if(new RegExp("i9").test(cpu) === true){
-    return (
-      <>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/zM2YRmn8LC8" title="YouTube video player" 
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/P0zniWKVhfw" title="YouTube video player" 
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </>
-    )
-  }else{
-    return (
-      <>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/J1LgPnvTMhU" title="YouTube video player" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-      <iframe className="paddin" width="560" height="315" src="https://www.youtube.com/embed/S1qsdK26Nx8" title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
-      </>
-    )
-  }
-}
   return (
     <div className="single-product">
       <div className="container">
@@ -135,29 +137,29 @@ function videoReview() {
             <div className="col-md-15 tops">
               <div className="home-icon">
                 <NavLink to="/" className="img-backhome">
-                  <img className="icon-home"  src={home}/>
-                  </NavLink>
-                  <p> {">"} </p>
-                  <div className="title-carticon">
-                    <div className="title-txt">{detail.ten} {" "} {detail.laptopDescription && detail.laptopDescription.hdh} </div>
-                  </div>
+                  <img className="icon-home" src={home} />
+                </NavLink>
+                <p> {">"} </p>
+                <div className="title-carticon">
+                  <div className="title-txt">{detail.ten} {" "} {detail.laptopDescription && detail.laptopDescription.hdh} </div>
+                </div>
               </div>
             </div>
             <div className=" row imagesPro">
               <div className="col-md-6 product-slider imgsl">
-              <div className="slider">
-                <div className="images">
+                <div className="slider">
+                  <div className="images">
                     <input type="radio" name="slide" id="img1" />
                     <input type="radio" name="slide" id="img2" />
                     <input type="radio" name="slide" id="img3" />
-                    <img src={`https://localhost:44343/Images/Products/${detail.nameimage}`} className="m1" alt="img1" />
+                    <img src={`${URL}/Images/Products/${detail.nameimage}`} className="m1" alt="img1" />
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeDCHQ7peFytBfRYTdnKCB_Xqxvt4lC5aq_g&usqp=CAU" className="m2" alt="img2" />
-                </div>
-                <div className="dots">
-                    <label for="img1"><img src={`https://localhost:44343/Images/Products/${detail.nameimage}`} className="m1" alt="img1" /></label>
+                  </div>
+                  <div className="dots">
+                    <label for="img1"><img src={`${URL}/Images/Products/${detail.nameimage}`} className="m1" alt="img1" /></label>
                     <label for="img2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeDCHQ7peFytBfRYTdnKCB_Xqxvt4lC5aq_g&usqp=CAU" className="m2" alt="img2" /></label>
+                  </div>
                 </div>
-              </div>
                 <div className="col detail-pro">
                   <p>
                     - CPU:{" "}
@@ -209,20 +211,20 @@ function videoReview() {
                   </div>
                   <div className="tt-price">
                     <p className="price-new">
-                    {solver.formatCurrency(
-                      "vi-VN",
-                      "currency",
-                      "VND",
-                      detail.gia
-                    )}
+                      {solver.formatCurrency(
+                        "vi-VN",
+                        "currency",
+                        "VND",
+                        detail.gia
+                      )}
                     </p>
                     <p className="price-old">
-                    {solver.formatCurrency(
-                      "vi-VN",
-                      "currency",
-                      "VND",
-                      detail.giacu
-                    )}
+                      {solver.formatCurrency(
+                        "vi-VN",
+                        "currency",
+                        "VND",
+                        detail.giacu
+                      )}
                     </p>
                   </div>
                   <div className="tt-sales">Quà tặng kèm khi mua hàng</div>
@@ -234,14 +236,14 @@ function videoReview() {
                   </div>
                   <div className="button-gr">
                     <NavLink to="/cart">
-                    <button type="button" className="btn btn-primary btn-buy" 
-                    onClick={() =>addProductToCart(idUser,detail.id,detail.gia)}>
-                      MUA NGAY
-                    </button>
+                      <button type="button" className="btn btn-primary btn-buy"
+                        onClick={() => addProductToCart(idUser, detail.id, detail.gia)}>
+                        MUA NGAY
+                      </button>
                     </NavLink>
                     <button
                       type="button"
-                      className="btn btn-outline-primary btn-cart" onClick={()=> addProductToCart(idUser,detail.id,detail.gia)}>
+                      className="btn btn-outline-primary btn-cart" onClick={() => addProductToCart(idUser, detail.id, detail.gia)}>
                       THÊM VÀO GIỎ HÀNG
                     </button>
                   </div>
@@ -475,14 +477,14 @@ function videoReview() {
               <span
                 className="btn-prev btnnp"
                 id="btn-prevs"
-                // onClick={changeSlide(-1)}
+              // onClick={changeSlide(-1)}
               >
                 <img src={prev_50px} />
               </span>
               <span
                 className="btn-next btnnp"
                 id="btn-nexts"
-                // onClick={changeSlide(1)}
+              // onClick={changeSlide(1)}
               >
                 <img src={next_50px} />
               </span>
@@ -493,7 +495,7 @@ function videoReview() {
               </div>
             </div>
             <div className="xemthem">
-                <p>Video đánh giá</p>
+              <p>Video đánh giá</p>
             </div>
             <div className="video-danhgia">
               {videoReview()}

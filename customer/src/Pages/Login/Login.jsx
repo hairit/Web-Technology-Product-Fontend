@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import "../../CSS/Login.css";
+import URL from '../../DATA/URL.jsx'
+
 //import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from "axios";
 import { IoMdShuffle } from "react-icons/io";
 export default function Login({ login, userCookie }) {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   const history = useHistory();
   const [flag, setFlag] = useState(false);
   const [flag2, setFlag2] = useState(false);
@@ -47,7 +49,7 @@ export default function Login({ login, userCookie }) {
       } else {
         axios
           .get(
-            `https://localhost:44343/data/user/login/${user.email}/${user.pass}`
+            `${URL}/data/user/login/${user.email}/${user.pass}`
           )
           .then((res) => {
             console.log(res.data);

@@ -46,7 +46,7 @@ export default function Laptops({ idUser, match, addProductToCart }) {
         API = `${URL}/data/laptop/${match.match.params.attribute}=${match.match.params.value}`;
       }
     }
-    else API = "https://localhost:44343/data/Product/type=laptop";
+    else API = `${URL}/data/Product/type=laptop`;
 
     axios
       .get(API, null)
@@ -73,11 +73,11 @@ export default function Laptops({ idUser, match, addProductToCart }) {
     console.log("aa", active)
     if (active % 2 !== 0) {
       var sorts = e.target.value
-      axios.get("https://localhost:44343/data/laptop/" + sorts, null)
+      axios.get(`${URL}/data/laptop/` + sorts, null)
         .then((res) => setPros(res.data))
         .catch((err) => console.log(err))
     } else {
-      axios.get("https://localhost:44343/data/Product/type=laptop", null)
+      axios.get(`${URL}/data/Product/type=laptop`, null)
         .then((res) => setPros(res.data))
         .catch((err) => console.log(err))
     }
@@ -94,8 +94,6 @@ export default function Laptops({ idUser, match, addProductToCart }) {
   const firstPage = lastPage - itemsPage
   const page = pros.slice(firstPage, lastPage)
 
-  console.log(firstPage);
-  console.log(lastPage);
   function handleClick(e) {
     setCurrentPage(Number(e.target.id))
   }
@@ -128,7 +126,7 @@ export default function Laptops({ idUser, match, addProductToCart }) {
 
 
   function showProWithPrice() {
-    axios.get(`https://localhost:44343/data/product/type=laptop/from=${firstprice}to=${lastprice}`)
+    axios.get(`${URL}/data/product/type=laptop/from=${firstprice}to=${lastprice}`)
       .then((res) => {
         console.log(res.title);
         if (res.status === 200) {

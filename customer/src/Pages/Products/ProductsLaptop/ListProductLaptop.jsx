@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router";
 import "../../../CSS/ProductsCss/style.css";
+import URL from '../../../DATA/URL'
 
 import {
   BrowserRouter as Router,
@@ -74,7 +75,7 @@ export default function ListProductLaptop({ pros, addProductInCart }) {
                 <a className="af" onClick={() => handleViewDetails(pro)}>
                   <img
                     className="img-pro"
-                    src={`https://localhost:44343/Images/Products/${pro.nameimage}`}
+                    src={`${URL}/Images/Products/${pro.nameimage}`}
                     alt="Product Name"
                   />
                 </a>

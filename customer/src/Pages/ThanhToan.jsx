@@ -6,10 +6,11 @@ import GioHang from "../CSS/GioHangCss.css";
 import Order from "../CSS/Order.css";
 import edit from "../Images/edit.png";
 import plus from "../Images/plus.png";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import CheckoutItem from "./CheckoutItem";
+import URL from '../DATA/URL.jsx';
 
-export default function ThanhToan({ updateData,createBill,idUser,order}) {
+export default function ThanhToan({ updateData, createBill, idUser, order }) {
   const history = useHistory();
   const solver = new Solver();
   const [address, setAddress] = useState(false);
@@ -25,25 +26,25 @@ export default function ThanhToan({ updateData,createBill,idUser,order}) {
     sdt: "",
     diachi: ""
   })
-  useEffect(() =>{
-      axios.get(`https://localhost:44343/data/user/${idUser}`)
-         .then((res) => 
-          setUserorder(res.data))
-         .catch((err) => console.log("Reload User"+err));
-}, [reload])
-const reLoad = () =>{
-  if(reload === 0) setReload(1);
-  else setReload(0);
-}
+  useEffect(() => {
+    axios.get(`${URL}/data/user/${idUser}`)
+      .then((res) =>
+        setUserorder(res.data))
+      .catch((err) => console.log("Reload User" + err));
+  }, [reload])
+  const reLoad = () => {
+    if (reload === 0) setReload(1);
+    else setReload(0);
+  }
   useEffect(() => {
     if (idUser !== null) {
-      axios.get(`https://localhost:44343/data/cartdetail/iduser=${idUser}/selected`,null)
-          .then((res) => {
-            if (res.status === 200) {
-              setCheckout(res.data);
-            }
-          })
-          .catch((err) => console.log(err));
+      axios.get(`${URL}/data/cartdetail/iduser=${idUser}/selected`, null)
+        .then((res) => {
+          if (res.status === 200) {
+            setCheckout(res.data);
+          }
+        })
+        .catch((err) => console.log(err));
     }
   }, [reload]);
   function totalPrice(carts) {
@@ -53,31 +54,31 @@ const reLoad = () =>{
     });
     return tongtien;
   }
-  function handleChane(e){
-    const newdata = {...userinfo}
+  function handleChane(e) {
+    const newdata = { ...userinfo }
     newdata[e.target.id] = e.target.value
     setUserinfo(newdata)
-}
- function saveInfoUser(e){
+  }
+  function saveInfoUser(e) {
     e.preventDefault();
-    axios.put("https://localhost:44343/data/user/", {
+    axios.put(`${URL}/data/user/`, {
       id: idUser,
       firstname: userinfo.firstname + '' || userOrder.firstname + '',
       lastname: userinfo.lastname + '' || userOrder.lastname + '',
       email: userinfo.email + '' || userOrder.email + '',
-      pass: userOrder.pass + '' ,
+      pass: userOrder.pass + '',
       sdt: userinfo.sdt || userOrder.sdt,
       diachi: userinfo.diachi + '' || userOrder.diachi + '',
       mode: userOrder.mode + '',
       nameimage: userOrder.nameimage + '',
-      bills: [ ],
-      cartDetails: [ ]
+      bills: [],
+      cartDetails: []
     }).then(res => {
-      createBill(checkout,totalPrice(checkout), res.data.diachi)
+      createBill(checkout, totalPrice(checkout), res.data.diachi)
       updateData()
       setEditinfo(false)
 
-      
+
     }).catch(err => {
       console.log("Lỗi", err)
     })
@@ -87,21 +88,21 @@ const reLoad = () =>{
   }
   function savePhoneAddress(e) {
     e.preventDefault();
-    axios.put("https://localhost:44343/data/user/", {
+    axios.put(`${URL}/data/user/`, {
       id: idUser,
       firstname: userOrder.firstname + '',
       lastname: userOrder.lastname + '',
       email: userOrder.email + '',
       pass: userOrder.pass + '',
-      sdt: userinfo.sdt ,
-      diachi: userinfo.diachi + '' ,
+      sdt: userinfo.sdt,
+      diachi: userinfo.diachi + '',
       mode: userOrder.mode + '',
       nameimage: userOrder.nameimage + '',
-      bills: [ ],
-      cartDetails: [ ]
+      bills: [],
+      cartDetails: []
     }).then(res => {
       // updateData()
-      createBill(checkout,totalPrice(checkout), res.data.diachi)
+      createBill(checkout, totalPrice(checkout), res.data.diachi)
       setEditinfo(false)
       updateData()
       // reLoad()
@@ -110,138 +111,138 @@ const reLoad = () =>{
     })
   }
 
-  function btnEditInfo(){
+  function btnEditInfo() {
     setEditinfo(true)
     setAddress(false);
   }
-  function btnSaveEditInfo(){
+  function btnSaveEditInfo() {
     setEditinfo(false)
   }
-  function showEditInfo(){
-    if(editinfo === false){
+  function showEditInfo() {
+    if (editinfo === false) {
       return Address();
-    }else{
+    } else {
       return renderFormEditInfo()
     }
   }
   function editCart() {
     history.goBack();
   }
-function formAddDiaChi(){
-  <div className="formAddAdress">
-        <div className="formEdit">
-          <div className="info-editAdress">
-            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e) }>
-              <div className="form-center">
-                <div className="form-diachi">
-                  <div className="title-diachi text-title">Địa chỉ</div>
-                  <input className="form-control btn-formEdit" type="text" onChange={(e) => handleChane(e)} id="diachi" value={userinfo.diachi} placeholder="Nhập địa chỉ của bạn" />
-                </div>
+  function formAddDiaChi() {
+    <div className="formAddAdress">
+      <div className="formEdit">
+        <div className="info-editAdress">
+          <form className="form-edit" onSubmit={(e) => savePhoneAddress(e)}>
+            <div className="form-center">
+              <div className="form-diachi">
+                <div className="title-diachi text-title">Địa chỉ</div>
+                <input className="form-control btn-formEdit" type="text" onChange={(e) => handleChane(e)} id="diachi" value={userinfo.diachi} placeholder="Nhập địa chỉ của bạn" />
               </div>
-              <div className="btn-form">
-                <button className="btn btn-primary"  onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="btn-form">
+              <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+            </div>
+          </form>
         </div>
       </div>
-}
-function formAddPhone(){
-  <div className="formAddAdress">
-        <div className="formEdit">
-          <div className="info-editAdress">
-            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e) }>
-                <div className="form-email">
-                  <div className="form-phone">
-                    <div className="text-title">Số điện thoại</div>
-                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="sdt" value={userinfo.sdt} placeholder="Nhập số điện thoại"/>
-                  </div>
-                </div>
-              <div className="btn-form">
-                <button className="btn btn-primary"  onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+    </div>
+  }
+  function formAddPhone() {
+    <div className="formAddAdress">
+      <div className="formEdit">
+        <div className="info-editAdress">
+          <form className="form-edit" onSubmit={(e) => savePhoneAddress(e)}>
+            <div className="form-email">
+              <div className="form-phone">
+                <div className="text-title">Số điện thoại</div>
+                <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="sdt" value={userinfo.sdt} placeholder="Nhập số điện thoại" />
               </div>
-            </form>
-          </div>
+            </div>
+            <div className="btn-form">
+              <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+            </div>
+          </form>
         </div>
       </div>
-}
-  function AddressAndPhone(){
-    if(userOrder.diachi && userOrder.sdt !== null){
+    </div>
+  }
+  function AddressAndPhone() {
+    if (userOrder.diachi && userOrder.sdt !== null) {
       return showEditInfo();
     }
-    else{
-      return  renderFormAddAdressAndPhone();
+    else {
+      return renderFormAddAdressAndPhone();
     }
   }
- 
- function btnOrder(){
-  if(userOrder.diachi && userOrder.sdt !== null){
+
+  function btnOrder() {
+    if (userOrder.diachi && userOrder.sdt !== null) {
       return (
-          <button type="button"className="btn-pay btn btn-outline-primary" 
-          onClick={()=>{
-            setTimeout(()=>{
+        <button type="button" className="btn-pay btn btn-outline-primary"
+          onClick={() => {
+            setTimeout(() => {
               history.push("/bill");
               updateData()
             }, 1700)
             order()
-            }} >Đặt hàng ngay </button>
+          }} >Đặt hàng ngay </button>
       )
-  }else{
-    return (
-          <button type="button"className="btn-pay btn btn-outline-primary" onClick={()=>order()}  disabled >
-            Đặt hàng ngay
-          </button>
+    } else {
+      return (
+        <button type="button" className="btn-pay btn btn-outline-primary" onClick={() => order()} disabled >
+          Đặt hàng ngay
+        </button>
       )
+    }
   }
- }
   function renderFormEditInfo() {
     return (
       <div className="formAddAdress">
         <div className="formEdit">
           <div className="info-editAdress">
-             <form className="form-edit" onSubmit={(e) => saveInfoUser(e)  }  >
+            <form className="form-edit" onSubmit={(e) => saveInfoUser(e)}  >
               <div className="form-center">
                 <div className="title-formEdit">Sửa thông tin người nhận hàng</div>
                 <div className="form-editName">
                   <div className="text-title">Họ</div>
                   <div className="form-input">
-                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)}  id="firstname" value={userinfo.firstname}  placeholder={userOrder.firstname} />
+                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="firstname" value={userinfo.firstname} placeholder={userOrder.firstname} />
                   </div>
                 </div>
                 <div className="form-editName">
                   <div className="text-title">Tên</div>
                   <div className="form-input">
-                  <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.lastname} id="lastname" placeholder={userOrder.lastname} type="text"  />
+                    <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.lastname} id="lastname" placeholder={userOrder.lastname} type="text" />
                   </div>
                 </div>
                 <div className="form-email">
                   <div className="form-phone">
                     <div className="text-title">Số điện thoại</div>
-                    <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.sdt} id="sdt" placeholder={userOrder.sdt} type="text"  />
+                    <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.sdt} id="sdt" placeholder={userOrder.sdt} type="text" />
                   </div>
                   <div className="form-editemail">
                     <div className="text-title">Email</div>
-                    <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.email} id="email" placeholder={userOrder.email} type="text"   />
+                    <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.email} id="email" placeholder={userOrder.email} type="text" />
                   </div>
                 </div>
                 <div className="form-diachi">
                   <div className="title-diachi text-title">Địa chỉ</div>
-                  <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.diachi} id="diachi" placeholder={userOrder.diachi} type="text"  />
+                  <input className="form-control btn-formEdit" onChange={(e) => handleChane(e)} value={userinfo.diachi} id="diachi" placeholder={userOrder.diachi} type="text" />
                 </div>
               </div>
               <div className="btn-form">
-                <button  className="btn btn-primary">Lưu thông tin</button>
+                <button className="btn btn-primary">Lưu thông tin</button>
                 <button className="btn btn-primary" onClick={() => btnSaveEditInfo()} >Thoát</button>
-                </div>
+              </div>
             </form>
           </div>
         </div>
-        
+
       </div>
     );
   }
 
-// ===========================================================================================================
+  // ===========================================================================================================
 
   function btnAddAdress() {
     setAddress(true);
@@ -257,7 +258,7 @@ function formAddPhone(){
   //     return renderFormAddAdress();
   //   }
   // }
-  
+
   function FormAddAdress() {
     return (
       <div className="info-addAdress" onClick={() => btnAddAdress()}>
@@ -310,33 +311,33 @@ function formAddPhone(){
   //           </form>
   //         </div>
   //       </div>
-        
+
   //     </div>
   //   );
   // }
- 
-// ===========================================================================================================
 
-  function Address(){
-    if(userOrder.diachi && userOrder.sdt !== null){
+  // ===========================================================================================================
+
+  function Address() {
+    if (userOrder.diachi && userOrder.sdt !== null) {
       return (
         <div className="info-receive">
-            <div className="info-nameUser">
-              <p>{userOrder.lastname} {" "} {userOrder.firstname}</p>
-              <div className="logo-edit">
-                <button className="btn-editUser" onClick={() => btnEditInfo()}>
+          <div className="info-nameUser">
+            <p>{userOrder.lastname} {" "} {userOrder.firstname}</p>
+            <div className="logo-edit">
+              <button className="btn-editUser" onClick={() => btnEditInfo()}>
                 <img src={edit} />
-                </button>
-              </div>
+              </button>
             </div>
-            <div className="phone-adress">{userOrder.sdt}</div>
-            <div className="phone-adress">{userOrder.diachi}
-            </div>
+          </div>
+          <div className="phone-adress">{userOrder.sdt}</div>
+          <div className="phone-adress">{userOrder.diachi}
+          </div>
         </div>
       )
-    }else{
+    } else {
       return (
-      <div className="addSdtAddress">Vui lòng thêm địa chỉ và số điện thoại</div>
+        <div className="addSdtAddress">Vui lòng thêm địa chỉ và số điện thoại</div>
       )
     }
   }
@@ -346,12 +347,12 @@ function formAddPhone(){
       <div className="formAddAdress">
         <div className="formEdit">
           <div className="info-editAdress">
-            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e) }>
+            <form className="form-edit" onSubmit={(e) => savePhoneAddress(e)}>
               <div className="form-center">
                 <div className="form-email">
                   <div className="form-phone">
                     <div className="text-title">Số điện thoại</div>
-                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="sdt" value={userinfo.sdt} placeholder="Nhập số điện thoại"/>
+                    <input type="text" className="form-control btn-formEdit" onChange={(e) => handleChane(e)} id="sdt" value={userinfo.sdt} placeholder="Nhập số điện thoại" />
                   </div>
                 </div>
                 <div className="form-diachi">
@@ -360,16 +361,16 @@ function formAddPhone(){
                 </div>
               </div>
               <div className="btn-form">
-                <button className="btn btn-primary"  onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
+                <button className="btn btn-primary" onClick={() => btnSaveNewAdress()} >Lưu thông tin</button>
               </div>
             </form>
           </div>
         </div>
-        
+
       </div>
     );
   }
- 
+
 
   return (
     <div className="wrapper order">
@@ -385,7 +386,7 @@ function formAddPhone(){
                   <div className="info-nhanhang">Thông tin nhận hàng</div>
                   {/* {showEditInfo()} */}
                   {/* {Address()} */}
-                 {AddressAndPhone()}
+                  {AddressAndPhone()}
                 </div>
               </div>
               <div className="info-delivery">
@@ -455,26 +456,26 @@ function formAddPhone(){
                   Chỉnh sửa
                 </div>
               </div>
-              {checkout.map((pro, index) => <CheckoutItem pro={pro} index={index} solver={solver}/>)}
+              {checkout.map((pro, index) => <CheckoutItem pro={pro} index={index} solver={solver} />)}
             </div>
             <div className="pay-order">
-            <div className="pay-info pay-orders">
-              <div className="thanhtoan">
-                <strong>Thanh toán</strong>
-              </div>
-              <div className="tamtinh-thanhtien ">
-                <p className="txt-ship">Phí vận chuyển</p>
-                <p className=" ships">{solver.formatCurrency("vi-VN","currency","VND",0)}</p>
+              <div className="pay-info pay-orders">
+                <div className="thanhtoan">
+                  <strong>Thanh toán</strong>
+                </div>
+                <div className="tamtinh-thanhtien ">
+                  <p className="txt-ship">Phí vận chuyển</p>
+                  <p className=" ships">{solver.formatCurrency("vi-VN", "currency", "VND", 0)}</p>
 
+                </div>
+                <div className="tamtinh-thanhtien">
+                  <p className="txt-left">Thành tiền</p>
+                  <p className="thanhtien">{solver.formatCurrency("vi-VN", "currency", "VND", totalPrice(checkout))}</p>
+                </div>
+                <div className="VAT">( Bao gồm VAT )</div>
+                {btnOrder()}
               </div>
-              <div className="tamtinh-thanhtien">
-                <p className="txt-left">Thành tiền</p>
-                <p className="thanhtien">{solver.formatCurrency("vi-VN","currency","VND",totalPrice(checkout))}</p>
-              </div>
-              <div className="VAT">( Bao gồm VAT )</div>
-              {btnOrder()}
             </div>
-          </div>
           </div>
         </div>
       </div>

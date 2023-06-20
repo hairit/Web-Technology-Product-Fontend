@@ -6,18 +6,19 @@ import axios from 'axios';
 import Solver from "../Classes/Solver";
 import DetailBill from './DetailBill';
 import { useHistory } from 'react-router-dom';
+import URL from '../DATA/URL.jsx';
 
-export default function DonHang({idUser}) {
+export default function DonHang({ idUser }) {
     const solver = new Solver();
     const [bills, setBills] = useState([])
     const history = useHistory();
     useEffect(() => {
-        if(idUser !== null){
-            axios.get(`https://localhost:44343/data/bill/iduser=${idUser}`,null)
-                    .then((res) => setBills(res.data))
-                    .catch((err) =>console.error("",err))
+        if (idUser !== null) {
+            axios.get(`${URL}/data/bill/iduser=${idUser}`, null)
+                .then((res) => setBills(res.data))
+                .catch((err) => console.error("", err))
         }
-    },[])
+    }, [])
     return (
         <div className="wrapper billInfo">
             <div className="container-bill">
@@ -26,8 +27,8 @@ export default function DonHang({idUser}) {
                         <img src={bill} />
                         <p>Quản lý đơn hàng</p>
                     </div>
-                        <div className="centerTitle-bill">
-                      
+                    <div className="centerTitle-bill">
+
                         <table className="table table-hover table-bill">
                             <thead>
                                 <tr className="title-bills">
@@ -39,23 +40,23 @@ export default function DonHang({idUser}) {
                                     <th className="col cols row-bill">Trạng thái</th>
                                 </tr>
                             </thead>
-                            {bills.map((bill,index) =>{
+                            {bills.map((bill, index) => {
                                 return (
                                     <tbody key={index}>
                                         <tr className="info-bill">
-                                            <td className="id-bill">{bill.id}</td> 
-                                            {bill.billDetails.map((item,index) => 
-                                                <DetailBill item={item} index={index}/>
+                                            <td className="id-bill">{bill.id}</td>
+                                            {bill.billDetails.map((item, index) =>
+                                                <DetailBill item={item} index={index} />
                                             )}
-                                            <td className="info-productInBill bill-price" >{solver.formatCurrency("vi-VN","currency","VND",bill.tongtien)}</td>
-                                            <td className="info-productInBill">{bill.ngaydat.split("T",1)}</td>
+                                            <td className="info-productInBill bill-price" >{solver.formatCurrency("vi-VN", "currency", "VND", bill.tongtien)}</td>
+                                            <td className="info-productInBill">{bill.ngaydat.split("T", 1)}</td>
                                             <td className="info-productInBill">{bill.diachinhan}</td>
                                             <td className="info-productInBill">{bill.tinhtrang}</td>
                                         </tr>
                                     </tbody>
                                 )
                             })}
-                           
+
                         </table>
                     </div>
                     {/* <div className="info-bill">
