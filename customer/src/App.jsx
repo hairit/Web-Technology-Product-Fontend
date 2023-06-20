@@ -49,6 +49,8 @@ import repairServer from "./Images/repair-server.png";
 import Invoice from "./Pages/StaffPages/Invoice";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "./firebase-config";
+import URL from './DATA/URL.jsx';
+
 function App() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
@@ -181,7 +183,7 @@ function App() {
   };
   const order = () => {
     axios
-      .post("https://localhost:44343/data/bill/", bill)
+      .post(`${URL}/data/bill/`, bill)
       .then((res) => {
         console.log(res.status);
         updateData();
@@ -208,7 +210,7 @@ function App() {
     }, 900);
     axios
       .get(
-        `https://localhost:44343/data/cartdetail/action=add/iduser=${user.id}/idproduct=${idProduct}/tongtien=${price}`,
+        `${URL}/data/cartdetail/action=add/iduser=${user.id}/idproduct=${idProduct}/tongtien=${price}`,
         null
       )
       .then((res) => {
@@ -228,7 +230,7 @@ function App() {
       } else {
         axios
           .get(
-            `https://localhost:44343/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`,
+            `${URL}/data/cartdetail/action=add/iduser=${idUser}/idproduct=${idProduct}/tongtien=${price}`,
             null
           )
           .then((res) => {
@@ -256,7 +258,7 @@ function App() {
       if (result.isConfirmed) {
         axios
           .delete(
-            `https://localhost:44343/data/cartdetail/iduser=${iduser}/idproduct=${idpro}`,
+            `${URL}/data/cartdetail/iduser=${iduser}/idproduct=${idpro}`,
             null
           )
           .then(() => {
@@ -276,7 +278,7 @@ function App() {
       }, 700);
       axios
         .get(
-          `https://localhost:44343/data/cartdetail/action=delete/iduser=${iduser}/idproduct=${idpro}/tongtien=${thanhtien}`,
+          `${URL}/data/cartdetail/action=delete/iduser=${iduser}/idproduct=${idpro}/tongtien=${thanhtien}`,
           null
         )
         .then(() => {
